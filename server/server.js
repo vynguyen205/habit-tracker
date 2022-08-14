@@ -1,6 +1,8 @@
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
+const routes = require('./routes');
+const chalk = require('chalk');
 
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
@@ -14,6 +16,7 @@ const server = new ApolloServer({
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(routes);
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
@@ -30,8 +33,8 @@ const startApolloServer = async (typeDefs, resolvers) => {
   
   db.once('open', () => {
     app.listen(PORT, () => {
-      console.log(`🌎 API server running http://localhost:${PORT}! 🌎`);
-      console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
+      console.log(chalk.green.bold.italic(`🌎 API server running http://localhost:${PORT} 🌎`));
+      console.log(chalk.green.bold.italic(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`));
     })
   })
   };

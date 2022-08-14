@@ -1,7 +1,6 @@
 const router = require('express').Router();
-const Tag = require('../../models/Tag');
-const Todo = require('../../models/Todo');
-const Habit = require('../../models/Habit');
+const { Tag, Todo, Habit } = require('../../models');
+const chalk = require('chalk');
 
 // Get all tags
 router.get('/', async (req, res) => {
@@ -9,7 +8,7 @@ router.get('/', async (req, res) => {
         const tags = await Tag.find();
         res.json(tags);
     } catch (err) {
-        console.log(err);
+        console.log(chalk.red(err));
         res.status(500).json({ message: err.message });
     }
 })
@@ -21,7 +20,7 @@ router.get('/:tagId', async (req, res) => {
         const tag = await Tag.findOne({ _id: req.params.tagId });
         res.json(tag);
     } catch (err) {
-        console.log(err);
+        console.log(chalk.red(err));
         res.status(500).json({ message: err.message });
     }
 })
@@ -33,7 +32,7 @@ router.post('/', async (req, res) => {
         const tag = await Tag.create(newTag);
         res.status(201).json(tag);
     } catch (err) {
-        console.log(err);
+        console.log(chalk.red(err));
         res.status(500).json({ message: err.message });
     }
 })
@@ -47,7 +46,7 @@ router.put('/:tagId', async (req, res) => {
         );
         res.status(200).json(tag);
     } catch (err) {
-        console.log(err);
+        console.log(chalk.red(err));
         res.status(500).json({ message: err.message });
     }
 })
@@ -73,7 +72,7 @@ router.get('/:tagId/habits', async (req, res) => {
         const habits = await tag.Habit;
         res.status(200).json(habits);
     } catch (err) {
-        console.log(err);
+        console.log(chalk.red(err));
         res.status(500).json({ message: err.message });
     }
 })
@@ -84,7 +83,7 @@ router.delete('/:tagId', async (req, res) => {
         const tag = await Tag.findOneAndDelete({ _id: req.params.tagId });
         res.status(200).json(tag);
     } catch (err) {
-        console.log(err);
+        console.log(chalk.red(err));
         res.status(500).json({ message: err.message });
     }
 })

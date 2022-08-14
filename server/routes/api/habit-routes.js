@@ -1,4 +1,6 @@
 const router = require('express').Router();
+const Habit = require('../../models/Habit');
+const chalk = require('chalk');
 
 // Get all habits
 router.get('/', async (req, res) => {
@@ -11,7 +13,7 @@ router.get('/', async (req, res) => {
         }
 
     } catch (err) {
-        console.log(err);
+        console.log(chalk.red(err));
         res.status(500).json({ message: err.message });
     }
 })
@@ -26,7 +28,7 @@ router.get('/HabitId', async (req, res) => {
         }
 
     } catch (err) {
-        console.log(err);
+        console.log(chalk.red(err));
         res.status(500).json({ message: err.message });
     }
 })
@@ -53,12 +55,12 @@ router.post('/', async (req, res) => {
         }
         
     } catch (err) {
-        console.log(err);
+        console.log(chalk.red(err));
         res.status(500).json({ message: err.message });
     }
 })
 // Update a habit and add tags to habit and update user with new habit
-router.put('/:HabitId', async (req, res) => {
+router.put('/:habitId', async (req, res) => {
     try {
         const updatedHabit = req.body;
         const habitData = await Habit.findOneAndUpdate
@@ -83,13 +85,13 @@ router.put('/:HabitId', async (req, res) => {
         }
 
     } catch (err) {
-        console.log(err);
+        console.log(chalk.red(err));
         res.status(500).json({ message: err.message });
     }
 })
 
 // Delete a habit
-router.delete('/:HabitId', async (req, res) => {
+router.delete('/:habitId', async (req, res) => {
     try {
         const habitData = await Habit.findOneAndDelete({ _id: req.params.HabitId });
         res.status(200).json(habitData);
@@ -99,7 +101,7 @@ router.delete('/:HabitId', async (req, res) => {
         }
 
     } catch (err) {
-        console.log(err);
+        console.log(chalk.red(err));
         res.status(500).json({ message: err.message });
     }
 })
