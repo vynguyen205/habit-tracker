@@ -1,12 +1,12 @@
 const { Schema, Types, model } = require('mongoose');
 
-const TagSchema = new Schema(
+const tagSchema = new Schema(
     {
-      // TagId: {
+      // tagId: {
       //   type: Schema.Types.ObjectId,
       //   default: () => new Types.ObjectId()
       // },
-      TagLabel: {
+      tagLabel: {
         type: String,
         required: true
       },
@@ -19,6 +19,6 @@ const TagSchema = new Schema(
     }
 );
 
-const Tag = model('Tag', TagSchema)
+const Tag = model('Tag', tagSchema)
 
 module.exports = Tag;
