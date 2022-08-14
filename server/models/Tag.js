@@ -2,11 +2,11 @@ const { Schema, Types, model } = require('mongoose');
 
 const TagSchema = new Schema(
     {
-      // TagId: {
+      // tagId: {
       //   type: Schema.Types.ObjectId,
       //   default: () => new Types.ObjectId()
       // },
-      TagLabel: {
+      tagLabel: {
         type: String,
         required: true
       },

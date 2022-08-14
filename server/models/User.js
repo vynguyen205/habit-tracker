@@ -24,6 +24,12 @@ const UserSchema = new Schema({
     required: true,
     minlength: 8
   },
+  habit: [
+    {
+      type: String,
+      trim: true,
+    },
+  ],
   totalPoints: {
     type: Number,
     default: 0
