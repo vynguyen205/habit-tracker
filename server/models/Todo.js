@@ -1,40 +1,40 @@
 const { Schema, model } = require('mongoose');
 
 // Create a schema for our Todo model
-const TodoSchema = new Schema({
-    TodoId: {
+const todoSchema = new Schema({
+    todoId: {
         type: Schema.Types.ObjectId,
         default: () => new Types.ObjectId()
     },
-    TodoLabel: {
+    todoLabel: {
         type: String,
         required: true
     },
-    TodoDescription: {
+    todoDescription: {
         type: String,
         required: true
     },
-    TodoCompleted: {
+    todoCompleted: {
         type: Boolean,
         default: false
     },
-    TodoCreated: {
+    todoCreated: {
         type: Date,
         default: Date.now
     },
-    TodoUpdated: {
+    todoUpdated: {
         type: Date,
         default: Date.now
     },
-    TodoUser: {
+    todoUser: {
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
-    TodoPoints: {
+    todoPoints: {
         type: Number,
         default: 0
     },
-    TodoTags: [{
+    todoTags: [{
         type: Schema.Types.ObjectId,
         ref: 'Tag'
     }],
@@ -45,6 +45,6 @@ const TodoSchema = new Schema({
 }
 );
 
-const Todo = model('Todo', TodoSchema);
+const Todo = model('Todo', todoSchema);
 
 module.exports = Todo;
