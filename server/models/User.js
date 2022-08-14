@@ -1,24 +1,57 @@
 const { Schema, model } = require('mongoose');
+const bcrypt = require('bcrypt');
 
-const matchupSchema = new Schema({
-  tech1: {
-    type: String,
-    required: true
+// Create a schema for our User model
+const UserSchema = new Schema({
+  userId: {
+    type: Schema.Types.ObjectId,
+    default: () => new Types.ObjectId()
   },
-  tech2: {
+  username: {
     type: String,
-    required: true
+    required: true,
+    unique: true,
+    trim: true,
   },
-  tech1_votes: {
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+    match: [/.+@.+..+/, 'Must match an email address!'],
+  },
+  password: {
+    type: String,
+    required: true,
+    minlength: 8
+  },
+  totalPoints: {
     type: Number,
     default: 0
   },
-  tech2_votes: {
-    type: Number,
-    default: 0
-  }
 });
 
-const Matchup = model('Matchup', matchupSchema);
+// Custom method to generate hash
+UserSchema.pre('save', async function (next) {
+  try {
+    if (!this.isModified('password')) return next();
+    const hashedPassword = await bcrypt.hash(this.password, 10);
+    this.password = hashedPassword;
+    next();
+  } catch (err) {
+    console.log(err);
+  }
+})
 
-module.exports = Matchup;
+// Custom method to compare password to hashed password
+UserSchema.methods.comparePassword = async function (candidatePassword) {
+  try {
+    const isMatch = bcrypt.compare(candidatePassword, this.password);
+    return isMatch;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+const User = model('User', UserSchema);
+
+module.exports = User;
