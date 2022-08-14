@@ -6,22 +6,18 @@ const typeDefs = gql`
     name: String
     habit: [String]!
   }
-{
-  User: {
 
-   Query {
+  type Query {
     users: [User]!
     user(userId: ID!): User
   }
 
-   Mutation {
+  type Mutation {
     addUser(name: String!): User
     addHabit(userId: ID!, habit: String!): User
     removeUser(userId: ID!): User
     removeHabit(userId: ID!, habit: String!): User
   }
-}
-}
 `;
 
 module.exports = typeDefs;

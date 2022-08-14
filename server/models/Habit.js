@@ -49,4 +49,4 @@ const habitSchema = new Schema({
 
 const habit = model('habit', habitSchema);
 
-module.exports = Tech;
+module.exports = habit;
