@@ -36,34 +36,14 @@ export const ADD_HABIT = gql`
     }
 `;
 
-
-// export const ADD_HABIT = gql`
-//   mutation addThought($thoughtText: String!) {
-//     addThought(thoughtText: $thoughtText) {
-//       _id
-//       thoughtText
-//       thoughtAuthor
-//       createdAt
-//       comments {
-//         _id
-//         commentText
-//       }
-//     }
-//   }
-// `;
-
-// export const ADD_TODO = gql`
-// //   mutation addComment($thoughtId: ID!, $commentText: String!) {
-// //     addComment(thoughtId: $thoughtId, commentText: $commentText) {
-// //       _id
-// //       thoughtText
-// //       thoughtAuthor
-// //       createdAt
-// //       comments {
-// //         _id
-// //         commentText
-// //         createdAt
-// //       }
-// //     }
-// //   }
-// // `;
+export const ADD_TODO = gql`
+    mutation addTodo($name: String!, $description: String!, $userId: ID!, $habitId: ID!) {
+        addTodo(name: $name, description: $description, userId: $userId, habitId: $habitId) {
+            _id
+            name
+            description
+            userId
+            habitId
+        }
+    }
+`;
