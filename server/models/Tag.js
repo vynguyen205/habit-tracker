@@ -1,6 +1,6 @@
 const { Schema, Types, model } = require('mongoose');
 
-const TagSchema = new Schema(
+const tagSchema = new Schema(
     {
       // tagId: {
       //   type: Schema.Types.ObjectId,
@@ -19,6 +19,6 @@ const TagSchema = new Schema(
     }
 );
 
-const Tag = model('Tag', TagSchema)
+const Tag = model('Tag', tagSchema)
 
 module.exports = Tag;

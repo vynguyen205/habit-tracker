@@ -47,6 +47,6 @@ const habitSchema = new Schema({
 }
 );
 
-const habit = model('habit', habitSchema);
+const Habit = model('Habit', habitSchema);
 
-module.exports = habit;
+module.exports = Habit;

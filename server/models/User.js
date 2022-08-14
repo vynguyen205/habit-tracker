@@ -2,7 +2,7 @@ const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
 // Create a schema for our User model
-const UserSchema = new Schema({
+const userSchema = new Schema({
   userId: {
     type: Schema.Types.ObjectId,
     default: () => new Types.ObjectId()
@@ -37,7 +37,7 @@ const UserSchema = new Schema({
 });
 
 // Custom method to generate hash
-UserSchema.pre('save', async function (next) {
+userSchema.pre('save', async function (next) {
   try {
     if (!this.isModified('password')) return next();
     const hashedPassword = await bcrypt.hash(this.password, 10);
@@ -49,7 +49,7 @@ UserSchema.pre('save', async function (next) {
 })
 
 // Custom method to compare password to hashed password
-UserSchema.methods.comparePassword = async function (candidatePassword) {
+userSchema.methods.comparePassword = async function (candidatePassword) {
   try {
     const isMatch = bcrypt.compare(candidatePassword, this.password);
     return isMatch;
@@ -58,6 +58,6 @@ UserSchema.methods.comparePassword = async function (candidatePassword) {
   }
 }
 
-const User = model('User', UserSchema);
+const User = model('User', userSchema);
 
 module.exports = User;

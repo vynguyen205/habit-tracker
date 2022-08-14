@@ -1,32 +1,32 @@
 [
     {
-        "TagLabel": "School"
+        "tagLabel": "School"
     },
     {
-        "TagLabel": "Work"
+        "tagLabel": "Work"
     },
     {
-        "TagLabel": "Exercise"
+        "tagLabel": "Exercise"
     },
     {
-        "TagLabel": "Chores"
+        "tagLabel": "Chores"
     },
     {
-        "TagLabel": "Creativity"
+        "tagLabel": "Creativity"
     },
     {
-        "TagLabel": "Hobbies"
+        "tagLabel": "Hobbies"
     },
     {
-        "TagLabel": "Health & Wellness"
+        "tagLabel": "Health & Wellness"
     },
     {
-        "TagLabel": "Personal Development"
+        "tagLabel": "Personal Development"
     },
     {
-        "TagLabel": "Relationships"
+        "tagLabel": "Relationships"
     },
     {
-        "TagLabel": "Spirituality"
+        "tagLabel": "Spirituality"
     }
 ]
