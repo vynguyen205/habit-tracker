@@ -1,3 +1,6 @@
+// Copied from Unit 22 mini project: Main -> client -> src -> pages -> Matchup.js  
+// TODO: look at file structure and decide what elements we can keep/modify and what we can delete
+
 // import React, { useState } from 'react';
 // import { useNavigate } from 'react-router-dom';
 // import { useMutation, useQuery } from '@apollo/client';

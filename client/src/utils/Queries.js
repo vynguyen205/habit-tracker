@@ -1,3 +1,5 @@
+// Not super sure what this is for, but it's in the client folder for the mini project so maybe we keep it maybe we don't?
+
 import { gql } from '@apollo/client';
 
 export const QUERY_USER = gql`

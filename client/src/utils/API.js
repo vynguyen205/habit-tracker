@@ -8,6 +8,7 @@ export const getMe = (token) => {
     });
   };
   
+  // Create a new user
   export const createUser = (userData) => {
     return fetch('/api/users', {
       method: 'POST',
@@ -18,6 +19,7 @@ export const getMe = (token) => {
     });
   };
   
+  // Login a user
   export const loginUser = (userData) => {
     return fetch('/api/users/login', {
       method: 'POST',
@@ -28,32 +30,40 @@ export const getMe = (token) => {
     });
   };
 
-  // save book data for a logged in user
-  // export const saveBook = (bookData, token) => {
-      //     return fetch('/api/users', {
-          //       method: 'PUT',
-          //       headers: {
-              //         'Content-Type': 'application/json',
-              //         authorization: `Bearer ${token}`,
-              //       },
-              //       body: JSON.stringify(bookData),
-              //     });
-              //   };
+ // SAVE habits for a logged in user
+  export const saveHabit = (habitData, token) => {
+    return fetch('/api/users', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(habitData),
+    });
+  }
 
- // TODO: SAVE habits and todos for a logged in user
+  // SAVE todos for a logged in user
+  export const saveTodo = (todoData, token) => {
+    return fetch('/api/users', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(todoData),
+    });
+  }
 
+// DELETE saved habits and todos for a logged in user 
+  export const deleteHabit = (habitId, token) => {
+    return fetch(`/api/users/habits/${habitId}`, {
+      method: 'DELETE',
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    });
+  }
 
-// remove saved book data for a logged in user
-//   export const deleteBook = (bookId, token) => {
-//     return fetch(`/api/users/books/${bookId}`, {
-//       method: 'DELETE',
-//       headers: {
-//         authorization: `Bearer ${token}`,
-//       },
-//     });
-//   };
-
-// TODO: DELETE saved habits and todos for a logged in user 
   
 
   
