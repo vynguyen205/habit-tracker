@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const Habit = require('../../models/Habit');
+const { Habit, User, Tag } = require('../../models');
 const chalk = require('chalk');
 
 // Get all habits
@@ -18,9 +18,9 @@ router.get('/', async (req, res) => {
     }
 })
 // Get one habit
-router.get('/HabitId', async (req, res) => {
+router.get('/habitId', async (req, res) => {
     try {
-        const habitData = await Habit.findOne({ _id: req.params.HabitId });
+        const habitData = await Habit.findOne({ _id: req.params.habitId });
         res.status(200).json(habitData);
 
         if (!habitData) {
@@ -37,21 +37,24 @@ router.post('/', async (req, res) => {
     try {
         const newHabit = req.body;
         const habitData = await Habit.create(newHabit);
-
+        // go to the user and add the new habit to the habits array
         const userData = await User.findOneAndUpdate(
             { _id: req.body.userId },
             { $push: { habits: habitData._id } },
             { new: true }
         );
+
         const tagData = await Tag.findOneAndUpdate(
             { _id: req.body.tagId },
             { $push: { habits: habitData._id } },
             { new: true }
         );
-        res.status(200).json(habitData);
+        
 
-        if (!habitData) {
-            res.status(404).json({ message: 'No habit found' });
+        if(res.status(200)) {
+            console.log(chalk.green(json(habitData && userData && tagData)));
+            res.json(habitData)
+            
         }
         
     } catch (err) {
@@ -65,7 +68,7 @@ router.put('/:habitId', async (req, res) => {
         const updatedHabit = req.body;
         const habitData = await Habit.findOneAndUpdate
         (
-            { _id: req.params.HabitId }, { $set: updatedHabit }, { new: true }
+            { _id: req.params.habitId }, { $set: updatedHabit }, { new: true }
         );
         const userData = await User.findOneAndUpdate(
             { _id: req.body.userId },
@@ -93,11 +96,12 @@ router.put('/:habitId', async (req, res) => {
 // Delete a habit
 router.delete('/:habitId', async (req, res) => {
     try {
-        const habitData = await Habit.findOneAndDelete({ _id: req.params.HabitId });
-        res.status(200).json(habitData);
+        const habitData = await Habit.findOneAndDelete({ _id: req.params.habitId });
 
         if (!habitData) {
             res.status(404).json({ message: 'No habit found' });
+        } else {
+            res.status(200).json({ message: 'Habit deleted' });
         }
 
     } catch (err) {

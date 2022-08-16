@@ -15,11 +15,11 @@ const resolvers = {
     addUser: async (parent, { name }) => {
       return User.create({ name });
     },
-    addHabit: async (parent, { userId, habit }) => {
+    addHabit: async (parent, { userId, userHabit }) => {
       return User.findOneAndUpdate(
         { _id: userId },
         {
-          $addToSet: { habits: habit },
+          $addToSet: { habits: userHabit },
         },
         {
           new: true,
@@ -30,10 +30,10 @@ const resolvers = {
     removeUser: async (parent, { userId }) => {
       return User.findOneAndDelete({ _id: userId });
     },
-    removeHabit: async (parent, { userId, habit }) => {
+    removeHabit: async (parent, { userId, userHabit }) => {
       return User.findOneAndUpdate(
         { _id: userId },
-        { $pull: { habits: habit } },
+        { $pull: { habits: userHabit } },
         { new: true }
       );
     },

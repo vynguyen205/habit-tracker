@@ -1,18 +1,18 @@
-const { Schema, model } = require('mongoose');
+const { Schema, Types ,model } = require('mongoose');
 
 const habitSchema = new Schema({
-  habitId: {
-    type: Schema.Types.ObjectId,
-    default: () => new Types.ObjectId()
-  },
-  habitLable: {
+  // habitId: {
+  //   type: Schema.Types.ObjectId,
+  //   default: () => new Types.ObjectId()
+  // },
+  habitName: {
     type: String,
     required: true,
     unique: true
   },
   habitDescription: {
     type: String,
-    required: true
+    required: false,
   },
   habitCompleted: {
     type: Boolean,
@@ -32,7 +32,7 @@ const habitSchema = new Schema({
   },
   habitPoints: {
     type: Number,
-    default: 0
+    default: 10
   },
   habitTags: [{
     type: Schema.Types.ObjectId,
@@ -46,6 +46,8 @@ const habitSchema = new Schema({
   id: false,
 }
 );
+
+// when the app opens, sync the indexes of the habits collection
 
 const Habit = model('Habit', habitSchema);
 

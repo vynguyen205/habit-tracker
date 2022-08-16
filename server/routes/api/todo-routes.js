@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const Todo = require('../../models');
+const Todo = require('../../models/Todo');
 const chalk = require('chalk');
 
 // Get all todos

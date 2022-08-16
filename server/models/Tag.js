@@ -6,7 +6,7 @@ const tagSchema = new Schema(
       //   type: Schema.Types.ObjectId,
       //   default: () => new Types.ObjectId()
       // },
-      tagLabel: {
+      tagName: {
         type: String,
         required: true
       },
