@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import { QUERY_USER } from '../utils/queries';
+import { QUERY_USER } from '../utils/Queries';
 
 // TODO: work on incorporating these routes into the landing page
 // import { useAuth } from '../utils/auth';
