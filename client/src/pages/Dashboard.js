@@ -1,88 +1,44 @@
-// Copied from Unit 22 mini project: Main -> client -> src -> pages -> Matchup.js  
-// TODO: look at file structure and decide what elements we can keep/modify and what we can delete
+// import React, { useState, useEffect } from 'react';
+// // import { Jumbotron, Container, CardColumns, Card, Button } from 'tailwindcss';
 
-// import React, { useState } from 'react';
-// import { useNavigate } from 'react-router-dom';
-// import { useMutation, useQuery } from '@apollo/client';
-// import { QUERY_TECH } from '../utils/queries';
-// import { CREATE_MATCHUP } from '../utils/mutations';
+//  import { getMe, saveHabit, saveTodo, deleteHabit } from '../utils/API';
+//  import { AuthService } from '../utils/Auth';
+// // import { ADD_HABIT, ADD_TODO} from '../utils/Mutations';
+// // import { QUERY_USER, QUERY_HABITS, QUERY_TODO, QUERY_TODO_USER, QUERY_USER_HABITS } from '../utils/Queries';
 
-// const Matchup = () => {
-//   const { loading, data } = useQuery(QUERY_TECH);
 
-//   const techList = data?.tech || [];
+// const Dashboard = () => {
+//   const [userData, setUserData] = useState({});
 
-//   const [formData, setFormData] = useState({
-//     tech1: 'JavaScript',
-//     tech2: 'JavaScript',
-//   });
-//   let navigate = useNavigate();
+//   // use this to determine if `useEffect()` hook needs to run again
+//   const userDataLength = Object.keys(userData).length;
 
-//   const [createMatchup, { error }] = useMutation(CREATE_MATCHUP);
+//   useEffect(() => {
+//     const getUserData = async () => {
+//       try {
+//         const token = AuthService.loggedIn() ? AuthService.getToken() : null;
 
-//   const handleInputChange = (event) => {
-//     const { name, value } = event.target;
-//     setFormData({ ...formData, [name]: value });
-//   };
+//         if (!token) {
+//           return false;
+//         }
 
-//   const handleFormSubmit = async (event) => {
-//     event.preventDefault();
+//         const response = await getMe(token);
 
-//     try {
-//       const { data } = await createMatchup({
-//         variables: { ...formData },
-//       });
+//         if (!response.ok) {
+//           throw new Error('something went wrong!');
+//         }
 
-//       navigate(`/matchup/${data.createMatchup._id}`);
-//     } catch (err) {
-//       console.error(err);
-//     }
+//         const user = await response.json();
+//         setUserData(user);
+//       } catch (err) {
+//         console.error(err);
+//       }
+//     };
 
-//     setFormData({
-//       tech1: 'JavaScript',
-//       tech2: 'JavaScript',
-//     });
-//   };
+//     getUserData();
+//   }, [userDataLength]);
 
-//   return (
-//     <div className="card bg-white card-rounded w-25">
-//       <div className="card-header bg-dark text-center">
-//         <h1>Let's create a matchup!</h1>
-//       </div>
-//       <div className="card-body m-5">
-//         {loading ? (
-//           <div>Loading...</div>
-//         ) : (
-//           <form onSubmit={handleFormSubmit}>
-//             <label>Tech 1: </label>
-//             <select name="tech1" onChange={handleInputChange}>
-//               {techList.map((tech) => {
-//                 return (
-//                   <option key={tech._id} value={tech.name}>
-//                     {tech.name}
-//                   </option>
-//                 );
-//               })}
-//             </select>
-//             <label>Tech 2: </label>
-//             <select name="tech2" onChange={handleInputChange}>
-//               {techList.map((tech) => {
-//                 return (
-//                   <option key={tech._id} value={tech.name}>
-//                     {tech.name}
-//                   </option>
-//                 );
-//               })}
-//             </select>
-//             <button className="btn btn-danger" type="submit">
-//               Create Matchup!
-//             </button>
-//           </form>
-//         )}
-//       </div>
-//       {error && <div>Something went wrong...</div>}
-//     </div>
-//   );
 // };
 
-// export default Matchup;
+
+// export default Dashboard;

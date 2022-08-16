@@ -62,8 +62,4 @@ export const getMe = (token) => {
         authorization: `Bearer ${token}`,
       },
     });
-  }
-
-  
-
-  
+  }  

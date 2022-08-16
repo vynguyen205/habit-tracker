@@ -3,9 +3,9 @@ import { useQuery } from '@apollo/client';
 import { QUERY_USER } from '../utils/queries';
 
 // TODO: work on incorporating these routes into the landing page
-import { useAuth } from '../utils/auth';
-import { LoginForm } from './LoginForm';
-import { SignupForm } from './SignupForm';
+// import { useAuth } from '../utils/auth';
+// import { LoginForm } from './LoginForm';
+// import { SignupForm } from './SignupForm';
 
 // TODO: maybe include useState or useEffect? need to look into this more 
 const Home = () => {
