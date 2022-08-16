@@ -1,14 +1,11 @@
-const { Schema, model } = require('mongoose');
+const { Schema, Types, model } = require('mongoose');
 
-// Create a schema for our Todo model
+
 const todoSchema = new Schema({
-    todoId: {
-        type: Schema.Types.ObjectId,
-        default: () => new Types.ObjectId()
-    },
-    todoLabel: {
+    todoName: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     todoDescription: {
         type: String,
@@ -32,18 +29,20 @@ const todoSchema = new Schema({
     },
     todoPoints: {
         type: Number,
-        default: 0
+        default: 10
     },
     todoTags: [{
         type: Schema.Types.ObjectId,
         ref: 'Tag'
     }],
 },
-{
-    toJSON: { getters: true }, // this will allow us to use the getters in the frontend
-    id: false, // this will allow us to use the _id in the frontend
-}
-);
+{   
+    toJSON: {
+        getters: true,
+    },
+    id: false,
+
+});
 
 const Todo = model('Todo', todoSchema);
 

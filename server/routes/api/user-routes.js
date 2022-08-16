@@ -1,6 +1,7 @@
 const router = require('express').Router();
-const User = require('../../models');
+const User = require('../../models/User');
 const chalk = require('chalk');
+
 // Get all users
 router.get('/', async (req, res) => {
     try{
@@ -49,6 +50,7 @@ router.put('/:userId', async (req, res) => {
         res.status(500).json({ message: err.message });
     }
 })
+
 
 router.delete('/:userId', async (req, res) => {
     try{

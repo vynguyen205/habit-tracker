@@ -1,12 +1,8 @@
-const { Schema, model } = require('mongoose');
+const { Schema, Types, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
 // Create a schema for our User model
 const userSchema = new Schema({
-  userId: {
-    type: Schema.Types.ObjectId,
-    default: () => new Types.ObjectId()
-  },
   username: {
     type: String,
     required: true,
@@ -24,16 +20,14 @@ const userSchema = new Schema({
     required: true,
     minlength: 8
   },
-  habit: [
-    {
-      type: String,
-      trim: true,
-    },
-  ],
-  totalPoints: {
-    type: Number,
-    default: 0
-  },
+  userHabit: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Habit'
+  }],
+  UserTodo: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Todo'
+  }]
 });
 
 // Custom method to generate hash
@@ -57,6 +51,16 @@ userSchema.methods.comparePassword = async function (candidatePassword) {
     console.log(err);
   }
 }
+
+// custom method to see how many todos the user has
+userSchema.virtual('todoCount').get(function () {
+  return this.UserTodo.length;
+})
+
+// custom method to see how many habits the user has
+userSchema.virtual('habitCount').get(function () {
+  return this.userHabit.length;
+})
 
 const User = model('User', userSchema);
 
