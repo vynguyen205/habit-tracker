@@ -30,7 +30,16 @@ router.post('/', async (req, res) => {
     try {
         const newTodo = req.body;
         const todo = await Todo.create(newTodo);
-        res.status(200).json(todo);
+
+        // update user's todos
+        const userData = await User.findOneAndUpdate(
+            { _id: req.body.todoUser },
+            { $push: { userTodo: todo._id } },
+            { new: true } 
+        );
+
+        res.status(200).json(todo, userData);
+
     } catch (err) {
         console.log(chalk.red(err));
         res.status(500).json({ message: err.message });

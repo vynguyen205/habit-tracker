@@ -2,14 +2,14 @@ const { Schema, Types, model } = require('mongoose');
 
 const tagSchema = new Schema(
     {
-      // tagId: {
-      //   type: Schema.Types.ObjectId,
-      //   default: () => new Types.ObjectId()
-      // },
       tagName: {
         type: String,
         required: true
       },
+      tagHabits: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Habit'
+      }],
     },
     {
       toJSON: {
