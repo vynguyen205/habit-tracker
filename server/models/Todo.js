@@ -30,11 +30,7 @@ const todoSchema = new Schema({
     todoPoints: {
         type: Number,
         default: 10
-    },
-    todoTags: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Tag'
-    }],
+    }
 },
 {   
     toJSON: {

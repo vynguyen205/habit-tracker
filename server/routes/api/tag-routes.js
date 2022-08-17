@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Tag, Todo, Habit } = require('../../models');
+const { Tag, Habit } = require('../../models');
 const chalk = require('chalk');
 
 // Get all tags
@@ -44,32 +44,24 @@ router.put('/:tagId', async (req, res) => {
         const tag = await Tag.findOneAndUpdate(
             { _id: req.params.tagId }, { $set: updatedTag }, { new: true }
         );
+
+        if (!tag) {
+            res.status(404).json({ message: 'Tag not found' });
+        } else {
         res.status(200).json(tag);
+        }
     } catch (err) {
         console.log(chalk.red(err));
         res.status(500).json({ message: err.message });
     }
 })
 
-// Get all todos with a tag
-router.get('/:tagId/todos', async (req, res) => {
-    try {
-        const tag = await Tag.findOne({ _id: req.params.tagId });
-        // this is to get the todos that have the tagId
-        const todos = await tag.Todo;
-        res.status(200).json(todos);
-    } catch (err) {
-        console.log(err);
-        res.status(500).json({ message: err.message });
-    }
-});
-
 // Get all Habit with a tag 
 router.get('/:tagId/habits', async (req, res) => {
     try {
         const tag = await Tag.findOne({ _id: req.params.tagId });
         // this is to get the habits that have the tagId
-        const habits = await tag.Habit;
+        const habits = await tag.tagHabits;
         res.status(200).json(habits);
     } catch (err) {
         console.log(chalk.red(err));
@@ -81,7 +73,14 @@ router.get('/:tagId/habits', async (req, res) => {
 router.delete('/:tagId', async (req, res) => {
     try {
         const tag = await Tag.findOneAndDelete({ _id: req.params.tagId });
-        res.status(200).json(tag);
+        
+        // remove the tag off the habits that have the tagId
+        const habits = await Habit.findOneAndUpdate(
+            { _id: { $in: tag.tagHabits } },
+            { $pull: { habitTags: tag._id } }
+        );
+
+        res.status(200).json(tag, habits);
     } catch (err) {
         console.log(chalk.red(err));
         res.status(500).json({ message: err.message });
