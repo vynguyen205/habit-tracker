@@ -1,27 +1,27 @@
-// TODO: save new habit to database
-// TODO: add new habit to list of habits that are displayed
+// TODO: save new todo to database
+// TODO: add new todo to list of todos that are displayed
 
 import React, { useState } from "react";
 import "../App.css";
 
 // Get all habits for a logged in user
-function Habits() {
-    const [habits, setHabits] = useState([]);    
-    const getHabits = async () => {
+function Todos() {
+    const [todos, setTodos] = useState([]);    
+    const getTodos = async () => {
         const response = await fetch('../utils/api');
         const data = await response.json();
-        setHabits(data);
+        setTodos(data);
     }
 
     React.useEffect(() => {
-        getHabits();
+        getTodos();
     } , []);
 
     // Add new habit to databasea and display it on the page
         const [showModal, setShowModal] = useState(false); 
-        const [habit, setHabit] = useState({});
+        const [todo, setTodo] = useState({});
         
-        // TODO: additional functionality for habits page 
+        // TODO: additional functionality for todo page 
         // const handleSubmit = async (e) => {     
         //     e.preventDefault();
         //     const response = await fetch('../utils/api', {
@@ -64,9 +64,9 @@ function Habits() {
           <>
         <div className="flex-column justify-left align-left min-100-vh bg-slate-500">
             <ul>
-                {habits.map(habit => (
+                {todos.map(habit => (
                     <li key={habit.id}>
-                        <a href={`/Habits/${habit.id}`}>{habit.name}</a>
+                        <a href={`/Todos/${todo.id}`}>{todo.name}</a>
                     </li>
                 ))}
             </ul>
@@ -77,7 +77,7 @@ function Habits() {
               type="button"
               onClick={() => setShowModal(true)}
             >
-              Add New Habit
+              Add New Daily
             </button>
             {showModal ? (
               <>
@@ -85,13 +85,13 @@ function Habits() {
                   <div className="relative w-auto my-6 mx-auto max-w-3xl">
                     <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                       <div className="flex items-start justify-between p-5 border-b border-solid border-gray-300 rounded-t ">
-                        <h3 className="text-3xl font=semibold">Create Habit</h3>
+                        <h3 className="text-3xl font=semibold">Create Todo</h3>
                         <button
                           className="bg-transparent border-0 text-black float-right"
                           onClick={() => setShowModal(false)}
                         >
                           <span className="text-black opacity-7 h-6 w-6 text-xl block bg-gray-400 py-0 rounded-full">
-                            x
+                            X
                           </span>
                         </button>
                       </div>
@@ -107,10 +107,6 @@ function Habits() {
                           <input className="shadow appearance-none border rounded w-full py-2 px-1 text-black" />
                           <label className="block text-black text-sm font-bold mb-1">
                             Tags
-                          </label>
-                          <input className="shadow appearance-none border rounded w-full py-2 px-1 text-black" />
-                          <label className="block text-black text-sm font-bold mb-1">
-                            Repeat
                           </label>
                           <input className="shadow appearance-none border rounded w-full py-2 px-1 text-black" />
                         </form>
@@ -133,4 +129,4 @@ function Habits() {
         );
       };      
         
-export default Habits;
+export default Todos;
