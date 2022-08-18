@@ -1,10 +1,6 @@
 const { Schema, Types ,model } = require('mongoose');
 
 const habitSchema = new Schema({
-  // habitId: {
-  //   type: Schema.Types.ObjectId,
-  //   default: () => new Types.ObjectId()
-  // },
   habitName: {
     type: String,
     required: true,
