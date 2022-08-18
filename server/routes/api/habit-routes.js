@@ -39,21 +39,24 @@ router.post('/', async (req, res) => {
         const habitData = await Habit.create(newHabit);
         // go to the user and add the new habit to the habits array
         const userData = await User.findOneAndUpdate(
-            { _id: req.body.userId },
-            { $push: { habits: habitData._id } },
+            { _id: req.body.habitUser },
+            { $push: { userHabit: habitData._id } },
             { new: true }
         );
 
         const tagData = await Tag.findOneAndUpdate(
-            { _id: req.body.tagId },
-            { $push: { habits: habitData._id } },
+            { _id: req.body.habitTags },
+            { $push: { tagHabits: habitData._id } },
             { new: true }
         );
         
 
         if(res.status(200)) {
-            console.log(chalk.green(json(habitData && userData && tagData)));
-            res.json(habitData)
+            res.json(
+                habitData,
+                userData,
+                tagData
+            );
             
         }
         
@@ -72,19 +75,23 @@ router.put('/:habitId', async (req, res) => {
         );
         const userData = await User.findOneAndUpdate(
             { _id: req.body.userId },
-            { $push: { habits: habitData._id } },
+            { $push: { userHabit: habitData._id } },
             { new: true }
         );
         const tagData = await Tag.findOneAndUpdate(
             { _id: req.body.tagId },
-            { $push: { habits: habitData._id } },
+            { $push: { habitTags: habitData._id } },
             { new: true }
         );
 
         res.status(200).json(habitData);
 
-        if (!habitData) {
-            res.status(404).json({ message: 'No habit found' });
+        if (res.status(200)) {
+            res.json(
+                habitData,
+                userData,
+                tagData
+            );
         }
 
     } catch (err) {
@@ -97,6 +104,21 @@ router.put('/:habitId', async (req, res) => {
 router.delete('/:habitId', async (req, res) => {
     try {
         const habitData = await Habit.findOneAndDelete({ _id: req.params.habitId });
+
+        // delete the habit from the user's habits array
+        const userData = await User.findOneAndUpdate(
+            // find user with the same tag ref the habit model
+            { _id: habitData.habitUser },
+            // pull habit, ref the users model
+            { $pull: { userHabit: habitData._id } },
+            { new: true }
+        );
+        // delete the habit from the tag's habit array
+        const tagData = await Tag.findOneAndUpdate(
+            { _id: habitData.habitTags },
+            { $pull: { tagHabits: habitData._id } },
+            { new: true }
+        );
 
         if (!habitData) {
             res.status(404).json({ message: 'No habit found' });

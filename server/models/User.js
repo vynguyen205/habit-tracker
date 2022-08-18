@@ -24,7 +24,7 @@ const userSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Habit'
   }],
-  UserTodo: [{
+  userTodo: [{
     type: Schema.Types.ObjectId,
     ref: 'Todo'
   }]

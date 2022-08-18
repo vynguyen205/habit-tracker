@@ -23,14 +23,14 @@ function App() {
               path="/" 
               element={<Home />}
             />
-            <Route 
+            {/* <Route 
               path="/Dashboard"
               element={<Dashboard />}
-            />
-            <Route 
+            /> */}
+            {/* <Route 
               path="*"
               element={<NotFound />}
-            />
+            /> */}
           </Routes>
         </div>
       </Router>
