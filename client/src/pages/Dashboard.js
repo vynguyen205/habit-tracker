@@ -1,18 +1,28 @@
 // Import file dependencies
-import React, { useState } from 'react';
+import React from 'react';
 import "../App.css";
 import logoutUser from '../components/LogoutUser';
 
 // Display landing page
 function Dashboard () {
     return (
-        <div className="flex-column justify-center align-center min-100-vh bg-slate-500">
+        <><div className="flex-column justify-center align-center min-100-vh bg-slate-500">
             <nav>
-                <h1>Login</h1>
-                <h3>Logout</h3>
-            </nav>
             <button onClickCapture={logoutUser}>logout user</button>
-        </div>
+            </nav>
+        </div><div className="flex-column justify-left align-left min-100-vh bg-slate-500">
+                <ul>
+                    <li>
+                        <a href="/Habits">Habits</a>
+                    </li>
+                    <li>
+                        <a href="/Todos">Todos</a>
+                    </li>
+                    <li>
+                        <a href="/Tags">Tags</a>
+                    </li>
+                </ul>
+            </div></>
     );
 }
 

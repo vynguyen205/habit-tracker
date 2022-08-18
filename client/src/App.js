@@ -1,10 +1,13 @@
 // TODO: This was copied from the mini project, not sure if we need to include it or not but its here for now
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
-import NotFound from './pages/NotFound';
+// import NotFound from './pages/NotFound';
+import Habits from './pages/Habits';
+import Todos from './pages/Todos';
+import Tags from './pages/Tags';
 import './App.css';
 
 const client = new ApolloClient({
@@ -25,6 +28,18 @@ function App() {
             <Route
               path="/Dashboard"
               element={<Dashboard />}
+            />
+            <Route
+              path="/Habits"
+              element={<Habits />}
+            />
+            <Route
+              path="/Todos"
+              element={<Todos />}
+            />
+            <Route
+              path="/Tags"
+              element={<Tags />}
             />
             {/* <Route
               path="*"
