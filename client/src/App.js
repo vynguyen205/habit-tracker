@@ -1,5 +1,5 @@
 // TODO: This was copied from the mini project, not sure if we need to include it or not but its here for now
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import Home from './pages/Home';
@@ -9,9 +9,8 @@ import './App.css';
 
 const client = new ApolloClient({
   uri: '/graphql',
-  cache: new InMemoryCache(),
- });
-
+  cache: new InMemoryCache()
+});
 
 function App() {
   return (
@@ -19,15 +18,15 @@ function App() {
       <Router>
         <div className="flex-column justify-center align-center min-100-vh bg-slate-500">
           <Routes>
-            <Route 
-              path="/" 
+            <Route
+              path="/"
               element={<Home />}
             />
-            {/* <Route 
+            <Route
               path="/Dashboard"
               element={<Dashboard />}
-            /> */}
-            {/* <Route 
+            />
+            {/* <Route
               path="*"
               element={<NotFound />}
             /> */}
