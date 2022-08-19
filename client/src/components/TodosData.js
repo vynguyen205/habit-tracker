@@ -2,6 +2,7 @@
 // TODO: add new todo to list of todos that are displayed
 
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "../App.css";
 
 // Get all habits for a logged in user
@@ -63,7 +64,7 @@ function Todos() {
         return (
           <>
            <div>
-            <a href="/Dashboard">🏠</a>
+              <Link to="/Dashboard">🏠</Link>
           </div>
         <div className="flex-column justify-left align-left min-100-vh bg-slate-500">
             <ul>

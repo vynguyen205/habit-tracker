@@ -644,8 +644,16 @@ video {
   display: flex;
 }
 
+.h-full {
+  height: 100%;
+}
+
 .h-6 {
   height: 1.5rem;
+}
+
+.h-1\/5 {
+  height: 20%;
 }
 
 .w-auto {
@@ -658,6 +666,15 @@ video {
 
 .w-6 {
   width: 1.5rem;
+}
+
+.w-1\/5 {
+  width: 20%;
+}
+
+.max-w-max {
+  max-width: -webkit-max-content;
+  max-width: max-content;
 }
 
 .max-w-3xl {

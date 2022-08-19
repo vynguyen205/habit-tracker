@@ -2,6 +2,7 @@
 // TODO: add new habit to list of habits that are displayed
 
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "../App.css";
 
 // Get all habits for a logged in user
@@ -19,9 +20,9 @@ function Habits() {
 
     // Add new habit to databasea and display it on the page
         const [showModal, setShowModal] = useState(false); 
-        const [habit, setHabit] = useState({});
         
         // TODO: additional functionality for habits page 
+        // const [habit, setHabit] = useState({});
         // const handleSubmit = async (e) => {     
         //     e.preventDefault();
         //     const response = await fetch('../utils/api', {
@@ -38,7 +39,7 @@ function Habits() {
         //     });
         //     const data = await response.json();
         //     setHabits([...habits, data]);
-        //     setShowModal(false);
+        //     setShowModal(false); 
         // }
         // const handleClose = () => {
         //     setShowModal(false);
@@ -63,9 +64,9 @@ function Habits() {
         return (
           <>
           <div>
-            <a href="/Dashboard">🏠</a>
+            <Link to="/Dashboard">🏠</Link>
           </div>
-        <div className="flex-column justify-left align-left min-100-vh bg-slate-500">
+        <div className="flex-column justify-left align-left max-w-max .h-full bg-slate-500">
             <ul>
                 {habits.map(habit => (
                     <li key={habit.id}>
@@ -103,7 +104,7 @@ function Habits() {
                           <label className="block text-black text-sm font-bold mb-1">
                             Title
                           </label>
-                          <input className="shadow appearance-none border rounded w-full py-2 px-1 text-black" />
+                          <input className="shadow appearance-none border rounded w-full py-2 px-1 text-black" />                                                                   
                           <label className="block text-black text-sm font-bold mb-1">
                             Description
                           </label>

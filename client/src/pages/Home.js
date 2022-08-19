@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
-import { QUERY } from '../utils/Queries';
+// import { Link } from 'react-router-dom';
+// import { useQuery } from '@apollo/client';
+// import { QUERY } from '../utils/Queries';
     
 import LoginForm from '../components/LoginForm';
 // import SignupForm from '../components/SignupForm';

@@ -1,28 +1,31 @@
 // Import file dependencies
 import React from 'react';
-import "../App.css";
 import logoutUser from '../components/LogoutUser';
+import { Link } from 'react-router-dom';
 
 // Display landing page
-function Dashboard () {
+function Dashboard() {
     return (
-        <><div className="flex-column justify-center align-center min-100-vh bg-slate-500">
+        <>
+        <div className="flex-column justify-center align-center h-[100vh] bg-orange-100" />
             <nav>
-            <button onClickCapture={logoutUser}>logout user</button>
+                <a href="/Dashboard">🏠</a>
+                <button onClickCapture={logoutUser} className='flex-column justify-right align-right'>logout user</button>
             </nav>
-        </div><div className="flex-column justify-left align-left min-100-vh bg-slate-500">
+            <div className="flex-column justify-left align-left min-100-vh">
                 <ul>
                     <li>
-                        <a href="/Habits">Habits</a>
+                        <Link to="/Habits">Habits</Link>
                     </li>
                     <li>
-                        <a href="/Todos">Todos</a>
-                    </li>
+                        <Link to="/Todos">Todos</Link>
+                    </li>                                      
                     <li>
-                        <a href="/Tags">Tags</a>
+                        <Link to="/Tags">Tags</Link>
                     </li>
                 </ul>
-            </div></>
+        </div>
+        </>
     );
 }
 
