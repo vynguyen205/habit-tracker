@@ -47,18 +47,19 @@ const resolvers = {
     addHabit: async (parent, { userId, habitTags, habitName, habitDescription }) => {
       const newHabit = await Habit.create({ habitName, habitTags, habitDescription });
       console.log(userId)
-      await User.findOneAndUpdate(
+       const userData = await User.findOneAndUpdate(
         { _id: userId },
         { $addToSet: { userHabit: newHabit._id } },
         { new: true, runValidators: true, }
       );
-      await Tag.findOneAndUpdate(
-        { _id: habitTags },
-        { $push: { tagHabits: newHabit._id } },
-        { new: true }
-      )
 
-      return newHabit;
+      const habitData = await newHabit.populate('habitTags').populate('habitUser').execPopulate();
+
+
+      // const habitData = await Habit.findOne({_id: newHabit._id}).populate('habitTags');
+      console.log(habitData)
+
+      return habitData
     },
 
     addTodo: async (parent, { userId, todoName, todoDescription }) => {

@@ -12,7 +12,6 @@ const typeDefs = gql`
   type Tag {
     _id: ID
     tagName: String!
-    tagHabits: [Habit]
   }
 
   type Habit {
@@ -42,16 +41,16 @@ const typeDefs = gql`
     users: [User]!
     user(userId: ID!, username: String!): User
     habits: [Habit]!
-    habit(habitId: ID!): Habit!
+    habit(habitId: ID!): Habit
     todos: [Todo]!
-    todo(todoId: ID!): Todo!
+    todo(todoId: ID!): Todo
     tags: [Tag]!
-    tag(tagId: ID!): Tag!
+    tag(tagId: ID!): Tag
   }
 
   type Mutation {
     addUser(username: String!, email: String!, password: String!): User
-    addHabit(userId: ID!, habitName: String!, habitTags: ID!): Habit
+    addHabit(userId: ID!, habitName: String!, habitTags: [ID]): Habit
     addTodo(userId: ID!, todoName: String!, todoDescription: String): Todo
     addTag(tagName: String!): Tag
     removeUser(userId: ID!): User
