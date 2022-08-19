@@ -5,7 +5,7 @@ const todoSchema = new Schema({
     todoName: {
         type: String,
         required: true,
-        unique: true
+        unique: false
     },
     todoDescription: {
         type: String,

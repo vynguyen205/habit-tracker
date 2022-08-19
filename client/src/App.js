@@ -4,14 +4,16 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
-import NotFound from './pages/NotFound';
+// import NotFound from './pages/NotFound';
+import Habits from './pages/Habits';
+import Todos from './pages/Todos';
+import Tags from './pages/Tags';
 import './App.css';
 
 const client = new ApolloClient({
   uri: '/graphql',
-  cache: new InMemoryCache(),
- });
-
+  cache: new InMemoryCache()
+});
 
 function App() {
   return (
@@ -19,15 +21,27 @@ function App() {
       <Router>
         <div className="flex-column justify-center align-center min-100-vh bg-slate-500">
           <Routes>
-            <Route 
-              path="/" 
+            <Route
+              path="/"
               element={<Home />}
             />
-            {/* <Route 
+            <Route
               path="/Dashboard"
               element={<Dashboard />}
-            /> */}
-            {/* <Route 
+            />
+            <Route
+              path="/Habits"
+              element={<Habits />}
+            />
+            <Route
+              path="/Todos"
+              element={<Todos />}
+            />
+            <Route
+              path="/Tags"
+              element={<Tags />}
+            />
+            {/* <Route
               path="*"
               element={<NotFound />}
             /> */}

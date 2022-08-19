@@ -4,7 +4,7 @@ const habitSchema = new Schema({
   habitName: {
     type: String,
     required: true,
-    unique: true
+    unique: false
   },
   habitDescription: {
     type: String,
