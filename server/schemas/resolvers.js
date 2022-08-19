@@ -45,7 +45,7 @@ const resolvers = {
     },
 
     addHabit: async (parent, { userId, habitTags, habitName, habitDescription }) => {
-      const newHabit = await Habit.create({ habitName, habitTags, habitDescription });
+      const newHabit = await Habit.create({ habitName, habitTags, habitDescription, habitUser: userId })
       console.log(userId)
        const userData = await User.findOneAndUpdate(
         { _id: userId },
