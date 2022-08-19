@@ -6,10 +6,6 @@ const tagSchema = new Schema(
         type: String,
         required: true
       },
-      tagHabits: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Habit'
-      }],
     },
     {
       toJSON: {
