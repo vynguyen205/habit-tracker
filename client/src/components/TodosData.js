@@ -62,6 +62,9 @@ function Todos() {
 
         return (
           <>
+           <div>
+            <a href="/Dashboard">🏠</a>
+          </div>
         <div className="flex-column justify-left align-left min-100-vh bg-slate-500">
             <ul>
                 {todos.map(habit => (
