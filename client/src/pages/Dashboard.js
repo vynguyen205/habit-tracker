@@ -1,44 +1,50 @@
-// import React, { useState, useEffect } from 'react';
-// // import { Jumbotron, Container, CardColumns, Card, Button } from 'tailwindcss';
+// Import file dependencies
+import React from 'react';
+import "../App.css";
+import logoutUser from '../components/LogoutUser';
 
-//  import { getMe, saveHabit, saveTodo, deleteHabit } from '../utils/API';
-//  import { AuthService } from '../utils/Auth';
-// // import { ADD_HABIT, ADD_TODO} from '../utils/Mutations';
-// // import { QUERY_USER, QUERY_HABITS, QUERY_TODO, QUERY_TODO_USER, QUERY_USER_HABITS } from '../utils/Queries';
+// Display landing page
+function Dashboard () {
+    return (
+        <><div className="flex-column justify-center align-center min-100-vh bg-slate-500">
+            <nav>
+            <button onClickCapture={logoutUser}>logout user</button>
+            </nav>
+        </div><div className="flex-column justify-left align-left min-100-vh bg-slate-500">
+                <ul>
+                    <li>
+                        <a href="/Habits">Habits</a>
+                    </li>
+                    <li>
+                        <a href="/Todos">Todos</a>
+                    </li>
+                    <li>
+                        <a href="/Tags">Tags</a>
+                    </li>
+                </ul>
+            </div></>
+    );
+}
 
-
-// const Dashboard = () => {
-//   const [userData, setUserData] = useState({});
-
-//   // use this to determine if `useEffect()` hook needs to run again
-//   const userDataLength = Object.keys(userData).length;
-
-//   useEffect(() => {
-//     const getUserData = async () => {
-//       try {
-//         const token = AuthService.loggedIn() ? AuthService.getToken() : null;
-
-//         if (!token) {
-//           return false;
-//         }
-
-//         const response = await getMe(token);
-
-//         if (!response.ok) {
-//           throw new Error('something went wrong!');
-//         }
-
-//         const user = await response.json();
-//         setUserData(user);
-//       } catch (err) {
-//         console.error(err);
-//       }
-//     };
-
-//     getUserData();
-//   }, [userDataLength]);
-
-// };
+export default Dashboard;
 
 
-// export default Dashboard;
+// Display header with home icon and logout button
+
+// Display side menu
+
+// Display current date
+
+// Display logged in users name
+
+// Todos: button to view all todos
+
+// Habits: button to view all habits
+
+// Tags: button to view all tags
+
+// Display Middle body withing landing page
+
+// Button to add new habit
+
+// Button to add new todo
