@@ -1,6 +1,6 @@
 import React from 'react';
 import "../App.css";
-import Tags from '../components/TagsData';
+import Tags from '../components/Tags/TagsData';
 
 // Display all habits for a logged in user
 function userTags() {
