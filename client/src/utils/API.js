@@ -30,6 +30,17 @@ export const getMe = (token) => {
     });
   };
 
+  // Logout a user
+  export const logoutUser = (token) => {
+    return fetch('/api/users/logout', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        authorization: `Bearer ${token}`,
+      },
+    });
+  }
+  
  // SAVE habits for a logged in user
   export const saveHabit = (habitData, token) => {
     return fetch('/api/users', {
