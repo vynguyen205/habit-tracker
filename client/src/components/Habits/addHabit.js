@@ -3,73 +3,19 @@
 
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import logoutUser from '../../components/LogoutUser';
 import "../../App.css";
 
 // Get all habits for a logged in user
-function Habits() {
-  const [habits, setHabits] = useState([]);
-  const getHabits = async () => {
-    const response = await fetch('../../utils/api');
-    const data = await response.json();
-    setHabits(data);
-  }
+function AddHabit() {
 
-  React.useEffect(() => {
-    getHabits();
-  }, []);
 
   // Add new habit to databasea and display it on the page
   const [showModal, setShowModal] = useState(false);
 
-
-
-
   return (
     <>
-      <>
-        <div className='flex-column bg-lightOrange h-[100vh] w-[100vw]'>
-          <nav className='flex items-center justify-between flex-wrap bg-lightBlue p-6'>
-            <Link to="/Dashboard" className='flex items-center flex-shrink-0 mr-6'>
-              <img src={require('../../assets/bus.jpeg')} alt='logo' className='w-30 h-20' />
-            </Link>
-            <button onClickCapture={logoutUser} className='inline-block text-md px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-lightBlue hover:bg-white mt-4 md:mt-0'>Logout</button>
-          </nav>
-          {/* Side menu */}
-          <div className='flex'>
-            <div className='flex flex-col w-[25vw] h-[80vh] px-8 py-8 overflow-y-auto rounded-2xl bg-darkOrange m-20'>
-              <h2 className='text-2xl font-bold text-center text-dar'>Welcome, --Username--</h2>
-              <div className='flex flex-col justify-between mt-10'>
-                <aside>
-                  <ul>
-                    <li>
-                      <a className='flex items-center px-4 py-2 mt-5 text-gray-600 rounded-md hover:bg-gray-200' href="/Habits">
-                        <span className='px-20 font-semibold text-2xl'>Habits</span>
-                      </a>
-                    </li>
-
-                    <li>
-                      <a className='flex items-center px-4 py-2 mt-5 text-gray-600 rounded-md hover:bg-gray-200' href="/Todos">
-                        <span className='px-20 font-semibold text-2xl'>Todos</span>
-                      </a>
-                    </li>
-
-                    <li>
-                      <a className='flex items-center px-4 py-2 mt-5 text-gray-600 rounded-md hover:bg-gray-200' href="/Tags">
-                        <span className='px-20 font-semibold text-2xl'>Tags</span>
-                      </a>
-                    </li>
-                  </ul>
-                </aside>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </>
-      {/* Modal & button for adding new habit */}
       <button
-        className="bg-blue-200 text-black active:bg-blue-500 font-bold px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 left-26121px"
+        className="bg-lightBlue text-white active:bg-darkBlue font-bold px-6 py-3 rounded-shadow hover:bg-darkBlue hover:shadow-lg outline-none focus:outline-none rounded-3xl mr-1 mb-1" 
         type="button" onClick={() => setShowModal(true)}>
         Add New Habit
       </button>
@@ -127,4 +73,4 @@ function Habits() {
   );
 };
 
-export default Habits;
+export default AddHabit;
