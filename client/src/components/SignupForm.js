@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { ADD_USER } from '../utils/Mutations';
 import { useMutation } from '@apollo/client';
 import { QUERY } from '../utils/Queries';
+
 import FlatButton from "material-ui/FlatButton";
 import RaisedButton from "material-ui/RaisedButton";
 import TextField from "material-ui/TextField";
 import PasswordStr from "./components/PasswordStr";
 
-import { createUser } from '../utils/API';
 import Auth from '../utils/auth';
 
 const SignUpForm = ({
@@ -22,52 +22,6 @@ const SignUpForm = ({
   pwMask,
   onPwChange
 }) => {
-
-  const [ add_user ] = useMutation(ADD_USER);
-  // set initial form state
-  const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '', confirmPassword: '' }); 
-  // set state for form validation
-  const [validated] = useState(false);
-  // set state for alert
-  const [showAlert, setShowAlert] = useState(false);
-
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setUserFormData({ ...userFormData, [name]: value });
-  };
-
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
-
-    const newUser = add_user (userFormData.username, userFormData.email, userFormData.password);
-
-    if (newUser) {
-
-    }
-
-    }
-
-    try {
-      const response = createUser(userFormData);
-
-      if (!response.ok) {
-        throw new Error('something went wrong!');
-      }
-
-      const { token, user } = response.json();
-      console.log(user);
-      Auth.login(token);
-    } catch (err) {
-      console.error(err);
-      setShowAlert(true);
-    }
-
-    setUserFormData({
-      username: '',
-      email: '',
-      password: '',
-    });
-  };
 
   return (
     <div className="loginBox">
@@ -132,5 +86,7 @@ const SignUpForm = ({
       </p>
     </div>
   );
+};
+
 
 export default SignUpForm;
