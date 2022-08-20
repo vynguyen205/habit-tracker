@@ -646,13 +646,6 @@ video {
   height: 1.5rem;
 }
 
-/* <<<<<<< HEAD
-.h-full {
-  height: 100%;
-}
-
-=======
->>>>>>> styling_dennis */
 .w-\[25vw\] {
   width: 25vw;
 }
@@ -677,14 +670,6 @@ video {
   max-width: 48rem;
 }
 
-/* <<<<<<< HEAD
-.max-w-max {
-  max-width: -webkit-max-content;
-  max-width: max-content;
-}
-
-=======
->>>>>>> styling_dennis */
 .flex-auto {
   flex: 1 1 auto;
 }
@@ -820,36 +805,6 @@ video {
 .p-5 {
   padding: 1.25rem;
 }
-
-/* <<<<<<< HEAD
-.p-2 {
-  padding: 0.5rem;
-=======
-.px-8 {
-  padding-left: 2rem;
-  padding-right: 2rem;
-}
-
-.py-8 {
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-}
-
-.px-4 {
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-.py-2 {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-}
-
-.px-20 {
-  padding-left: 5rem;
-  padding-right: 5rem;
-}
->>>>>>> styling_dennis */
 
 .px-8 {
   padding-left: 2rem;
