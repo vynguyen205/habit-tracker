@@ -125,18 +125,11 @@ const resolvers = {
     removeHabit: async (parent, { userId, habitId }) => {
       const habit = await Habit.findOneAndDelete({ _id: habitId });
 
-      console.log(habit.habitUser)
-      const userData = await User.findOneAndUpdate(
-        { _id: habit.habitUser },
-        { $pull: { userHabit: habitId } },
-        { new: true, runValidators: true, }
-      )
-
-      const tagData = await Tag.findOneAndUpdate(
-        { _id: habit.habitTags },
-        { $pull: { tagHabits: habitId } },
-        { new: true, runValidators: true, }
-      )
+      // const tagData = await Tag.findOneAndUpdate(
+      //   { _id: habit.habitTags },
+      //   { $pull: { tagHabits: habitId } },
+      //   { new: true, runValidators: true, }
+      // )
 
       const habitData = await habit.populate('habitTags').populate('habitUser').execPopulate();
       return habitData;
