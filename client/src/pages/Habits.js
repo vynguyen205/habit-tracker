@@ -1,6 +1,6 @@
 import React from 'react';
 import "../App.css";
-import Habits from '../components/HabitsData';
+import Habits from '../components/Habits/HabitsData';
 
 // Display all habits for a logged in user
 function userHabits() {

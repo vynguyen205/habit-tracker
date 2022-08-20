@@ -1,6 +1,6 @@
 import React from 'react';
 import "../App.css";
-import Todos from '../components/TodosData';
+import Todos from '../components/Todos/TodosData';
 
 // Display all habits for a logged in user
 function userTodos() {

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import "../App.css";
+import "../../App.css";
 import { Link } from "react-router-dom";
-import userData from '../utils/API';
+import userData from '../../utils/API';
 
 // Get all tags for a logged in user
 function Tags() {
