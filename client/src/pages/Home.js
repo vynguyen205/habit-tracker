@@ -1,24 +1,19 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
-import { QUERY } from '../utils/Queries';
+import ReactDOM from 'react-dom';
+// import { useQuery } from '@apollo/client';
+// import { QUERY } from '../utils/Queries';
     
-import LoginForm from '../components/LoginForm';
-// import SignupForm from '../components/SignupForm';
+//import LoginForm from '../components/LoginForm';
+import SignUpContainer from '../components/SignUpContainer';
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 
 
-const Home = () => {
-    // const { data, loading } = useQuery(QUERY_USER, {
-    //     fetchPolicy: 'no-cache',
-    // });
+const Home = () => (
+    <MuiThemeProvider>
+        <SignUpContainer />
+    </MuiThemeProvider>
+);
 
-    return (
-        <div>
-            <h1> Groovy </h1>
-            <LoginForm />
-            {/* <SignupForm /> */}
-        </div>
-    )
-}
+ReactDOM.render(<Home />, document.getElementById('root'));
 
 export default Home;
