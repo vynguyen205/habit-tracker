@@ -47,7 +47,7 @@ const LoginForm = () => {
   };
 
   return (
-      <div>
+      <div className='bg-gradient-to-r p-4 shadow-lg rounded-2xl py-8 from-pink-500 to-violet-500 via-fuchsia-400'>
             <div className="">
                 <h1 >
                     Login 🔐
