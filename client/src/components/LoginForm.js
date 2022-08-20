@@ -48,8 +48,8 @@ const LoginForm = () => {
 
   return (
       <div>
-            <div>
-                <h1>
+            <div className="">
+                <h1 >
                     Login 🔐
                 </h1>
 
