@@ -1,100 +1,84 @@
-import React, { useState } from 'react';
-import { Form, Button, Alert } from 'tailwindcss';
+import React from "react";
+import FlatButton from "material-ui/FlatButton";
+import RaisedButton from "material-ui/RaisedButton";
+import TextField from "material-ui/TextField";
+import PasswordStr from "./components/PasswordStr";
 
-import { createUser } from '../utils/API';
-import Auth from '../utils/auth';
-
-const SignupForm = () => {
-  // set initial form state
-  const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '' });
-  // set state for form validation
-  const [validated] = useState(false);
-  // set state for alert
-  const [showAlert, setShowAlert] = useState(false);
-
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setUserFormData({ ...userFormData, [name]: value });
-  };
-
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
-
-    // check if form has everything (as per react-bootstrap docs)
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-
-    try {
-      const response = await createUser(userFormData);
-
-      if (!response.ok) {
-        throw new Error('something went wrong!');
-      }
-
-      const { token, user } = await response.json();
-      console.log(user);
-      Auth.login(token);
-    } catch (err) {
-      console.error(err);
-      setShowAlert(true);
-    }
-
-    setUserFormData({
-      username: '',
-      email: '',
-      password: '',
-    });
-  };
-
+const SignUpForm = ({
+  history,
+  onSubmit,
+  onChange,
+  errors,
+  user,
+  score,
+  btnTxt,
+  type,
+  pwMask,
+  onPwChange
+}) => {
   return (
-    <div>
-          <div>
-              <h1>
-                  Sign Up
-              </h1>
+    <div className="loginBox">
+      <h1>Sign Up</h1>
+      {errors.message && <p style={{ color: "red" }}>{errors.message}</p>}
 
-              <form onSubmit={handleFormSubmit}>
-                <div>
-                      <input
-                          type='username'
-                          id='username'
-                          placeholder='Username'
-                      />
-                  </div>
-                  <div>
-                      <input
-                          type='email'
-                          id='email'
-                          placeholder='Email'
-                      />
-                  </div>
-                  <div>
-                      <input
-                          type='password'
-                          id='password'
-                          placeholder='Password'
-                      />
-                  </div>
-                  <div>
-                      <input
-                          type='password'
-                          id='password'
-                          placeholder='Confirm Password'
-                      />
-                  </div>
+      <form onSubmit={onSubmit}>
+        <TextField
+          name="username"
+          floatingLabelText="user name"
+          value={user.username}
+          onChange={onChange}
+          errorText={errors.username}
+        />
+        <TextField
+          name="email"
+          floatingLabelText="email"
+          value={user.email}
+          onChange={onChange}
+          errorText={errors.email}
+        />
+        <TextField
+          type={type}
+          name="password"
+          floatingLabelText="password"
+          value={user.password}
+          onChange={onPwChange}
+          errorText={errors.password}
+        />
 
-                  <div>
-                      <button>
-                          Sign Up
-                      </button>
-                  </div>
-              </form>
-          </div>
-      </div>
-);
+        <div className="pwStrRow">
+          {score >= 1 && (
+            <div>
+              <PasswordStr score={score} /> 
+              <FlatButton 
+                className="pwShowHideBtn" 
+                label={btnTxt} onClick={pwMask} 
+                style={{position: 'relative', left: '50%', transform: 'translateX(-50%)'}} 
+              />
+            </div>
+            )} 
+        </div>
+        <TextField
+          type={type}
+          name="pwconfirm"
+          floatingLabelText="confirm password"
+          value={user.pwconfirm}
+          onChange={onChange}
+          errorText={errors.pwconfirm}
+        />
+        <br />
+        <RaisedButton
+          className="signUpSubmit"
+          primary={true}
+          type="submit"
+          label="submit"
+        />
+      </form>
+      <p>
+        Aleady have an account? <br />
+        <a href="/">Log in here</a>
+      </p>
+    </div>
+  );
 };
 
-export default SignupForm;
+export default SignUpForm;

@@ -1,85 +1,79 @@
-// see SignupForm.js for comments
-import React, { useState } from 'react';
+// // see SignupForm.js for comments
+// import React, { useState } from 'react';
 
-import { loginUser } from '../utils/API';
-// import Auth from '../utils/auth';
+// // import Auth from '../utils/auth';
 
-const LoginForm = () => {
-  const [userFormData, setUserFormData] = useState({ email: '', password: '' });
-  const [validated] = useState(false);
-  const [showAlert, setShowAlert] = useState(false);
+// const LoginForm = () => {
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setUserFormData({ ...userFormData, [name]: value });
-  };
+//   const [errorMessages, setErrorMessages] = useState({});
+//   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
+  
+//   setUserFormData({
+//     username: '',
+//     email: '',
+//     password: '',
+//   });
 
-    // check if form has everything (as per react-bootstrap docs)
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
+//   const errors = {
+//     uname: "invalid username",
+//     pass: "invalid password"
+//   };
 
-    try {
-      const response = await loginUser(userFormData);
+//   const handleSubmit = (event) => {
+//     //Prevent page reload
+//     event.preventDefault();
 
-      if (!response.ok) {
-        throw new Error('something went wrong!');
-      }
+//     var { uname, pass } = document.forms[0];
 
-      // const { token, user } = await response.json();
-      // console.log(user);
-      // Auth.login(token);
-    } catch (err) {
-      console.error(err);
-      setShowAlert(true);
-    }
+//     // Find user login info
+//     const userData = setUserFormData.find((user) => user.username === uname.value);
 
-    setUserFormData({
-      username: '',
-      email: '',
-      password: '',
-    });
-  };
+//     if (userData) {
+//       if (userData.password !== pass.value) {
+//         // Invalid password
+//         setErrorMessages({ name: "pass", message: errors.pass });
+//       } else {
+//         setIsSubmitted(true);
+//       }
+//     } else {
+//       // Username not found
+//       setErrorMessages({ name: "uname", message: errors.uname });
+//     }
+//   };
 
-  return (
-      <div>
-            <div>
-                <h1>
-                    Login 🔐
-                </h1>
+//   const renderErrorMessage = (name) =>
+//   name === errorMessages.name && (
+//     <div className="error">{errorMessages.message}</div>
+//   );
 
-                <form onSubmit={handleFormSubmit}>
-                    <div>
-                        <label htmlFor='email'>Email</label>
-                        <input
-                            type='email'
-                            id='email'
-                            placeholder='Email'
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor='password'>Password</label>
-                        <input
-                            type='password'
-                            id='password'
-                            placeholder='Password'
-                        />
-                    </div>
+//   const renderForm = (
+//     <div className="form">
+//       <form onSubmit={handleSubmit}>
+//         <div className="input-container">
+//           <input type="text" name="uname" id="username" placeholder='username' required />
+//           {renderErrorMessage("uname")}
+//         </div>
+//         <div className="input-container">
+//           <input type="password" name="pass" id="password" placeholder="password" required />
+//           {renderErrorMessage("pass")}
+//         </div>
+//         <div className="button-container">
+//           <buttton> Login </buttton>
+//         </div>
+//       </form>
+//     </div>
+//   );
 
-                    <div>
-                        <button>
-                            Login
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-  );
-};
+//   return (
+//     <div className="app">
+//       <div className="login-form">
+//         <div className="title"></div>
+//         {isSubmitted ? <div>User is successfully logged in</div> : renderForm}
+//       </div>
+//     </div>
+//   );
 
-export default LoginForm;
+//   };
+
+// export default LoginForm;
