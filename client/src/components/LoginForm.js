@@ -1,85 +1,54 @@
-// see SignupForm.js for comments
+// // see SignupForm.js for comments
 import React, { useState } from 'react';
 
-import { loginUser } from '../utils/API';
 // import Auth from '../utils/auth';
 
 const LoginForm = () => {
-  const [userFormData, setUserFormData] = useState({ email: '', password: '' });
-  const [validated] = useState(false);
-  const [showAlert, setShowAlert] = useState(false);
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setUserFormData({ ...userFormData, [name]: value });
+  const [errorMessages, setErrorMessages] = useState({});
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+//   setUserFormData({
+//     username: '',
+//     email: '',
+//     password: '',
+//   });
+
+  const errors = {
+    uname: "invalid username",
+    pass: "invalid password"
   };
 
-  const handleFormSubmit = async (event) => {
+  const handleSubmit = (event) => {
+    //Prevent page reload
     event.preventDefault();
 
-    // check if form has everything (as per react-bootstrap docs)
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
+    var { uname, pass } = document.forms[0];
 
-    try {
-      const response = await loginUser(userFormData);
+    // Find user login info
+    // const userData = setUserFormData.find((user) => user.username === uname.value);
 
-      if (!response.ok) {
-        throw new Error('something went wrong!');
-      }
-
-      // const { token, user } = await response.json();
-      // console.log(user);
-      // Auth.login(token);
-    } catch (err) {
-      console.error(err);
-      setShowAlert(true);
-    }
-
-    setUserFormData({
-      username: '',
-      email: '',
-      password: '',
-    });
+    // if (userData) {
+    //   if (userData.password !== pass.value) {
+    //     // Invalid password
+    //     setErrorMessages({ name: "pass", message: errors.pass });
+    //   } else {
+    //     setIsSubmitted(true);
+    //   }
+    // } else {
+    //   // Username not found
+    //   setErrorMessages({ name: "uname", message: errors.uname });
+    // }
+    return (
+        <div className='bg-gradient-to-r p-4 shadow-lg rounded-2xl py-8 from-pink-500 to-violet-500 via-fuchsia-400'>
+              <div className="">
+                  <h1 >
+                      Login 🔐
+                  </h1>
+              </div>
+          </div>
+        );
   };
-
-  return (
-      <div>
-            <div className="">
-                <h1 >
-                    Login 🔐
-                </h1>
-
-                <form onSubmit={handleFormSubmit}>
-                    <div>
-                        <label htmlFor='email'>Email</label>
-                        <input
-                            type='email'
-                            id='email'
-                            placeholder='Email'
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor='password'>Password</label>
-                        <input
-                            type='password'
-                            id='password'
-                            placeholder='Password'
-                        />
-                    </div>
-
-                    <div>
-                        <button>
-                            Login
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-  );
-};
+}; 
 
 export default LoginForm;
