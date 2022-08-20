@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../App.css";
+import { Link } from "react-router-dom";
 import userData from '../utils/API';
 
 // Get all tags for a logged in user
@@ -18,7 +19,7 @@ function Tags() {
     return (
         <>
          <div>
-            <a href="/Dashboard">🏠</a>
+            <Link to="/Dashboard">🏠</Link>
           </div>
             <div className="flex-column justify-left align-left min-100-vh bg-slate-500">
                 <ul>

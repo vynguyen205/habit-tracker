@@ -7,8 +7,8 @@ import { Link } from 'react-router-dom';
 function Dashboard() {
     return (
         <>
-        <div className="flex-column justify-center align-center h-[100vh] bg-orange-100" />
-            <nav>
+        <div className='flex-column bg-lightOrange h-[100vh] w-[100vw]'>
+            <nav className='flex-row justify-end space-between bg-lightBlue p-2'>
                 <a href="/Dashboard">🏠</a>
                 <button onClickCapture={logoutUser} className='flex-column justify-right align-right'>logout user</button>
             </nav>
@@ -24,6 +24,7 @@ function Dashboard() {
                         <Link to="/Tags">Tags</Link>
                     </li>
                 </ul>
+            </div>
         </div>
         </>
     );
