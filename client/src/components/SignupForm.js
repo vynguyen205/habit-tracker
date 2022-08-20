@@ -29,19 +29,19 @@ const SignupForm = () => {
     const newUser = add_user (userFormData.username, userFormData.email, userFormData.password);
 
     if (newUser) {
-      
+
     }
 
     }
 
     try {
-      const response = await createUser(userFormData);
+      const response = createUser(userFormData);
 
       if (!response.ok) {
         throw new Error('something went wrong!');
       }
 
-      const { token, user } = await response.json();
+      const { token, user } = response.json();
       console.log(user);
       Auth.login(token);
     } catch (err) {
@@ -114,6 +114,5 @@ const SignupForm = () => {
           </div>
       </div>
 );
-};
 
 export default SignupForm;
