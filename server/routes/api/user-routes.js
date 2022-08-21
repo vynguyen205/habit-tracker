@@ -51,7 +51,6 @@ router.put('/:userId', async (req, res) => {
     }
 })
 
-
 router.delete('/:userId', async (req, res) => {
     try{
         const userData = await User.findOneAndDelete({ _id: req.params.userId });
