@@ -5,7 +5,7 @@ import "../App.css";
 
 function Navbar () {
     return (
-        <nav className='flex items-center justify-between flex-wrap bg-lightBlue p-6'>
+      <nav className='flex items-center justify-between flex-wrap bg-lightBlue p-6'>
         <Link to="/Dashboard" className='flex items-center flex-shrink-0 mr-6'>
           <img src={require('../assets/bus.jpeg')} alt='logo' className='w-30 h-20' />
         </Link>
