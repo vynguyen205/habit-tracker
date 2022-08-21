@@ -5,14 +5,10 @@ import Bus from '../assets/bus.jpeg';
 // import { QUERY } from '../utils/Queries';
 
 import LoginForm from '../components/LoginForm';
-// import SignupForm from '../components/SignupForm';
+import SignupForm from '../components/SignupForm';
 
 
 const Home = () => {
-    // const { data, loading } = useQuery(QUERY_USER, {
-    //     fetchPolicy: 'no-cache',
-    // });
-
     return (
         <>
             <div className='h-[100vh] w-[100vw] bg-gradient-to-tr from-darkOrange to-white via-lightOrange'>
