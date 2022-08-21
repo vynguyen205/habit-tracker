@@ -1,17 +1,17 @@
-// TODO: save new habit to database
-// TODO: add new habit to list of habits that are displayed
+// TODO: save new todo to database
+// TODO: add new todo to list of todos that are displayed
 
 import React, { useState } from "react";
 import "../../App.css";
 
-// Add new habits for a logged in user
-function AddHabit() {
+// Add new todo for a logged in user
+function AddTodo() {
   const [showModal, setShowModal] = useState(false);
 
   return (
     <>
       <button
-        className="bg-lightBlue text-white text-3xl active:bg-darkBlue font-bold px-6 py-3 rounded-shadow hover:bg-darkBlue hover:shadow-lg outline-none focus:outline-none rounded-full mr-1 mb-1" 
+        className="bg-lightBlue text-white text-3xl active:bg-darkBlue font-bold px-6 py-3 rounded-shadow hover:bg-darkBlue hover:shadow-lg outline-none focus:outline-none rounded-full mr-1 mb-1"
         type="button" onClick={() => setShowModal(true)}>
         +
       </button>
@@ -21,7 +21,7 @@ function AddHabit() {
             <div className="relative w-auto my-6 mx-auto max-w-3xl">
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                 <div className="flex items-start justify-between p-5 bg-lightBlue border-b border-solid border-white rounded-t ">
-                  <h3 className="text-3xl font=semibold">Create Habit</h3>
+                  <h3 className="text-3xl font=semibold">Create Todo</h3>
                   <button
                     className="bg-transparent border-0 text-black float-right"
                     onClick={() => setShowModal(false)}
@@ -36,19 +36,11 @@ function AddHabit() {
                     <label className="block text-black text-sm font-bold mb-1">
                       Title
                     </label>
-                    <input className="shadow appearance-none border rounded w-full py-2 px-1 text-black" placeholder="Add habit..." />
+                    <input className="shadow appearance-none border rounded w-full py-2 px-1 text-black" placeholder="Add todo..."/>
                     <label className="block text-black text-sm font-bold mb-1">
                       Description
                     </label>
                     <input className="shadow appearance-none border rounded w-full py-2 px-1 text-black" placeholder="Keep it short and sweet..." />
-                    <label className="block text-black text-sm font-bold mb-1">
-                      Tags
-                    </label>
-                    <input className="shadow appearance-none border rounded w-full py-2 px-1 text-black" placeholder="Choose your tags" />
-                    <label className="block text-black text-sm font-bold mb-1">
-                      Repeat
-                    </label>
-                    <input className="shadow appearance-none border rounded w-full py-2 px-1 text-black" placeholder="Daily"/>
                   </form>
                 </div>
                 <div className="flex items-center justify-center p-6 rounded-b">
@@ -69,4 +61,5 @@ function AddHabit() {
   );
 };
 
-export default AddHabit;
+
+export default AddTodo;

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import "../App.css";
 import Navbar from '../components/Navbar';
 import Menu from '../components/Menu';
-import Calendar from '../components/Habits/calendar';
+// import Calendar from '../components/Habits/calendar';
 import AddHabit from '../components/Habits/addHabit';
 
 // Display all habits for a logged in user
