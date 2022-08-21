@@ -11,6 +11,9 @@ module.exports = {
       lightOrange: '#FEE3CB',
       darkOrange: '#FFA17B',
     },
+    fontFamily: {
+      mono: ['Menlo'],
+    },
     extend: {}
   },
   plugins: []

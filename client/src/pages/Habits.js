@@ -28,10 +28,12 @@ function Habits() {
             <div className='flex flex-col justify-between mt-10'>
               <Menu />
             </div>
-            <div className='align-center mt-12'>
+            {/* <div className='align-center mt-12'>
               <p>My Habits</p>
               <Calendar />
-            </div>
+            </div> */}
+          </div>
+          <div className='flex flex-col justify-between mt-10'>
             <AddHabit />
           </div>
         </div>
@@ -40,5 +42,5 @@ function Habits() {
   );
 }
 
-        export default Habits;
+export default Habits;
 

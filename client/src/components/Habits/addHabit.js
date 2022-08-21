@@ -2,7 +2,6 @@
 // TODO: add new habit to list of habits that are displayed
 
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import "../../App.css";
 
 // Get all habits for a logged in user
@@ -15,9 +14,9 @@ function AddHabit() {
   return (
     <>
       <button
-        className="bg-lightBlue text-white active:bg-darkBlue font-bold px-6 py-3 rounded-shadow hover:bg-darkBlue hover:shadow-lg outline-none focus:outline-none rounded-3xl mr-1 mb-1" 
+        className="bg-lightBlue text-white text-3xl active:bg-darkBlue font-bold px-6 py-3 rounded-shadow hover:bg-darkBlue hover:shadow-lg outline-none focus:outline-none rounded-full mr-1 mb-1" 
         type="button" onClick={() => setShowModal(true)}>
-        Add New Habit
+        +
       </button>
       {showModal ? (
         <>
@@ -30,7 +29,7 @@ function AddHabit() {
                     className="bg-transparent border-0 text-black float-right"
                     onClick={() => setShowModal(false)}
                   >
-                    <span className="text-white opacity-7 h-6 w-6 text-xl block bg-black py-0 rounded-full">
+                    <span className="text-white opacity-7 h-8 w-8 text-lg block bg-black py-0 rounded-full">
                       X
                     </span>
                   </button>
@@ -55,9 +54,9 @@ function AddHabit() {
                     <input className="shadow appearance-none border rounded w-full py-2 px-1 text-black" />
                   </form>
                 </div>
-                <div className="flex items-center justify-center p-6 border-t border-solid border-darkOrange active:border-lightOrange rounded-b">
+                <div className="flex items-center justify-center p-6 rounded-b">
                   <button
-                    className="text-white bg-lightOrange active:bg-darkOrange font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
+                    className="text-black bg-lightOrange active:bg-darkOrange font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
                     type="button"
                     onClick={() => setShowModal(false)}
                   >
