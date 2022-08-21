@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
-import { Form, Button, Alert } from 'tailwindcss';
-import { ADD_USER } from '../utils/Mutations';
-import { useMutation } from '@apollo/client';
-import { QUERY } from '../utils/Queries';
+import "../App.css";
 
-import { createUser } from '../utils/API';
-import Auth from '../utils/auth';
+import AuthService from '../utils/Auth';
 
 
 const SignupForm = () => {
   const [ add_user ] = useMutation(ADD_USER);
   // set initial form state
-  const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '', confirmPassword: '' }); 
+
+  const [userFormData, setUserFormData] = useState ({ 
+    username: '', 
+    email: '', 
+    password: '',
+    confirmPassword: ''
+   });
+
   // set state for form validation
   const [validated] = useState(false);
   // set state for alert
@@ -42,7 +45,7 @@ const SignupForm = () => {
 
       const { token, user } = response.json();
       console.log(user);
-      Auth.login(token);
+      AuthService.login(token);
     } catch (err) {
       console.error(err);
       setShowAlert(true);
@@ -52,6 +55,7 @@ const SignupForm = () => {
       username: '',
       email: '',
       password: '',
+      confirmPassword: ''
     });
   };
 
@@ -65,10 +69,9 @@ const SignupForm = () => {
               <form onSubmit={handleFormSubmit}>
                 <div>
                       <input
-                          type='username'
+                          type='type'
                           id='username'
                           placeholder='Username'
-                          name='username'
                           value={userFormData.username}
                           onChange={handleInputChange}
                       />
@@ -78,7 +81,6 @@ const SignupForm = () => {
                           type='email'
                           id='email'
                           placeholder='Email'
-                          name='email'
                           value={userFormData.email}
                           onChange={handleInputChange}
                       />
@@ -88,7 +90,6 @@ const SignupForm = () => {
                           type='password'
                           id='password'
                           placeholder='Password'
-                          name='password'
                           value={userFormData.password}
                           onChange={handleInputChange}
                       />
@@ -98,7 +99,6 @@ const SignupForm = () => {
                           type='password'
                           id='password'
                           placeholder='Confirm Password'
-                          name='password'
                           value={userFormData.password}
                           onChange={handleInputChange}
                       />
