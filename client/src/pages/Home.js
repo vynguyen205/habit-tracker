@@ -4,7 +4,7 @@ import { useQuery } from '@apollo/client';
 import { QUERY } from '../utils/Queries';
     
 import LoginForm from '../components/LoginForm';
-// import SignupForm from '../components/SignupForm';
+import SignupForm from '../components/SignupForm';
 
 
 const Home = () => {
@@ -16,7 +16,7 @@ const Home = () => {
         <div>
             <h1> Groovy </h1>
             <LoginForm />
-            {/* <SignupForm /> */}
+            <SignupForm />
         </div>
     )
 }
