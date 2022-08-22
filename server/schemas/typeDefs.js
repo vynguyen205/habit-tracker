@@ -39,14 +39,28 @@ const typeDefs = gql`
 
   type Query {
     users: [User]!
-    user(userId: ID!): User
+    user(userId: ID!, username: String!): User
+    habits: [Habit]!
+    habit(habitId: ID!): Habit
+    todos: [Todo]!
+    todo(todoId: ID!): Todo
+    tags: [Tag]!
+    tag(tagId: ID!): Tag
   }
 
   type Mutation {
-    addUser(name: String!): User
-    addHabit(userId: ID!, habit: String!): User
+    addUser(username: String!, email: String!, password: String!): User
+    addHabit(userId: ID!, habitName: String!, habitTags: [ID]): Habit
+    addTodo(userId: ID!, todoName: String!, todoDescription: String): Todo
+    addTag(tagName: String!): Tag
+    updateUser(userId: ID!, username: String!): User
+    updateHabit(habitId: ID!, habitName: String!, habitTags: [ID]): Habit
+    updateTodo(todoId: ID!, todoName: String!, todoDescription: String): Todo
+    updateTag(tagId: ID!, tagName: String!): Tag
     removeUser(userId: ID!): User
-    removeHabit(userId: ID!, habit: String!): User
+    removeHabit(userId: ID!, habitId: ID!): Habit
+    removeTodo(todoName: String!): Todo
+    removeTag(tagName: String!): Tag
   }
 `;
 

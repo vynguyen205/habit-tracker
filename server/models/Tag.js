@@ -5,11 +5,7 @@ const tagSchema = new Schema(
       tagName: {
         type: String,
         required: true
-      },
-      tagHabits: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Habit'
-      }],
+      }
     },
     {
       toJSON: {
