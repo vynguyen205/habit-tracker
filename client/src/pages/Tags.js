@@ -1,14 +1,44 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "../App.css";
-import Tags from '../components/TagsData';
+import Navbar from '../components/Navbar';
+import Menu from '../components/Menu';
+import AddTag from '../components/Tags/addTag';
+import TagList from '../components/Tags/Tags';
 
 // Display all habits for a logged in user
-function userTags() {
+function Tags() {
+    // const [tags, setTags] = useState([]);
+    // const getTags = async () => {
+    //     const response = await fetch('../../utils/api');
+    //     const data = await response.json();
+    //     setTags(data);
+    // }
+
+    // React.useEffect(() => {
+    //     getTags();
+    // }, []);
+
     return (
-        <div className="flex-column justify-left align-left min-100-vh bg-slate-500">
-            <Tags />
-        </div>
+        <>
+            <div className="flex-column bg-lightOrange h-[100vh] w-[100vw]">
+                <Navbar />
+                <div className="flex">
+                    <div className='flex flex-col w-[25vw] h-[80vh] px-8 py-8 overflow-y-auto rounded-2xl bg-darkOrange m-20'>
+                        <h2 className='text-2xl font-bold text-center text-dar'>Welcome, --Username--</h2>
+                        <div className='flex flex-col justify-between mt-10'>
+                            <Menu />
+                        </div>
+                    </div>
+                    <div className='flex flex-col justify-between mt-10'>
+                        <AddTag />
+                    </div>
+                    <div className='flex flex-col justify-between mt-10'>
+                        <TagList />
+                    </div>
+                </div>
+            </div>
+        </>
     );
 }
 
-export default userTags;
+export default Tags;

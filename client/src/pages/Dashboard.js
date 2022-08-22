@@ -1,28 +1,84 @@
 // Import file dependencies
-import React from 'react';
-import "../App.css";
-import logoutUser from '../components/LogoutUser';
+import React, { useEffect, useState } from 'react';
+import Navbar from '../components/Navbar';
+import Menu from '../components/Menu';
+import HabitList from '../components/Habits/Habits';
+import TodoList from '../components/Todos/Todos';
+import AddHabit from '../components/Habits/addHabit';
+import AddTodo from '../components/Todos/addTodo';
+import { Link } from 'react-router-dom';
+import { Container } from '@material-ui/core';
 
 // Display landing page
-function Dashboard () {
+function Dashboard() {
+    const [showModal, setShowModal] = useState(false);
+    const [showAddHabit, setShowAddHabit] = useState(false);
+    const [habits, setHabits] = useState([]);
+    const [showAddTodo, setShowAddTodo] = useState(false);
+    const [todos, setTodos] = useState([]);
+
+    useEffect(() => {
+        const getHabits = async () => {
+            const habitsFromServer = await fetchHabits();
+            setHabits(habitsFromServer);
+        }
+        getHabits();
+    }, []);
+
+    useEffect(() => {
+        const getTodos = async () => {
+            const todosFromServer = await fetchTodos()
+            setTodos(todosFromServer)
+        }
+
+        getTodos()
+    }, [])
+
+
+    // Fetch habits from server
+    const fetchHabits = async () => {
+        const habitRes = await fetch('/api/habits');
+        const habitData = await habitRes.json();
+
+        return habitData;
+    }
+
+    // Fetch Tasks
+    const fetchTodos = async () => {
+        const taskRes = await fetch('/api/tasks');
+        const taskData = await taskRes.json()
+
+        return taskData;
+    }
+
+
     return (
-        <><div className="flex-column justify-center align-center min-100-vh bg-slate-500">
-            <nav>
-            <button onClickCapture={logoutUser}>logout user</button>
-            </nav>
-        </div><div className="flex-column justify-left align-left min-100-vh bg-slate-500">
-                <ul>
-                    <li>
-                        <a href="/Habits">Habits</a>
-                    </li>
-                    <li>
-                        <a href="/Todos">Todos</a>
-                    </li>
-                    <li>
-                        <a href="/Tags">Tags</a>
-                    </li>
-                </ul>
-            </div></>
+        <>
+            <div className='flex-column bg-lightOrange h-[100vh] w-[100vw]'>
+                <Navbar />
+                <div>
+                    <Menu />
+                </div>
+                <div>
+                    <AddHabit onAdd={() => setShowAddHabit(!showAddHabit)} showAdd={showAddHabit} />
+                    <AddTodo onAdd={() => setShowAddTodo(!showAddTodo)} showAdd={showAddTodo} />
+                    
+                    {showAddHabit && <AddHabit onAdd={AddHabit} />}
+                    {habits.length > 0 ? (
+                        <HabitList habits={habits} />
+                    ) : (
+                            <h3>No habits yet</h3>
+                    )}
+
+                    {showAddTodo && <AddTodo onAdd={AddTodo} />}
+                    {todos.length > 0 ? (
+                        <TodoList todos={todos} />
+                    ) : (
+                            <h3>No todos yet</h3>
+                    )}
+                </div>
+            </div>
+        </>
     );
 }
 
