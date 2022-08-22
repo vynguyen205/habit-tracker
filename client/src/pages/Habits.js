@@ -2,21 +2,21 @@ import React, { useState } from 'react';
 import "../App.css";
 import Navbar from '../components/Navbar';
 import Menu from '../components/Menu';
-// import Calendar from '../components/Habits/calendar';
+import HabitList from '../components/Habits/Habits';
 import AddHabit from '../components/Habits/addHabit';
 
 // Display all habits for a logged in user
 function Habits() {
-  const [habits, setHabits] = useState([]);
-  const getHabits = async () => {
-    const response = await fetch('../../utils/api');
-    const data = await response.json();
-    setHabits(data);
-  }
+  // const [habits, setHabits] = useState([]);
+  // const getHabits = async () => {
+  //   const response = await fetch('../../utils/api');
+  //   const data = await response.json();
+  //   setHabits(data);
+  // }
 
-  React.useEffect(() => {
-    getHabits();
-  }, []);
+  // React.useEffect(() => {
+  //   getHabits();
+  // }, []);
 
   return (
     <>
@@ -28,10 +28,10 @@ function Habits() {
             <div className='flex flex-col justify-between mt-10'>
               <Menu />
             </div>
-            {/* <div className='align-center mt-12'>
+            <div className='align-center mt-12'>
               <p>My Habits</p>
-              <Calendar />
-            </div> */}
+              <HabitList />
+            </div>
           </div>
           <div className='flex flex-col justify-between mt-10'>
             <AddHabit />
