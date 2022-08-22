@@ -3,19 +3,20 @@ import "../App.css";
 import Navbar from '../components/Navbar';
 import Menu from '../components/Menu';
 import AddTodo from '../components/Todos/addTodo';
+import TodoList from '../components/Todos/Todos';
 
 // Display all habits for a logged in user
 function Todos() {
-    const [todos, setTodos] = useState([]);
-    const getTodos = async () => {
-        const response = await fetch('../../utils/api');
-        const data = await response.json();
-        setTodos(data);
-    }
+    // const [todos, setTodos] = useState([]);
+    // const getTodos = async () => {
+    //     const response = await fetch('../../utils/api');
+    //     const data = await response.json();
+    //     setTodos(data);
+    // }
 
-    React.useEffect(() => {
-        getTodos();
-    } , []);
+    // React.useEffect(() => {
+    //     getTodos();
+    // } , []);
 
     return (
         <>
@@ -27,10 +28,10 @@ function Todos() {
                 <div className='flex flex-col justify-between mt-10'>
                   <Menu />
                 </div>
-                {/* <div className='align-center mt-12'>
-                  <p>My Habits</p>
-                  <Calendar />
-                </div> */}
+                <div className='align-center mt-12'>
+                  <p>My To Do List</p>
+                  <TodoList />
+                </div>
               </div>
               <div className='flex flex-col justify-between mt-10'>
                 <AddTodo />

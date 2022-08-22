@@ -3,19 +3,20 @@ import "../App.css";
 import Navbar from '../components/Navbar';
 import Menu from '../components/Menu';
 import AddTag from '../components/Tags/addTag';
+import TagList from '../components/Tags/Tags';
 
 // Display all habits for a logged in user
 function Tags() {
-    const [tags, setTags] = useState([]);
-    const getTags = async () => {
-        const response = await fetch('../../utils/api');
-        const data = await response.json();
-        setTags(data);
-    }
+    // const [tags, setTags] = useState([]);
+    // const getTags = async () => {
+    //     const response = await fetch('../../utils/api');
+    //     const data = await response.json();
+    //     setTags(data);
+    // }
 
-    React.useEffect(() => {
-        getTags();
-    }, []);
+    // React.useEffect(() => {
+    //     getTags();
+    // }, []);
 
     return (
         <>
@@ -30,6 +31,9 @@ function Tags() {
                     </div>
                     <div className='flex flex-col justify-between mt-10'>
                         <AddTag />
+                    </div>
+                    <div className='flex flex-col justify-between mt-10'>
+                        <TagList />
                     </div>
                 </div>
             </div>

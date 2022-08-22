@@ -6,25 +6,22 @@ const data = [
         _id: "1",
         name: "Eat",
         description: "Eat healthy",
+        tag: "Health & Wellness",
         userId: "1",
     },
     {
         _id: "2",
         name: "Sleep",
         description: "Sleep well",
+        tag: "Health & Wellness",
         userId: "1",
     },
     {
         _id: "3",
         name: "Exercise",
         description: "Exercise regularly",
-        userId: "2",
-    },
-    {
-        _id: "4",
-        name: "Meditate",
-        description: "Meditate regularly",
-        userId: "2",
+        tag: "Health & Wellness",
+        userId: "1",
     }
 ]
 
