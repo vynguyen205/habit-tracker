@@ -16,7 +16,7 @@ const typeDefs = gql`
 
   type Habit {
     _id: ID
-    habitName: String!
+    habitName: String
     habitDescription: String
     habitCompleted: Boolean
     habitCreated: String
@@ -37,6 +37,11 @@ const typeDefs = gql`
     todoPoints: Int
   }
 
+  type Auth {
+    token: ID!
+    user: User
+  }
+
   type Query {
     users: [User]!
     user(userId: ID!, username: String!): User
@@ -49,7 +54,8 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    addUser(username: String!, email: String!, password: String!): User
+    login(email: String!, password: String!): Auth
+    addUser(username: String!, email: String!, password: String!): Auth
     addHabit(userId: ID!, habitName: String!, habitTags: [ID]): Habit
     addTodo(userId: ID!, todoName: String!, todoDescription: String): Todo
     addTag(tagName: String!): Tag

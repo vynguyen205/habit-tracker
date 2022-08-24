@@ -1,5 +1,5 @@
 const { User, Todo, Habit, Tag } = require('../models');
-const { update } = require('../models/User');
+const { signToken } = require('../utils/auth');
 
 const resolvers = {
   // a query is used for getting data from the database
@@ -42,7 +42,22 @@ const resolvers = {
   Mutation: {
     /* Adding mutations starts here*/
     addUser: async (parent, { username, email, password}) => {
-      return User.create({ username, email, password });
+      const newUser = await User.create({ username, email, password });
+      const token =  signToken(newUser);
+      return { token, newUser };
+    },
+
+    login: async (parent, { email, password }) => {
+      const user = await User.findOne({ email });
+      if (!user) {
+        throw new Error('User not found');
+      }
+      const isValidPassword = await user.comparePassword(password);
+      if (!isValidPassword) {
+        throw new Error('Invalid password');
+      }
+      const token = signToken(user);
+      return { token, user };
     },
 
     addHabit: async (parent, { userId, habitTags, habitName, habitDescription }) => {
