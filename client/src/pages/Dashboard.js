@@ -1,55 +1,53 @@
 // Import file dependencies
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Menu from '../components/Menu';
-import HabitList from '../components/Habits/Habits';
-import TodoList from '../components/Todos/Todos';
+
+import HabitList from '../components/Habits';
 import AddHabit from '../components/Habits/addHabit';
-import AddTodo from '../components/Todos/addTodo';
-import { Link } from 'react-router-dom';
 // import { Container } from '@material-ui/core';
 
 // Display landing page
 function Dashboard() {
-    const [showModal, setShowModal] = useState(false);
-    const [showAddHabit, setShowAddHabit] = useState(false);
-    const [habits, setHabits] = useState([]);
-    const [showAddTodo, setShowAddTodo] = useState(false);
-    const [todos, setTodos] = useState([]);
+    const {userId} = useParams();
+    console.log("params", userId);
+    //do lookup now using userId param
+    // const [showModal, setShowModal] = useState(false);
+    // const [showAddHabit, setShowAddHabit] = useState(false);
+    // const [habits, setHabits] = useState([]);
+    // const [showAddTodo, setShowAddTodo] = useState(false);
+    // const [todos, setTodos] = useState([]);
 
-    useEffect(() => {
-        const getHabits = async () => {
-            const habitsFromServer = await fetchHabits();
-            setHabits(habitsFromServer);
-        }
-        getHabits();
-    }, []);
+   
+    // useEffect(() => {
+    //     const GetTodos = async () => {
+    //         const { data } = await allTodos;
+    //         setTodos(data.allTodos);
+    //     }
 
-    useEffect(() => {
-        const getTodos = async () => {
-            const todosFromServer = await fetchTodos()
-            setTodos(todosFromServer)
-        }
+    //     GetTodos()
+    // }, [])
 
-        getTodos()
-    }, [])
+    // 
 
 
-    // Fetch habits from server
-    const fetchHabits = async () => {
-        const habitRes = await fetch('/api/habits');
-        const habitData = await habitRes.json();
 
-        return habitData;
-    }
+    // // Fetch habits from server
+    // const fetchHabits = async () => {
+    //     const habitRes = await fetch('/api/habits');
+    //     const habitData = await habitRes.json();
 
-    // Fetch Tasks
-    const fetchTodos = async () => {
-        const taskRes = await fetch('/api/tasks');
-        const taskData = await taskRes.json()
+    //     return habitData;
+    // }
 
-        return taskData;
-    }
+    // // Fetch Tasks
+    // const fetchTodos = async () => {
+    //     const taskRes = await fetch('/api/tasks');
+    //     const taskData = await taskRes.json()
+
+    //     return taskData;
+    // }
 
 
     return (
@@ -60,22 +58,8 @@ function Dashboard() {
                     <Menu />
                 </div>
                 <div>
-                    <AddHabit onAdd={() => setShowAddHabit(!showAddHabit)} showAdd={showAddHabit} />
-                    <AddTodo onAdd={() => setShowAddTodo(!showAddTodo)} showAdd={showAddTodo} />
-                    
-                    {showAddHabit && <AddHabit onAdd={AddHabit} />}
-                    {habits.length > 0 ? (
-                        <HabitList habits={habits} />
-                    ) : (
-                            <h3>No habits yet</h3>
-                    )}
-
-                    {showAddTodo && <AddTodo onAdd={AddTodo} />}
-                    {todos.length > 0 ? (
-                        <TodoList todos={todos} />
-                    ) : (
-                            <h3>No todos yet</h3>
-                    )}
+                    <HabitList />
+                    <AddHabit/>
                 </div>
             </div>
         </>

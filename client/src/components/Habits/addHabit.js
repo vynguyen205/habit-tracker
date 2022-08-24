@@ -1,12 +1,26 @@
 // TODO: save new habit to database
 // TODO: add new habit to list of habits that are displayed
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useMutation } from "@apollo/client";
+import { ADD_HABIT } from "../../utils/Mutations";
 import "../../App.css";
+
 
 // Add new habits for a logged in user
 function AddHabit() {
   const [showModal, setShowModal] = useState(false);
+  const [addHabit, { data }] = useMutation(ADD_HABIT);
+
+  //DONT DO THIS, TESTING ONLY
+  useEffect(()=> {
+    addHabit({
+      variables: {
+        habitName: "Eat222",
+        userId: "62fe9cbb970457d5b9eb5e31",
+      } 
+    })
+  }, [])
 
   return (
     <>

@@ -30,20 +30,20 @@ export const QUERY_USER = gql`
   }
 `;
 
+// ALL A USER'S HABITS
 export const QUERY_HABITS = gql`
-  query habits($userId: ID!) {
-    habits(userId: $userId) {
+  query userHabits($userId: ID!) {
+  user(userId: $userId) {
+    _id
+    username
+    userHabit {
       _id
-      name
-      description
-      todos {
-        _id
-        name
-        description
-        completed
-      }
+      habitName
+      habitDescription
+      habitCompleted
     }
   }
+}
 `;
 
 export const QUERY_TODO = gql`
@@ -57,29 +57,30 @@ export const QUERY_TODO = gql`
   }
 `;
 
-export const QUERY_TODO_USER = gql`
-  query todoUser($todoId: ID!) {
-    todoUser(todoId: $todoId) {
-      _id
-      name
-      description
-      completed
-    }
-  }
-`;
+// export const QUERY_TODO_USER = gql`
+//   query todoUser($todoId: ID!) {
+//     todoUser(todoId: $todoId) {
+//       _id
+//       name
+//       description
+//       completed
+//     }
+//   }
+// `;
 
-export const QUERY_USER_HABITS = gql`
-  query userHabits($userId: ID!) {
-    userHabits(userId: $userId) {
-      _id
-      name
-      description
-      todos {
-        _id
-        name
-        description
-        completed
-      }
-    }
-  }
-`;
+
+// export const QUERY_USER_HABITS = gql`
+//   query userHabits($userId: ID!) {
+//     userHabits(userId: $userId) {
+//       _id
+//       name
+//       description
+//       todos {
+//         _id
+//         name
+//         description
+//         completed
+//       }
+//     }
+//   }
+// `;
