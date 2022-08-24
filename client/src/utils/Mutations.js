@@ -29,12 +29,10 @@ export const ADD_USER = gql`
 
 // mutation to add a new habit
 export const ADD_HABIT = gql`
-    mutation addHabit($name: String!, $description: String!, $userId: ID!) {
-        addHabit(name: $name, description: $description, userId: $userId) {
+    mutation addHabit($habitName: String!, $habitTags: [ID], $userId: ID!) {
+        addHabit(habitName: $habitName, habitTags: $habitTags, userId: $userId) {
             _id
-            name
-            description
-            userId
+            habitName
         }
     }
 `;

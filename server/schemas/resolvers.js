@@ -13,13 +13,17 @@ const resolvers = {
       // populte the use with todos and habits
       return User.findOne({ _id: userId }).populate('userTodo').populate('userHabit');
     },
+    // get Users Todos
+    userTodos: async (parent, { userId }) => {
+      return User.findOne({ _id: userId }).populate('userTodo');
+    },
     // get all habits
     habits: async () => {
       return Habit.find().populate('habitTags').populate('habitUser');
     },
     // get one habit
     habit: async (parent, { habitId }) => {
-      return Habit.findOne({ _id: habitId }).populate('userHabit').populate('habitTags');
+      return Habit.findOne({ _id: habitId }).populate('habitUser').populate('habitTags');
     },
     // get all todos
     todos: async () => {
@@ -41,9 +45,9 @@ const resolvers = {
   // mutation is the same as query, but it is for creating new data
   Mutation: {
     /* Adding mutations starts here*/
-    addUser: async (parent, { username, email, password}) => {
+    addUser: async (parent, { username, email, password }) => {
       const newUser = await User.create({ username, email, password });
-      const token =  signToken(newUser);
+      const token = signToken(newUser);
       return { token, newUser };
     },
 
@@ -60,17 +64,27 @@ const resolvers = {
       return { token, user };
     },
 
-    addHabit: async (parent, { userId, habitTags, habitName, habitDescription }) => {
-      const newHabit = await Habit.create({ habitName, habitTags, habitDescription, habitUser: userId })
-      const userData = await User.findOneAndUpdate(
-        { _id: userId },
-        { $addToSet: { userHabit: newHabit._id } },
-        { new: true, runValidators: true, }
-      );
+    addHabit: async (parent, { userId, habitTags, habitName, habitDescription }, context) => {
+      console.log('YOUR CONTEXT', context);
+      try {
+        const newHabit = await Habit.create({
+          habitName,
+          habitTags,
+          habitDescription,
+          habitUser: userId
+        });
+        const userData = await User.findOneAndUpdate(
+          { _id: userId },
+          { $addToSet: { userHabit: newHabit._id } },
+          { new: true, runValidators: true }
+        );
 
-      const habitData = await newHabit.populate('habitTags').populate('habitUser').execPopulate();
-
-      return habitData;
+        const habitData = await newHabit.populate('habitTags').populate('habitUser').execPopulate();
+        return habitData;
+      } catch (err) {
+        console.log(err);
+      }
+      return null;
     },
 
     addTodo: async (parent, { userId, todoName, todoDescription }) => {
@@ -78,7 +92,7 @@ const resolvers = {
       await User.findOneAndUpdate(
         { _id: userId },
         { $addToSet: { userTodo: newTodo._id } },
-        { new: true, runValidators: true, }
+        { new: true, runValidators: true }
       );
       const todoData = await newTodo.populate('todoUser').execPopulate();
       return todoData;
@@ -91,22 +105,26 @@ const resolvers = {
     /* Adding mutations ends here */
 
     /* Updating mutations starts here*/
-    updateUser: async (parent, { userId, username, password}) => {
-      return User.findOneAndUpdate( 
-        { _id: userId }, 
-        { $set: { username } },
-        { new: true });
+    updateUser: async (parent, { userId, username, password }) => {
+      return User.findOneAndUpdate({ _id: userId }, { $set: { username } }, { new: true });
     },
 
-    updateHabit: async (parent, { habitId, habitName, habitDescription, habitCompleted, habitTags }) => {
-      const updatedHabit = await Habit.findOneAndUpdate( 
-        { _id: habitId }, 
+    updateHabit: async (
+      parent,
+      { habitId, habitName, habitDescription, habitCompleted, habitTags }
+    ) => {
+      const updatedHabit = await Habit.findOneAndUpdate(
+        { _id: habitId },
         { $set: { habitName, habitDescription, habitCompleted, habitTags } },
-        { new: true });
+        { new: true }
+      );
 
-      const habitData = await updatedHabit.populate('habitTags').populate('habitUser').execPopulate()
+      const habitData = await updatedHabit
+        .populate('habitTags')
+        .populate('habitUser')
+        .execPopulate();
 
-        return habitData;
+      return habitData;
     },
 
     updateTodo: async (parent, { todoId, todoName, todoDescription, todoCompleted }) => {
@@ -115,7 +133,7 @@ const resolvers = {
         { $set: { todoName, todoDescription, todoCompleted } },
         { new: true }
       );
-      
+
       const todoData = await updatedTodo.populate('todoUser').execPopulate();
 
       return todoData;
@@ -140,12 +158,6 @@ const resolvers = {
     removeHabit: async (parent, { userId, habitId }) => {
       const habit = await Habit.findOneAndDelete({ _id: habitId });
 
-      // const tagData = await Tag.findOneAndUpdate(
-      //   { _id: habit.habitTags },
-      //   { $pull: { tagHabits: habitId } },
-      //   { new: true, runValidators: true, }
-      // )
-
       const habitData = await habit.populate('habitTags').populate('habitUser').execPopulate();
       return habitData;
     },
@@ -155,7 +167,7 @@ const resolvers = {
     removeTag: async (parent, { tagId }) => {
       return Tag.findOneAndDelete({ _id: tagId });
     }
-  /* Removing mutations ends here */
+    /* Removing mutations ends here */
   }
 };
 

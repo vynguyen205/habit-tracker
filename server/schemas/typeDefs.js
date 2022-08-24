@@ -42,11 +42,13 @@ const typeDefs = gql`
 
   type Query {
     users: [User]!
-    user(userId: ID!, username: String!): User
+    user(userId: ID!): User
     habits: [Habit]!
     habit(habitId: ID!): Habit
+    # userHabits(userId: ID!): [Habit]
     todos: [Todo]!
     todo(todoId: ID!): Todo
+    userTodos(userId: ID!): [Todo]
     tags: [Tag]!
     tag(tagId: ID!): Tag
   }
