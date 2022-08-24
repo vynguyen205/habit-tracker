@@ -77,7 +77,6 @@ const LoginForm = () => {
               </div>
           </form>
           )}
-
             {error && (
               <div className="my-3 p-3 text-red">
                 {error.message}

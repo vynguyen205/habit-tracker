@@ -13,7 +13,6 @@ const typeDefs = gql`
     _id: ID
     tagName: String!
   }
-
   type Habit {
     _id: ID
     habitName: String
@@ -25,7 +24,6 @@ const typeDefs = gql`
     habitPoints: Int
     habitTags: [Tag]
   }
-
   type Todo {
     _id: ID
     todoName: String!
@@ -60,12 +58,12 @@ const typeDefs = gql`
     addTodo(userId: ID!, todoName: String!, todoDescription: String): Todo
     addTag(tagName: String!): Tag
     updateUser(userId: ID!, username: String!): User
-    updateHabit(habitId: ID!, habitName: String!, habitTags: [ID]): Habit
+    updateHabit(habitId: ID!, habitName: String, habitTags: [ID]): Habit
     updateTodo(todoId: ID!, todoName: String!, todoDescription: String): Todo
     updateTag(tagId: ID!, tagName: String!): Tag
     removeUser(userId: ID!): User
     removeHabit(userId: ID!, habitId: ID!): Habit
-    removeTodo(todoName: String!): Todo
+    removeTodo(todoId: ID!): Todo
     removeTag(tagName: String!): Tag
   }
 `;
