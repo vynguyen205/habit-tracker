@@ -4,7 +4,7 @@ const secret = 'grooooooooove';
 const expiration = '4h';
 
 module.exports = {
-  apolloContext: function({req}){
+  apolloContext: function ({ req }) {
     console.log("REQEUST CAME IN", req.headers.authorization);
     return req.headers.authorization ? jwt.verify(req.headers.authorization.replace(`Bearer `, ''), secret) : null;
   },

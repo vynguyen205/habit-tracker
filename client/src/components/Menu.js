@@ -5,9 +5,12 @@ function Menu() {
     return (
         <>
             <aside>
+                <div className="flex flex-col justify-between">
+                    <h2 className="text-2xl font-bold text-center text-dar">Welcome, </h2>
+                </div>
                 <ul>
                     <li>
-                        <a className='flex items-center px-4 py-2 mt-5 text-gray-600 rounded-md hover:bg-gray-200' href="/Habits">
+                        <a className='flex items-center px-4 py-2 mt-5 text-gray-600 rounded-md hover:bg-gray-200' href="/Dashboard/:userId">
                             <span className='px-20 font-semibold text-2xl'>Habits</span>
                         </a>
                     </li>
