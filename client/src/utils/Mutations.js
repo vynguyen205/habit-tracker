@@ -56,8 +56,16 @@ export const ADD_TODO = gql`
       todoDescription
       todoCompleted
     }
-}
-`;
+}`;
+
+// mutation to add a tag
+export const ADD_TAG = gql`
+mutation AddTag($tagName: String!) {
+  addTag(tagName: $tagName) {
+    _id
+    tagName
+  }
+}`
 
 // update username
 export const UPDATE_USERNAME = gql`
@@ -68,22 +76,8 @@ export const UPDATE_USERNAME = gql`
   }
 }`
 
-export const UPDATE_HABIT_NAME = gql`
- mutation UpdateHabitName($habitId: ID!, $habitName: String) {
-  updateHabit(habitId: $habitId, habitName: $habitName) {
-    _id
-    habitName
-    habitDescription
-    habitCompleted
-    habitUser {
-      username
-    }
-  }
-}
-`;
 
-
-// mutation to update a completed habit
+// mutation to update a habit
 export const UPDATE_HABIT = gql`
 mutation UpdateHabit($habitId: ID!, $habitCompleted: Boolean) {
   updateHabit(habitId: $habitId, habitCompleted: $habitCompleted) {
@@ -101,5 +95,75 @@ mutation UpdateHabit($habitId: ID!, $habitCompleted: Boolean) {
 }
 `;
 
-// mutation to update a todo name
-// export const UPDATE_TODO = gql`
+// mutation to update a todo
+export const UPDATE_TODO = gql`
+mutation UpdateTodo($todoId: ID!,  $todoCompleted: Boolean,  $todoName: String) {
+  updateTodo(todoId: $todoId, todoCompleted: $todoCompleted, todoName: $todoName) {
+    _id
+    todoName
+    todoDescription
+    todoCompleted
+    todoUser {
+      username
+    }
+  }
+}
+`;
+
+// mutation to update a tag
+export const UPDATE_TAG = gql`
+mutation UpdateTag($tagId: ID!, $tagName: String!) {
+  updateTag(tagId: $tagId, tagName: $tagName) {
+    _id
+    tagName
+  }
+}`;
+
+// mutation to remove user
+export const REMOVE_USER = gql`
+mutation RemoveUser($userId: ID!) {
+  removeUser(userId: $userId) {
+    _id
+    username
+    email
+  }
+}`;
+
+// mutation to remove habit
+export const REMOVE_HABIT = gql`
+mutation RemoveHabit($userId: ID!, $habitId: ID!) {
+  removeHabit(userId: $userId, habitId: $habitId) {
+    _id
+    habitName
+    habitDescription
+    habitCompleted
+    habitUser {
+      _id
+      username
+    }
+  }
+}`;
+
+// mutation to remove todo
+export const REMOVE_TODO = gql`
+mutation RemoveHabit($todoId: ID!) {
+  removeTodo(todoId: $todoId) {
+    _id
+    todoName
+    todoDescription
+    todoCompleted
+    todoUser {
+      _id
+      username
+    }
+  }
+}`;
+
+// mutation to remove tag
+export const REMOVE_TAG = gql`
+mutation RemoveTag($tagId: ID!) {
+  removeTag(tagId: $tagId) {
+    _id
+    tagName
+  }
+}`;

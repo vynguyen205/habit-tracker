@@ -135,7 +135,10 @@ const resolvers = {
     updateTodo: async (parent, { todoId, todoName, todoDescription, todoCompleted }) => {
       const updatedTodo = await Todo.findOneAndUpdate(
         { _id: todoId },
-        { $set: { todoName, todoDescription, todoCompleted } },
+        { $set: { 
+          ...(todoName) && { todoName },
+          todoDescription, 
+          todoCompleted } },
         { new: true }
       );
 
@@ -167,7 +170,17 @@ const resolvers = {
       return habitData;
     },
     removeTodo: async (parent, { todoId }) => {
-      return Todo.findOneAndDelete({ _id: todoId });
+      const todo = await Todo.findOneAndDelete({ _id: todoId });
+
+      // need to remove todo from userTodo array
+      const user = await User.findOneAndUpdate(
+        { _id: todo.todoUser },
+        { $pull: { userTodo: todoId } },
+        { new: true }
+      );
+
+      const todoData = await todo.populate('todoUser').execPopulate();
+      return todoData;
     },
     removeTag: async (parent, { tagId }) => {
       return Tag.findOneAndDelete({ _id: tagId });

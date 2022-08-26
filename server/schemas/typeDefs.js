@@ -2,7 +2,7 @@ const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
   type User {
-    _id: ID
+    _id: ID!
     username: String!
     email: String!
     userHabit: [Habit]
@@ -10,11 +10,11 @@ const typeDefs = gql`
   }
 
   type Tag {
-    _id: ID
+    _id: ID!
     tagName: String!
   }
   type Habit {
-    _id: ID
+    _id: ID!
     habitName: String
     habitDescription: String
     habitCompleted: Boolean
@@ -66,7 +66,7 @@ const typeDefs = gql`
     removeUser(userId: ID!): User
     removeHabit(userId: ID!, habitId: ID!): Habit
     removeTodo(todoId: ID!): Todo
-    removeTag(tagName: String!): Tag
+    removeTag(tagId: ID!): Tag
   }
 `;
 
