@@ -912,10 +912,6 @@ video {
   text-align: center;
 }
 
-.font-mono {
-  font-family: Menlo;
-}
-
 .text-2xl {
   font-size: 1.5rem;
   line-height: 2rem;
