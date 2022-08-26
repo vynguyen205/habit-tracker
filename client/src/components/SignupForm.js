@@ -17,10 +17,12 @@ const SignupForm = () => {
   // set state for alert
   const [showAlert, setShowAlert] = useState(false);
   const handleInputChange = (event) => {
+    console.log("handleInputChange");
     const { name, value } = event.target;
     setUserFormData({ ...userFormData, [name]: value });
   };
   const handleFormSubmit = async (event) => {
+    console.log("handleFormSubmit");
     event.preventDefault();
     const newUser = add_user (userFormData.username, userFormData.email, userFormData.password);
     if (newUser) {
@@ -89,7 +91,7 @@ const SignupForm = () => {
                   </div>
                   <div>
                       <button>
-                          Sign Up
+                          Submit
                       </button>
                   </div>
               </form>
