@@ -34,7 +34,7 @@ import Auth from '../../utils/Auth';
 const HabitList = () => {
   const [habitText, setHabitText] = useState('');
   // const [habits, setHabits] = useState([]);
-// query to get all the habits
+  // query to get all the habits
   const { data: habits, loading } = useQuery(QUERY_HABITS, {
     fetchPolicy: 'no-cache',
     variables: {
@@ -59,48 +59,48 @@ const HabitList = () => {
   // }, []);
 
 
-//   const [addHabit, { error }] = useMutation(ADD_HABIT, {
-//     update(cache, { data: { addHabit } }) {
-//       try {
-//         const { habits } = cache.readQuery({ query: QUERY_HABITS });
+  //   const [addHabit, { error }] = useMutation(ADD_HABIT, {
+  //     update(cache, { data: { addHabit } }) {
+  //       try {
+  //         const { habits } = cache.readQuery({ query: QUERY_HABITS });
 
-//         cache.writeQuery({
-//           query: QUERY_HABITS,
-//           data: { habits: [ADD_HABIT, ...habits] },
-//         });
-//       } catch (e) {
-//         console.error(e);
-//       }
-//     },
-//   });
-//   const handleFormSubmit = async (event) => {
-//     event.preventDefault();
+  //         cache.writeQuery({
+  //           query: QUERY_HABITS,
+  //           data: { habits: [ADD_HABIT, ...habits] },
+  //         });
+  //       } catch (e) {
+  //         console.error(e);
+  //       }
+  //     },
+  //   });
+  //   const handleFormSubmit = async (event) => {
+  //     event.preventDefault();
 
-//     try {
-//       const { data } = await addHabit({
-//         variables: {
-//           habitName,
-//           habitDescriptions,
-//           habitUser: Auth.getProfile().data.username,
-//         },
-//       });
+  //     try {
+  //       const { data } = await addHabit({
+  //         variables: {
+  //           habitName,
+  //           habitDescriptions,
+  //           habitUser: Auth.getProfile().data.username,
+  //         },
+  //       });
 
-//       setHabitText('');
-//     } catch (err) {
-//       console.error(err);
-//     }
-//   };
-  
-//   const handleChange = (event) => {
-//     const { name } = event.target;
+  //       setHabitText('');
+  //     } catch (err) {
+  //       console.error(err);
+  //     }
+  //   };
 
-//     if (name === 'habitText') {
-//       setHabitText(value);
-//     }
-//   };
+  //   const handleChange = (event) => {
+  //     const { name } = event.target;
+
+  //     if (name === 'habitText') {
+  //       setHabitText(value);
+  //     }
+  //   };
 
   return (
-      <>
+    <>
       {loading ? (
         <div>Loading...</div>
       ) : (
@@ -108,11 +108,11 @@ const HabitList = () => {
           <h1>Habits</h1>
         </div>)}
       {/* <pre>{JSON.stringify(habits, null, 2)}</pre> */}
-          {habits?.user?.userHabit?.map((data) => 
-          (<h3 key={data?._id}>{data?.habitName},
-          {data?.habitDescription}</h3>)
-          )}
-      </>
+      {habits?.user?.userHabit?.map((data) =>
+      (<h3 key={data?._id}>{data?.habitName},
+        {data?.habitDescription}</h3>)
+      )}
+    </>
   )
 }
 
