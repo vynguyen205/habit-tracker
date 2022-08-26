@@ -48,7 +48,7 @@ const resolvers = {
     addUser: async (parent, { username, email, password }) => {
       const newUser = await User.create({ username, email, password });
       const token = signToken(newUser);
-      return { token, newUser };
+      return { token, user: newUser };
     },
 
     login: async (parent, { email, password }) => {
@@ -115,7 +115,12 @@ const resolvers = {
     ) => {
       const updatedHabit = await Habit.findOneAndUpdate(
         { _id: habitId },
-        { $set: { habitName, habitDescription, habitCompleted, habitTags } },
+        { $set: { 
+          ...(habitName) && { habitName }, 
+          habitDescription, 
+          habitCompleted, 
+          habitTags: habitId 
+        } },
         { new: true }
       );
 
@@ -135,7 +140,7 @@ const resolvers = {
       );
 
       const todoData = await updatedTodo.populate('todoUser').execPopulate();
-
+        console.log(todoData)
       return todoData;
     },
 

@@ -26,7 +26,7 @@ const typeDefs = gql`
   }
   type Todo {
     _id: ID
-    todoName: String!
+    todoName: String
     todoDescription: String
     todoCompleted: Boolean
     todoCreated: String
@@ -56,12 +56,12 @@ const typeDefs = gql`
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
-    addHabit(userId: ID!, habitName: String!, habitTags: [ID]): Habit
+    addHabit(userId: ID!, habitName: String!, habitDescription: String, habitTags: [ID]): Habit
     addTodo(userId: ID!, todoName: String!, todoDescription: String): Todo
     addTag(tagName: String!): Tag
     updateUser(userId: ID!, username: String!): User
-    updateHabit(habitId: ID!, habitName: String, habitTags: [ID]): Habit
-    updateTodo(todoId: ID!, todoName: String!, todoDescription: String): Todo
+    updateHabit(habitId: ID!, habitName: String, habitTags: [ID], habitCompleted: Boolean): Habit
+    updateTodo(todoId: ID!, todoName: String, todoDescription: String, todoCompleted: Boolean): Todo
     updateTag(tagId: ID!, tagName: String!): Tag
     removeUser(userId: ID!): User
     removeHabit(userId: ID!, habitId: ID!): Habit

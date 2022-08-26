@@ -29,25 +29,77 @@ export const ADD_USER = gql`
 
 // mutation to add a new habit
 export const ADD_HABIT = gql`
-    mutation addHabit($habitName: String!, $habitTags: [ID], $userId: ID!) {
-        addHabit(habitName: $habitName, habitTags: $habitTags, userId: $userId) {
-            _id
-            habitName
-        }
+  mutation AddHabit($userId: ID!, $habitName: String!, $habitTags: [ID], $habitDescription: String) {
+    addHabit(userId: $userId, habitName: $habitName, habitTags: $habitTags, habitDescription: $habitDescription) {
+      _id
+      habitName
+      habitDescription
+      habitCompleted
+      habitUser {
+        _id
+        username
+      }
+      habitTags {
+        _id
+        tagName
+      }
     }
+}
 `;
 
 // mutation to add a new todo
 export const ADD_TODO = gql`
-    mutation addTodo($name: String!, $description: String!, $userId: ID!, $habitId: ID!) {
-        addTodo(name: $name, description: $description, userId: $userId, habitId: $habitId) {
-            _id
-            name
-            description
-            userId
-            habitId
-        }
+  mutation AddTodo($userId: ID!, $todoName: String!, $todoDescription: String) {
+    addTodo(userId: $userId, todoName: $todoName, todoDescription: $todoDescription) {
+      _id
+      todoName
+      todoDescription
+      todoCompleted
     }
+}
 `;
 
-// mutation to add a completed todo
+// update username
+export const UPDATE_USERNAME = gql`
+  mutation UpdateUsername($userId: ID!, $username: String!) {
+  updateUser(userId: $userId, username: $username) {
+    username
+    email
+  }
+}`
+
+export const UPDATE_HABIT_NAME = gql`
+ mutation UpdateHabitName($habitId: ID!, $habitName: String) {
+  updateHabit(habitId: $habitId, habitName: $habitName) {
+    _id
+    habitName
+    habitDescription
+    habitCompleted
+    habitUser {
+      username
+    }
+  }
+}
+`;
+
+
+// mutation to update a completed habit
+export const UPDATE_HABIT = gql`
+mutation UpdateHabit($habitId: ID!, $habitCompleted: Boolean) {
+  updateHabit(habitId: $habitId, habitCompleted: $habitCompleted) {
+    _id
+    habitName
+    habitDescription
+    habitCompleted
+    habitUser {
+      username
+    }
+    habitTags {
+      tagName
+    }
+  }
+}
+`;
+
+// mutation to update a todo name
+// export const UPDATE_TODO = gql`
