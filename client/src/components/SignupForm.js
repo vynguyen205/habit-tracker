@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
-import "../App.css";
+import { useState } from 'react';
+import { useMutation } from '@apollo/client';
+// import "../App.css";
 
-import AuthService from '../utils/Auth';
+// import AuthService from '../utils/Auth';
+import { ADD_USER } from '../utils/Mutations';
 
 
 const SignupForm = () => {
@@ -21,11 +23,13 @@ const SignupForm = () => {
   const [showAlert, setShowAlert] = useState(false);
 
   const handleInputChange = (event) => {
+    console.log("handleInputChange");
     const { name, value } = event.target;
     setUserFormData({ ...userFormData, [name]: value });
   };
 
   const handleFormSubmit = async (event) => {
+    console.log("handleFormSubmit");
     event.preventDefault();
 
     const newUser = add_user (userFormData.username, userFormData.email, userFormData.password);
@@ -36,28 +40,27 @@ const SignupForm = () => {
 
     }
 
-    try {
-      const response = createUser(userFormData);
+    // try {
+    //   const response = createUser(userFormData);
 
-      if (!response.ok) {
-        throw new Error('something went wrong!');
-      }
+    //   if (!response.ok) {
+    //     throw new Error('something went wrong!');
+    //   }
 
-      const { token, user } = response.json();
-      console.log(user);
-      AuthService.login(token);
-    } catch (err) {
-      console.error(err);
-      setShowAlert(true);
-    }
+    //   const { token, user } = response.json();
+    //   console.log(user);
+    //   AuthService.login(token);
+    // } catch (err) {
+    //   console.error(err);
+    //   setShowAlert(true);
+    // }
 
-    setUserFormData({
-      username: '',
-      email: '',
-      password: '',
-      confirmPassword: ''
-    });
-  };
+    // setUserFormData({
+    //   username: '',
+    //   email: '',
+    //   password: '',
+    //   confirmPassword: ''
+    // });
 
   return (
     <div>
@@ -106,12 +109,13 @@ const SignupForm = () => {
 
                   <div>
                       <button>
-                          Sign Up
+                          Submit
                       </button>
                   </div>
               </form>
           </div>
       </div>
-);
+    )
+  };
 
 export default SignupForm;

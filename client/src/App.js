@@ -8,7 +8,7 @@ import Dashboard from './pages/Dashboard';
 import Habits from './pages/Habits';
 import Todos from './pages/Todos';
 import Tags from './pages/Tags';
-import './App.css';
+// import './App.css';
 
 const client = new ApolloClient({
   uri: '/graphql',

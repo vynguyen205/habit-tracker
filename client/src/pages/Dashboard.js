@@ -7,7 +7,7 @@ import TodoList from '../components/Todos/Todos';
 import AddHabit from '../components/Habits/addHabit';
 import AddTodo from '../components/Todos/addTodo';
 import { Link } from 'react-router-dom';
-import { Container } from '@material-ui/core';
+// import { Container } from '@material-ui/core';
 
 // Display landing page
 function Dashboard() {

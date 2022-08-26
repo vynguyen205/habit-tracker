@@ -1,19 +1,33 @@
-// // see SignupForm.js for comments
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 import { loginUser } from '../utils/API';
 import AuthService from '../utils/Auth';
 
 const LoginForm = () => {
+  const [userFormData, setUserFormData] = useState({ email: '', password: '' });
+  const [validated] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
 
-  const [errorMessages, setErrorMessages] = useState({});
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setUserFormData({ ...userFormData, [name]: value });
+  };
 
-//   setUserFormData({
-//     username: '',
-//     email: '',
-//     password: '',
-//   });
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    try {
+      const response = await loginUser(userFormData);
+
+      if (!response.ok) {
+        throw new Error('something went wrong!');
+      }
 
       const { token, user } = await response.json();
       console.log(user);
@@ -34,7 +48,7 @@ const LoginForm = () => {
       <div>
             <div>
                 <h1>
-                    Login 🔐
+                    Login
                 </h1>
 
                 <form onSubmit={handleFormSubmit}>
@@ -53,32 +67,15 @@ const LoginForm = () => {
                         />
                     </div>
 
-    const { uname, pass } = document.forms[0];
-
-    // Find user login info
-    // const userData = setUserFormData.find((user) => user.username === uname.value);
-
-    // if (userData) {
-    //   if (userData.password !== pass.value) {
-    //     // Invalid password
-    //     setErrorMessages({ name: "pass", message: errors.pass });
-    //   } else {
-    //     setIsSubmitted(true);
-    //   }
-    // } else {
-    //   // Username not found
-    //   setErrorMessages({ name: "uname", message: errors.uname });
-    // }
-    return (
-        <div className='bg-gradient-to-r p-4 shadow-lg rounded-2xl py-8 from-pink-500 to-violet-500 via-fuchsia-400'>
-              <div className="">
-                  <h1 >
-                      Login 🔐
-                  </h1>
-              </div>
-          </div>
-        );
-  };
-}; 
+                    <div>
+                        <button>
+                            Submit
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+  );
+};
 
 export default LoginForm;
