@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 // import { QUERY } from '../utils/Queries';
 
 import LoginForm from '../components/LoginForm';
-// import SignupForm from '../components/SignupForm';
+import SignupForm from '../components/SignupForm';
 
 
 const Home = () => {
