@@ -47,7 +47,7 @@ function App() {
               element={<Home />}
             />
             <Route
-              path="/Dashboard/username"
+              path="/Dashboard/:username"
               element={<Dashboard />}
             />
             <Route
