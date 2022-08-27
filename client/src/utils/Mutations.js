@@ -9,6 +9,14 @@ export const LOGIN_USER = gql`
       user {
         _id
         username
+        userHabit {
+          _id
+          habitName
+        }
+        userTodo {
+          _id
+          todoName
+        }
       }
     }
   }

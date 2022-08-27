@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { LOGIN_USER } from '../utils/Mutations';
 import { useMutation } from '@apollo/client';
+import { useAtom } from 'jotai';
+import { userAtom } from '../state';
 
 import AuthService from '../utils/Auth';
 
 const LoginForm = () => {
+  const [user, setUser] = useAtom(userAtom);
   const [userFormData, setUserFormData] = useState({
     email: '',
     password: ''
@@ -29,11 +32,13 @@ const LoginForm = () => {
       });
 
       AuthService.login(data.login.token);
-      
-      console.log("FSLDKJFLDSKFJ",data);
+
+      console.log('FSLDKJFLDSKFJ', data);
+
+      setUser(data.login.user);
       navigate(`/Dashboard/${data.login.user.username}`);
     } catch (err) {
-      console.error(`handleForm submit Error log`,err);
+      console.error(`handleForm submit Error log`, err);
     }
     setUserFormData({
       email: '',
