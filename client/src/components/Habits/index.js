@@ -35,7 +35,7 @@ const HabitList = () => {
   const [habitText, setHabitText] = useState('');
   // const [habits, setHabits] = useState([]);
   // query to get all the habits
-  const { data: habits, loading } = useQuery(QUERY_HABITS, {
+  const { data: userHabits, loading } = useQuery(QUERY_HABITS, {
     fetchPolicy: 'no-cache',
     variables: {
       userId: "62fe9cbb970457d5b9eb5e31"
@@ -44,61 +44,10 @@ const HabitList = () => {
 
   // const habitList = data?.habits || [];
 
-  console.log(habits);
-
-  // const { allTodos } = useQuery(QUERY_TODO, {
-  //     fetchPolicy: 'no-cache'
-  // });
-
-  // eEffect(() => {us
-  //   const GetHabits = async () => {
-  //       const _data =  data;
-  //       setHabits(_data.habitData.allHabits);
-  //   }
-  //   GetHabits();
-  // }, []);
+  console.log(userHabits);
 
 
-  //   const [addHabit, { error }] = useMutation(ADD_HABIT, {
-  //     update(cache, { data: { addHabit } }) {
-  //       try {
-  //         const { habits } = cache.readQuery({ query: QUERY_HABITS });
-
-  //         cache.writeQuery({
-  //           query: QUERY_HABITS,
-  //           data: { habits: [ADD_HABIT, ...habits] },
-  //         });
-  //       } catch (e) {
-  //         console.error(e);
-  //       }
-  //     },
-  //   });
-  //   const handleFormSubmit = async (event) => {
-  //     event.preventDefault();
-
-  //     try {
-  //       const { data } = await addHabit({
-  //         variables: {
-  //           habitName,
-  //           habitDescriptions,
-  //           habitUser: Auth.getProfile().data.username,
-  //         },
-  //       });
-
-  //       setHabitText('');
-  //     } catch (err) {
-  //       console.error(err);
-  //     }
-  //   };
-
-  //   const handleChange = (event) => {
-  //     const { name } = event.target;
-
-  //     if (name === 'habitText') {
-  //       setHabitText(value);
-  //     }
-  //   };
-
+// show habits for a logged in user
   return (
     <>
       {loading ? (
@@ -106,16 +55,28 @@ const HabitList = () => {
       ) : (
         <div>
           <h1>My Habits</h1>
-        </div>)}
-      {/* <pre>{JSON.stringify(habits, null, 2)}</pre> */}
-      {habits?.user?.userHabit?.map((data) =>
-      (<h3 key={data?._id}>{data?.habitName},
-        {data?.habitDescription}</h3>)
+          <ul>
+            {userHabits?.user?.userHabit?.map((data) =>
+              (<li key={data?._id}>
+                <div>
+                  <h3>{data?._id}</h3>
+                  <p>{data?.habitName}</p>
+                  <p>{data?.habitDescription}</p>
+                  <p>{data?.habitCompleted}</p>
+                </div>
+              </li>)
+            )}
+          </ul>
+        </div>
       )}
     </>
-  )
+  );
 }
 
-// Show habits for a logged in user
+
+// use this to test the habit list
+/* <pre>{JSON.stringify(habits, null, 2)}</pre> */
+    
+
 
 export default HabitList;

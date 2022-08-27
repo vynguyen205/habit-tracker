@@ -48,7 +48,7 @@ export const QUERY_HABITS = gql`
 `;
 // Get all Todos of a user
 export const QUERY_TODO = gql`
-  query User($userId: ID!) {
+  query userTodos($userId: ID!) {
   user(userId: $userId) {
     _id
     username

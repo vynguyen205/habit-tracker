@@ -28,14 +28,14 @@ import "../../App.css";
 // Show habits for a logged in user
 const TodoList = () => {
     const [todoText, setTodoText] = useState('');
-    const { data: todos, loading } = useQuery(QUERY_TODO, {
+    const { data: userTodos, loading } = useQuery(QUERY_TODO, {
         fetchPolicy: 'no-cache',
         variables: {
             userId: "62fe9cbb970457d5b9eb5e31"
         }
     });
 
-    console.log(todos);
+    console.log(userTodos);
 
     return (
         <>
@@ -45,11 +45,12 @@ const TodoList = () => {
                 <div>
                     <h1>Todo List</h1>
                     <ul>
-                        {todos?.user?.userTodo?.map((data) =>
+                        {userTodos?.user?.userTodo?.map((data) =>
                         (<li key={data?._id}>
                             <div>
                                 <h3>{data?.todoName}</h3>
                                 <p>{data?.todoDescription}</p>
+                                <p>{data?.todoCompleted}</p>
                             </div>
                         </li>
                         ))}
