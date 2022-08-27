@@ -40,12 +40,12 @@ const SignupForm = () => {
     //   console.error(err);
     //   setShowAlert(true);
     // }
-    setUserFormData({
-      username: "",
-      email: "",
-      password: "",
-      confirmPassword: ""
-    });
+    // setUserFormData({
+    //   username: "",
+    //   email: "",
+    //   password: "",
+    //   confirmPassword: ""
+    // });
   return (
     <div>
           <div>

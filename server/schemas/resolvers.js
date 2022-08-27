@@ -48,7 +48,7 @@ const resolvers = {
     addUser: async (parent, { username, email, password }) => {
       const newUser = await User.create({ username, email, password });
       const token = signToken(newUser);
-      return { token, newUser };
+      return { token, user: newUser };
     },
 
     login: async (parent, { email, password }) => {
@@ -115,7 +115,12 @@ const resolvers = {
     ) => {
       const updatedHabit = await Habit.findOneAndUpdate(
         { _id: habitId },
-        { $set: { habitName, habitDescription, habitCompleted, habitTags } },
+        { $set: { 
+          ...(habitName) && { habitName }, 
+          habitDescription, 
+          habitCompleted, 
+          habitTags: habitId 
+        } },
         { new: true }
       );
 
@@ -130,12 +135,15 @@ const resolvers = {
     updateTodo: async (parent, { todoId, todoName, todoDescription, todoCompleted }) => {
       const updatedTodo = await Todo.findOneAndUpdate(
         { _id: todoId },
-        { $set: { todoName, todoDescription, todoCompleted } },
+        { $set: { 
+          ...(todoName) && { todoName },
+          todoDescription, 
+          todoCompleted } },
         { new: true }
       );
 
       const todoData = await updatedTodo.populate('todoUser').execPopulate();
-
+        console.log(todoData)
       return todoData;
     },
 
@@ -162,7 +170,17 @@ const resolvers = {
       return habitData;
     },
     removeTodo: async (parent, { todoId }) => {
-      return Todo.findOneAndDelete({ _id: todoId });
+      const todo = await Todo.findOneAndDelete({ _id: todoId });
+
+      // need to remove todo from userTodo array
+      const user = await User.findOneAndUpdate(
+        { _id: todo.todoUser },
+        { $pull: { userTodo: todoId } },
+        { new: true }
+      );
+
+      const todoData = await todo.populate('todoUser').execPopulate();
+      return todoData;
     },
     removeTag: async (parent, { tagId }) => {
       return Tag.findOneAndDelete({ _id: tagId });

@@ -2,7 +2,7 @@ const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
   type User {
-    _id: ID
+    _id: ID!
     username: String!
     email: String!
     userHabit: [Habit]
@@ -10,11 +10,11 @@ const typeDefs = gql`
   }
 
   type Tag {
-    _id: ID
+    _id: ID!
     tagName: String!
   }
   type Habit {
-    _id: ID
+    _id: ID!
     habitName: String
     habitDescription: String
     habitCompleted: Boolean
@@ -26,7 +26,7 @@ const typeDefs = gql`
   }
   type Todo {
     _id: ID
-    todoName: String!
+    todoName: String
     todoDescription: String
     todoCompleted: Boolean
     todoCreated: String
@@ -56,17 +56,17 @@ const typeDefs = gql`
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
-    addHabit(userId: ID!, habitName: String!, habitTags: [ID]): Habit
+    addHabit(userId: ID!, habitName: String!, habitDescription: String, habitTags: [ID]): Habit
     addTodo(userId: ID!, todoName: String!, todoDescription: String): Todo
     addTag(tagName: String!): Tag
     updateUser(userId: ID!, username: String!): User
-    updateHabit(habitId: ID!, habitName: String, habitTags: [ID]): Habit
-    updateTodo(todoId: ID!, todoName: String!, todoDescription: String): Todo
+    updateHabit(habitId: ID!, habitName: String, habitTags: [ID], habitCompleted: Boolean): Habit
+    updateTodo(todoId: ID!, todoName: String, todoDescription: String, todoCompleted: Boolean): Todo
     updateTag(tagId: ID!, tagName: String!): Tag
     removeUser(userId: ID!): User
     removeHabit(userId: ID!, habitId: ID!): Habit
     removeTodo(todoId: ID!): Todo
-    removeTag(tagName: String!): Tag
+    removeTag(tagId: ID!): Tag
   }
 `;
 
