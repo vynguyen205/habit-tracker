@@ -6,16 +6,6 @@ import AddTag from '../components/Tags/addTag';
 import TagList from '../components/Tags';
 // Display all habits for a logged in user
 function Tags() {
-    // const [tags, setTags] = useState([]);
-    // const getTags = async () => {
-    //     const response = await fetch('../../utils/api');
-    //     const data = await response.json();
-    //     setTags(data);
-    // }
-
-    // React.useEffect(() => {
-    //     getTags();
-    // }, []);
 
     return (
         <>

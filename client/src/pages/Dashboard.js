@@ -14,10 +14,6 @@ function Dashboard() {
     // const {userId} = useParams();
     // console.log("params", userId);
 
-    const current = new Date();
-    const day = current.getDate();
-
-
     return (
         <>
             <div className='flex-column bg-lightOrange h-screen w-screen'>
