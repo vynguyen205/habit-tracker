@@ -12,7 +12,7 @@ const Home = () => {
     const [showForm, setShowForm] = useState("");
     return (
         <>
-            <div className='h-[100vh] w-[100vw] bg-gradient-to-tr from-darkOrange to-white via-lightOrange'>
+            <div className='h-screen w-screen bg-gradient-to-tr from-darkOrange to-white via-lightOrange'>
                 <aside className='overflow-hidden flex flex-row items-center justify-center h-full'>
                         <div className='max-w-xl mx-auto text-center'>
                             <h1 className='font-sans text-darkBlue text-8xl'> Find your </h1>

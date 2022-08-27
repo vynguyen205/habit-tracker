@@ -31,7 +31,7 @@ const LoginForm = () => {
       AuthService.login(data.login.token);
       
       console.log("FSLDKJFLDSKFJ",data);
-      navigate(`/Dashboard/${data.login.user._id}`);
+      navigate(`/Dashboard/${data.login.user.username}`);
     } catch (err) {
       console.error(`handleForm submit Error log`,err);
     }

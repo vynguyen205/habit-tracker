@@ -3,7 +3,7 @@ import { useQuery } from '@apollo/client';
 
 import { QUERY_HABITS } from '../../utils/Queries';
 
-// import Auth from '../../utils/Auth';
+import AuthService from '../../utils/Auth';
 
 const HabitList = () => {
   // const [habitText, setHabitText] = useState('');
@@ -12,7 +12,7 @@ const HabitList = () => {
   const { data: userHabits, loading } = useQuery(QUERY_HABITS, {
     fetchPolicy: 'no-cache',
     variables: {
-      userId: "62fe9cbb970457d5b9eb5e31",
+      userId:  AuthService.getProfile().data._id,
     }
   });
 
@@ -35,7 +35,6 @@ const HabitList = () => {
             {userHabits?.user?.userHabit?.map((data) =>
               (<li key={data?._id}>
                 <div>
-                  <h3>{data?._id}</h3>
                   <p>{data?.habitName}</p>
                   <p>{data?.habitDescription}</p>
                   <p>{data?.habitCompleted}</p>

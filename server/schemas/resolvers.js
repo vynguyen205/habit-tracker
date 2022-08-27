@@ -142,9 +142,9 @@ const resolvers = {
         { new: true }
       );
 
-      const todoData = await updatedTodo.populate('todoUser').execPopulate();
-        console.log(todoData)
-      return todoData;
+      // const todoData = await updatedTodo.populate('todoUser').execPopulate();
+      //   console.log(todoData)
+      return updatedTodo;
     },
 
     updateTag: async (parent, { tagId, tagName }) => {
