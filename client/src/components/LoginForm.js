@@ -32,11 +32,10 @@ const LoginForm = () => {
       });
 
       AuthService.login(data.login.token);
-
-      console.log('FSLDKJFLDSKFJ', data);
-
+      console.log('Login Data', data);
       setUser(data.login.user);
       navigate(`/Dashboard/${data.login.user.username}`);
+      
     } catch (err) {
       console.error(`handleForm submit Error log`, err);
     }

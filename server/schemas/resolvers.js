@@ -52,7 +52,7 @@ const resolvers = {
     },
 
     login: async (parent, { email, password }) => {
-      const user = await User.findOne({ email });
+      const user = await User.findOne({ email }).populate("userTodo").populate("userHabit"); //populate with addtional stuff later, BUT CAREFUL make TypeDefs Match TOO
       if (!user) {
         throw new Error('User not found');
       }
@@ -61,6 +61,7 @@ const resolvers = {
         throw new Error('Invalid password');
       }
       const token = signToken(user);
+      console.log(token, user)
       return { token, user };
     },
 

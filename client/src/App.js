@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-route
 import { ApolloClient, ApolloProvider, createHttpLink, InMemoryCache } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { Provider , useAtom, useSetAtom} from 'jotai';
-import Home from './pages/Home';
+import LandingPage from './pages/LandingPage';
 import Dashboard from './pages/Dashboard';
 // import Habits from './pages/Habits';
 import Todos from './pages/Todos';
@@ -57,7 +57,7 @@ function App() {
     <ApolloProvider client={client}>
           <div>
             <Routes>
-              <Route path="/" element={<Home />} />
+              <Route path="/" element={<LandingPage />} />
               <Route path="/Dashboard/:username" element={<Dashboard />} />
               <Route path="/Todos" element={<Todos />} />
               <Route path="/Tags" element={<Tags />} />
