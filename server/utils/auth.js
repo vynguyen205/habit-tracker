@@ -1,11 +1,11 @@
 const jwt = require('jsonwebtoken');
 
 const secret = 'grooooooooove';
-const expiration = '4h';
+const expiration = '1d';
 
 module.exports = {
   apolloContext: function({req}){
-    console.log("REQEUST CAME IN", req.headers.authorization);
+    console.log("REQUEST CAME IN", req.headers.authorization);
     return req.headers.authorization ? jwt.verify(req.headers.authorization.replace(`Bearer `, ''), secret) : null;
   },
   signToken: function ({ email, name, _id }) {

@@ -10,6 +10,7 @@ import AddHabit from '../components/Habits/addHabit';
 
 // Display landing page
 function Dashboard() {
+    // this is grabbing the id from the url
     const {userId} = useParams();
     console.log("params", userId);
     //do lookup now using userId param

@@ -3,7 +3,7 @@ import "../App.css";
 import Navbar from '../components/Navbar';
 import Menu from '../components/Menu';
 import AddTodo from '../components/Todos/addTodo';
-import TodoList from '../components/Todos/Todos';
+import TodoList from '../components/Todos';
 
 // Display all habits for a logged in user
 function Todos() {

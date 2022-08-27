@@ -33,7 +33,7 @@ const LoginForm = () => {
       console.log("FSLDKJFLDSKFJ",data);
       navigate(`/Dashboard/${data.login.user._id}`);
     } catch (err) {
-      console.error(err);
+      console.error(`handleForm submit Error log`,err);
     }
     setUserFormData({
       email: '',
