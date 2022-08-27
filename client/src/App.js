@@ -55,20 +55,14 @@ function App() {
   //after token is validated/refreshed 
   return (
     <ApolloProvider client={client}>
-        {/* <Router> */}
           <div>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/Dashboard/:username" element={<Dashboard />} />
               <Route path="/Todos" element={<Todos />} />
               <Route path="/Tags" element={<Tags />} />
-              {/* <Route
-              path="*"
-              element={<NotFound />}
-            /> */}
             </Routes>
-          </div>
-        {/* </Router> */}
+          </div> 
     </ApolloProvider>
   );
 }
