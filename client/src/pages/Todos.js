@@ -24,12 +24,10 @@ function Todos() {
             <Navbar />
             <div className="flex">
               <div className='flex flex-col w-[25vw] h-[80vh] px-8 py-8 overflow-y-auto rounded-2xl bg-darkOrange m-20'>
-                <h2 className='text-2xl font-bold text-center text-dar'>Welcome, --Username--</h2>
                 <div className='flex flex-col justify-between mt-10'>
                   <Menu />
                 </div>
                 <div className='align-center mt-12'>
-                  <p>My To Do List</p>
                   <TodoList />
                 </div>
               </div>

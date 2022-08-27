@@ -105,7 +105,7 @@ const HabitList = () => {
         <div>Loading...</div>
       ) : (
         <div>
-          <h1>Habits</h1>
+          <h1>My Habits</h1>
         </div>)}
       {/* <pre>{JSON.stringify(habits, null, 2)}</pre> */}
       {habits?.user?.userHabit?.map((data) =>

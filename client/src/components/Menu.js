@@ -6,7 +6,7 @@ function Menu() {
         <>
             <aside>
                 <div className="flex flex-col justify-between">
-                    <h2 className="text-2xl font-bold text-center text-dar">Welcome, </h2>
+                    <h2 className="text-2xl font-bold text-center text-dar"> Let's Get Groovy! </h2>
                 </div>
                 <ul>
                     <li>
