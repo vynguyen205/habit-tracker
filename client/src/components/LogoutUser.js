@@ -6,7 +6,7 @@ function logoutUser() {
     // Set local storage to null
     localStorage.setItem('user', null);
     // Redirect to homepage 
-    window.location.href = '/';
+    window.location.href = '/'; /* change this to link or navigate */
 
     return (
         <div className="flex-column justify-center align-center min-100-vh bg-slate-500">

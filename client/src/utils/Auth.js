@@ -5,7 +5,14 @@ import decode from 'jwt-decode';
 class AuthService {
   // get user data
   getProfile() {
-    return decode(this.getToken());
+    try {
+      const decoded = decode(this.getToken());
+      console.log("DECODED", decoded)
+      return decoded
+    }catch(err){
+      console.log(err, "error while decoding...");
+    }
+    return null
   }
 
   // check if user's logged in
@@ -35,7 +42,6 @@ class AuthService {
   login(idToken) {
     // Saves user token to localStorage
     localStorage.setItem('id_token', idToken);
-    // window.location.assign('/');
   }
 
   logout() {
@@ -43,7 +49,8 @@ class AuthService {
     localStorage.removeItem('id_token');
     // this will reload the page and reset the state of the application
     window.location.assign('/');
-  }
+  } 
+
 }
 
 export default new AuthService();

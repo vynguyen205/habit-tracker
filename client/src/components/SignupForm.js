@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from "@apollo/client";
+import { useAtom } from 'jotai';
+import { userAtom } from '../state'
 // import “../App.css”;
 import AuthService from "../utils/Auth";
 import { ADD_USER } from "../utils/Mutations";
 
 const SignupForm = () => {
+  const [user, setUser] = useAtom(userAtom);
   // set initial form state
   const [userFormData, setUserFormData] = useState ({
       username: '',
@@ -29,10 +32,11 @@ const SignupForm = () => {
       const { data } = await add_user({
         variables: { ...userFormData }
         });
-        console.log("Singup Token",data);
 
       AuthService.login(data.addUser.token);
+      setUser(data.addUser.user)
       navigate(`/Dashboard/${data.addUser.user.username}`);
+
     } catch (err) {
       console.error(err);
     //   setShowAlert(true);

@@ -13,14 +13,14 @@ function AddHabit() {
   const [addHabit, { data }] = useMutation(ADD_HABIT);
 
   //DONT DO THIS, TESTING ONLY
-  useEffect(()=> {
-    addHabit({
-      variables: {
-        habitName: "Eat222",
-        userId: "62fe9cbb970457d5b9eb5e31",
-      } 
-    })
-  }, [])
+  // useEffect(()=> {
+  //   addHabit({
+  //     variables: {
+  //       habitName: "Eat222",
+  //       userId: "62fe9cbb970457d5b9eb5e31",
+  //     } 
+  //   })
+  // }, [])
 
   return (
     <>
