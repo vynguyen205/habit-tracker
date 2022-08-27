@@ -1,5 +1,5 @@
 // Import file dependencies
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Menu from '../components/Menu';
@@ -12,6 +12,7 @@ import AddHabit from '../components/Habits/addHabit';
 function Dashboard() {
     // this is grabbing the id from the url
     const {userId} = useParams();
+
     console.log("params", userId);
     //do lookup now using userId param
     // const [showModal, setShowModal] = useState(false);
@@ -20,7 +21,7 @@ function Dashboard() {
     // const [showAddTodo, setShowAddTodo] = useState(false);
     // const [todos, setTodos] = useState([]);
 
-   
+
     // useEffect(() => {
     //     const GetTodos = async () => {
     //         const { data } = await allTodos;
@@ -55,12 +56,16 @@ function Dashboard() {
         <>
             <div className='flex-column bg-lightOrange h-[100vh] w-[100vw]'>
                 <Navbar />
-                <div>
-                    <Menu />
-                </div>
-                <div>
-                    <HabitList />
-                    <AddHabit/>
+                <div className="flex">
+                    <div className='flex flex-col w-[25vw] h-[80vh] px-8 py-8 overflow-y-auto rounded-2xl bg-darkOrange m-20'>
+                        <div className='flex flex-col justify-between mt-10'>
+                            <Menu />
+                        </div>
+                    </div>
+                    <div>
+                        <HabitList />
+                        <AddHabit />
+                    </div>
                 </div>
             </div>
         </>

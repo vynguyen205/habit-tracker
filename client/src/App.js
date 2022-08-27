@@ -50,10 +50,6 @@ function App() {
               path="/Dashboard/:userId"
               element={<Dashboard />}
             />
-            {/* <Route
-              path="/Habits"
-              element={<Habits />}
-            /> */}
             <Route
               path="/Todos"
               element={<Todos />}

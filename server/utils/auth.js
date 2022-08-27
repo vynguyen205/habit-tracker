@@ -4,8 +4,8 @@ const secret = 'grooooooooove';
 const expiration = '1d';
 
 module.exports = {
-  apolloContext: function({req}){
-    console.log("REQUEST CAME IN", req.headers.authorization);
+  apolloContext: function ({ req }) {
+    console.log("REQEUST CAME IN", req.headers.authorization);
     return req.headers.authorization ? jwt.verify(req.headers.authorization.replace(`Bearer `, ''), secret) : null;
   },
   signToken: function ({ email, name, _id }) {
