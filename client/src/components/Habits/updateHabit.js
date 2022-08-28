@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
-import { UPDATE_HABIT, REMOVE_HABIT } from "../../utils/Mutations";
+import { UPDATE_HABIT } from "../../utils/Mutations";
 
 import AuthService from "../../utils/Auth";
 import { useAtom } from 'jotai';
