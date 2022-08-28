@@ -61,8 +61,8 @@ function Dashboard() {
                         </div>
                     </div>
                     <div>
-                        <HabitList />
                         <AddHabit />
+                        <HabitList />
                     </div>
                 </div>
             </div>
