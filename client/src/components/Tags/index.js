@@ -1,29 +1,10 @@
-import React from "react";
-import "../../App.css";
+import { useAtom } from 'jotai'
+import { userAtom } from '../../state'
 
-const data = [
-    {
-        _id: "1",
-        tagName: "Health & Wellness",
-        tagHabit: "Eat",
-        userId: "1",
-    },
-    {
-        _id: "2",
-        tagName: "Health & Wellness",
-        tagHabit: "Sleep",
-        userId: "1",
-    },
-    {
-        _id: "3",
-        tagName: "Health & Wellness",
-        tagHabit: "Exercise",
-        userId: "1",
-    }
-]
+const TagList = () => {
+
 
 // Show habits for a logged in user
-function TagList() {
     return (
         <>
             {data.map((data) => 

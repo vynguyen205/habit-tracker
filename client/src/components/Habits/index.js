@@ -33,7 +33,6 @@ const HabitList = () => {
         <div>Loading...</div>
       ) : (
         <div>
-          <h1>My Habits</h1>
           <ul>
             {user?.userHabit?.map((data) =>
               (<li key={data?._id}>
