@@ -8,23 +8,8 @@ import { useAtom } from 'jotai'
 import { userAtom } from '../../state';
 
 const HabitList = () => {
-  // const [habitText, setHabitText] = useState('');
-  // const [habits, setHabits] = useState([]);
-  // query to get all the habits
-  // const { data: userHabits, loading } = useQuery(QUERY_HABITS, {
-  //   fetchPolicy: 'no-cache',
-  //   variables: {
-  //     userId:  AuthService.getProfile()?.data._id,
-  //   }
-  // });
   const [user, setUser] = useAtom(userAtom)
-
-  // const habitList = data?.habits || [];
-
-
-  console.log(user?.userHabit);
-
-
+  // console.log(user?.userHabit);
 
 // show habits for a logged in user
   return (
