@@ -3,6 +3,7 @@ import { useQuery } from "@apollo/client";
 import { QUERY_TODO } from "../../utils/Queries";
 
 import UpdateTodo from "./updateTodo";
+import DeleteTodo from "./deleteTodo";
 import AuthService from '../../utils/Auth';
 import { useAtom } from 'jotai';
 import { userAtom } from '../../state'
@@ -17,31 +18,66 @@ const TodoList = () => {
     //     setShowDescription(!showDescription);
     // }
 
-    
+     const { data: userTodos, loading } = useQuery(QUERY_TODO, {
+        fetchPolicy: 'no-cache',
+        variables: {
+            userId: AuthService.getProfile().data._id,
+        }
+
+    });
+    console.log("user todo data", userTodos);
+
+
     return (
         <>
-            {user === null ? (
+            {loading ? (
                 <div>Loading...</div>
-                ) : (
+            ) : (
                 <div className="flex">
                     <ul>
-                        {user?.userTodo?.map((data) => {
-                            // console.log(data)
-                            return (<li key={data?._id}>  
+                        {userTodos?.user?.userTodo?.map((data) =>
+                        (<li key={data?._id}>  
+                            <div className="flex">
+                                <UpdateTodo singleTodo={data}/> 
                                 <div className="flex">
-                                    <UpdateTodo singleTodo={data}/>
-                                    <div className="flex">
-                                        <p className="ml-4">{data?.todoName}</p>
-                                    </div>
+                                    <p className="ml-4">{data?.todoName}</p>
                                 </div>
-                            </li>
-                            )})}
+                                <DeleteTodo singleTodo={data}/>
+                            </div>
+                        </li>
+                        ))}
                     </ul>
                 </div>
-                )
+            )
             }
         </>
     );
+
+    
+    // return (
+    //     <>
+    //         {user === null ? (
+    //             <div>Loading...</div>
+    //             ) : (
+    //             <div className="flex">
+    //                 <ul>
+    //                     {user?.userTodo?.map((data) => {
+    //                         // console.log(data)
+    //                         return (<li key={data?._id}>  
+    //                             <div className="flex">
+    //                                 <UpdateTodo singleTodo={data}/>
+    //                                 <div className="flex">
+    //                                     <p className="ml-4">{data?.todoName}</p>
+    //                                 </div>
+    //                             </div>
+    //                         </li>
+    //                         )})}
+    //                 </ul>
+    //             </div>
+    //             )
+    //         }
+    //     </>
+    // );
 }
 
 export default TodoList;

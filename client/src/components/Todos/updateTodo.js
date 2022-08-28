@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
-import { UPDATE_TODO } from "../../utils/Mutations";
+import { UPDATE_TODO, REMOVE_TODO } from "../../utils/Mutations";
+
 import AuthService from "../../utils/Auth";
 import { useAtom } from 'jotai';
 import { userAtom } from '../../state'
@@ -23,23 +24,24 @@ const UpdateTodo = ({singleTodo}) => {
                     todoCompleted: true
                 }
             })
+            console.log(data, "testing")
             setUser(data.updateTodo.todoUser)
 
         } catch (err) {
             console.error(err)
         }
     }
-    return (
-        <>
-            <input
-                className=""
-                data-id={singleTodo._id}
-                type="checkbox" 
-                onChange={handleCheck} 
-            />
-        </>
-    )
 
-}
+        return (
+            <>
+                <input
+                    className=""
+                    data-id={singleTodo._id}
+                    type="checkbox" 
+                    onChange={handleCheck} 
+                />
+            </>
+        )
+    }
 
 export default UpdateTodo;
