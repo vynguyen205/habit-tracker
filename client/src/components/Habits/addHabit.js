@@ -1,16 +1,61 @@
 // TODO: save new habit to database
 // TODO: add new habit to list of habits that are displayed
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
+import { useAtom } from "jotai";
+import { userAtom } from "../../state"
 import { ADD_HABIT } from "../../utils/Mutations";
 import "../../App.css";
 
+import AuthService from "../../utils/Auth";
+
 
 // Add new habits for a logged in user
-function AddHabit() {
+const AddHabit = () => {
   const [showModal, setShowModal] = useState(false);
-  const [addHabit, { data }] = useMutation(ADD_HABIT);
+  const [user, setUser] = useAtom(userAtom)
+  // get habit name and description from form
+  const [habitFormData, setHabitFormData] = useState({
+    habitName: "",
+    habitDescription: "",
+    habitCompleted: false,
+  });
+
+  // function to use mutation to add new habit
+  const [addHabit, { error }] = useMutation(ADD_HABIT);
+  // function to handle form input
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setHabitFormData({ ...habitFormData, [name]: value });
+  }
+
+  // function to handle form submit
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      // add habit to database
+      const { data } = await addHabit({
+        // variables to pass to mutation
+        variables: { userId: AuthService.getProfile().data._id, ...habitFormData },
+      });
+
+      setUser(data?.addHabit?.habitUser)
+    } catch (err) {
+      console.error(err);
+    }
+
+    setHabitFormData({
+      habitName: "",
+      habitDescription: "",
+      habitCompleted: false,
+    });
+
+    setShowModal(false);
+
+  }
+
 
   //DONT DO THIS, TESTING ONLY
   // useEffect(()=> {
@@ -46,23 +91,47 @@ function AddHabit() {
                   </button>
                 </div>
                 <div className="relative p-6 flex-auto">
-                  <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 w-full">
+                  <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 w-full" onSubmit={handleFormSubmit}>
                     <label className="block text-black text-sm font-bold mb-1">
                       Title
                     </label>
-                    <input className="shadow appearance-none border rounded w-full py-2 px-1 text-black" placeholder="Add habit..." />
+                    <input className="shadow appearance-none border rounded w-full py-2 px-1 text-black"
+                      type="text"
+                      name="habitName"
+                      placeholder="Add habit..."
+                      value={habitFormData.habitName}
+                      onChange={handleInputChange} />
                     <label className="block text-black text-sm font-bold mb-1">
                       Description
                     </label>
-                    <input className="shadow appearance-none border rounded w-full py-2 px-1 text-black" placeholder="Keep it short and sweet..." />
+                    <input className="shadow appearance-none border rounded w-full py-2 px-1 text-black"
+                    type="text"
+                    name="habitDescription" 
+                    placeholder="Keep it short and sweet..." 
+                    value={habitFormData.habitDescription}
+                    onChange={handleInputChange} 
+                    />
                     <label className="block text-black text-sm font-bold mb-1">
                       Tags
                     </label>
-                    <input className="shadow appearance-none border rounded w-full py-2 px-1 text-black" placeholder="Choose your tags" />
+                    <input className="shadow appearance-none border rounded w-full py-2 px-1 text-black" 
+                    type="text"
+                    name="allTags"
+                    placeholder="Choose your tags..."
+                    value={habitFormData.allTags}
+                    onChange={handleInputChange}
+                    />
                     <label className="block text-black text-sm font-bold mb-1">
                       Repeat
                     </label>
-                    <input className="shadow appearance-none border rounded w-full py-2 px-1 text-black" placeholder="Daily"/>
+                    <input className="shadow appearance-none border rounded w-full py-2 px-1 text-black" 
+                    type="text"
+                    name="repeat"
+                    placeholder="Repeat..."
+                    value={habitFormData.repeat}
+                    onChange={handleInputChange}
+                    />
+                    placeholder="Daily" />
                   </form>
                 </div>
                 <div className="flex items-center justify-center p-6 rounded-b">

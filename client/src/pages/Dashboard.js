@@ -1,12 +1,15 @@
 // Import file dependencies
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Menu from '../components/Menu';
-
-import HabitList from '../components/Habits';
+// import habit components 
+import HabitList from '../components/Habits/index';
 import AddHabit from '../components/Habits/addHabit';
-// import { Container } from '@material-ui/core';
+// import todo components
+import TodoList from '../components/Todos/index';
+import AddTodo from '../components/Todos/addTodo';
+import UpdateTodo from '../components/Todos/updateTodo';
 
 // Display landing page
 function Dashboard() {
