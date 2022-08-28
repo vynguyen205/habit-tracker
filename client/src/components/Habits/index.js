@@ -1,9 +1,7 @@
 // import React, { useState } from 'react';
-import { useQuery } from '@apollo/client';
-
-import { QUERY_HABITS } from '../../utils/Queries';
-
-import AuthService from '../../utils/Auth';
+// import { useQuery } from '@apollo/client';
+// import { QUERY_HABITS } from '../../utils/Queries';
+// import AuthService from '../../utils/Auth';
 import { useAtom } from 'jotai'
 import { userAtom } from '../../state';
 
@@ -11,23 +9,23 @@ const HabitList = () => {
   const [user, setUser] = useAtom(userAtom)
   // console.log(user?.userHabit);
 
-// show habits for a logged in user
+  // show habits for a logged in user
   return (
     <>
       {user === null ? (
         <div>Loading...</div>
       ) : (
-        <div>
+        <div className='flex'>
           <ul>
-            {user?.userHabit?.map((data) =>
-              (<li key={data?._id}>
-                <div>
+            {user?.userHabit?.map((data) => {
+              return (<li key={data?._id}>
+                <div className='flex'>
                   <p>{data?.habitName}</p>
                   <p>{data?.habitDescription}</p>
                   <p>{data?.habitCompleted}</p>
                 </div>
-              </li>)
-            )}
+              </li>
+              )})}
           </ul>
         </div>
       )}
@@ -38,7 +36,7 @@ const HabitList = () => {
 
 // use this to test the habit list
 /* <pre>{JSON.stringify(habits, null, 2)}</pre> */
-    
+
 
 
 export default HabitList;

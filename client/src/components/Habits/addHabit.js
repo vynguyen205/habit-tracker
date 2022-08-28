@@ -25,8 +25,7 @@ function AddHabit() {
   return (
     <>
       <button
-        className="button button-primary"
-        // className="bg-lightBlue text-white text-3xl active:bg-darkBlue font-bold px-6 py-3 rounded-shadow hover:bg-darkBlue hover:shadow-lg outline-none focus:outline-none rounded-full mr-1 mb-1" 
+        className="bg-lightBlue text-white fixed bottom-14 right-14 text-3xl active:bg-darkBlue font-bold px-5 py-3 rounded-shadow hover:bg-darkBlue hover:shadow-lg outline-none focus:outline-none rounded-full mr-1 mb-1"
         type="button" onClick={() => setShowModal(true)}>
         +
       </button>

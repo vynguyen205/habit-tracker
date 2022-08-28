@@ -13,9 +13,7 @@ function Tags() {
                 <Navbar />
                 <div className="flex">
                     <div className='flex flex-col w-max h-[75vh] px-8 py-8 overflow-y-auto rounded-2xl bg-darkOrange m-20'>
-                        <div className='flex flex-col justify-between mt-10'>
-                            <Menu />
-                        </div>
+                        <Menu />
                     </div>
                     <div className='flex flex-col justify-between mt-10'>
                         <TagList />

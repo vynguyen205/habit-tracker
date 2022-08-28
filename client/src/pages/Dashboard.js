@@ -16,17 +16,19 @@ function Dashboard() {
 
     return (
         <>
-            <div className='flex-column bg-lightOrange h-screen w-screen'>
+            <div className='flex-column bg-lightOrange h-fit-content w-fit-content'>
                 <Navbar />
                 <div className="flex ">
                     <div className='flex flex-col w-max h-[75vh] px-8 py-8 overflow-y-auto rounded-2xl bg-darkOrange m-20'>
-                        <div className='flex flex-col justify-between mt-10'>
-                            <Menu />
-                        </div>
+                        <Menu />
                     </div>
-                    <div>
-                        <AddHabit />
-                        <HabitList />
+                    <div className='flex flex-col'>
+                        <div className='flex content-end mt-10'>
+                            <AddHabit />
+                        </div>
+                        <div className='align-center mt-12'>
+                            <HabitList />
+                        </div>
                     </div>
                 </div>
             </div>
