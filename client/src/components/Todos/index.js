@@ -4,48 +4,41 @@ import { QUERY_TODO } from "../../utils/Queries";
 
 import UpdateTodo from "./updateTodo";
 import AuthService from '../../utils/Auth';
+import { useAtom } from 'jotai';
+import { userAtom } from '../../state'
 
 // Show habits for a logged in user
 const TodoList = () => {
-
+    const [user, setUser] = useAtom(userAtom);
     const [showDescription, setShowDescription] = useState(false);
-
     // toggle description
-    const toggleDescription = () => {
-        // show description for only one todo at a time
-        setShowDescription(!showDescription);
-    }
+    // const toggleDescription = () => {
+    //     // show description for only one todo at a time
+    //     setShowDescription(!showDescription);
+    // }
 
-    const { data: userTodos, loading } = useQuery(QUERY_TODO, {
-        fetchPolicy: 'no-cache',
-        variables: {
-            userId: AuthService.getProfile().data._id,
-        }
-
-    });
-    console.log("user todo data", userTodos);
-
-
+    
     return (
         <>
-            {loading ? (
+            {user === null ? (
                 <div>Loading...</div>
-            ) : (
+                ) : (
                 <div className="flex">
                     <ul>
-                        {userTodos?.user?.userTodo?.map((data) =>
-                        (<li key={data?._id}>  
-                            <div className="flex">
-                                <UpdateTodo />
+                        {user?.userTodo?.map((data) => {
+                            // console.log(data)
+                            return (<li key={data?._id}>  
                                 <div className="flex">
-                                    <p className="ml-4">{data?.todoName}</p>
+                                    <UpdateTodo singleTodo={data}/>
+                                    <div className="flex">
+                                        <p className="ml-4">{data?.todoName}</p>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
-                        ))}
+                            </li>
+                            )})}
                     </ul>
                 </div>
-            )
+                )
             }
         </>
     );

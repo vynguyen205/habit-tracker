@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_TODO } from "../../utils/Mutations";
+import { useAtom } from 'jotai'
+import { userAtom } from '../../state';
+
 import AuthService from "../../utils/Auth";
 
 // Add new todo for a logged in user
 const AddTodo = () => {
   const [showModal, setShowModal] = useState(false);
+  const [user, setUser] = useAtom(userAtom)
   // get todo name and description from form
   const [todoFormData, setTodoFormData] = useState({
     todoName: "",
@@ -23,18 +27,15 @@ const AddTodo = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    console.log("button clicked");
-
     try {
       // add todo to database
       const { data } = await addTodo({
         // variables to pass to mutation
         variables: {userId: AuthService.getProfile().data._id, ...todoFormData},
-
+        
       });
       
-
-      window.location.reload();
+      setUser(data?.addTodo?.todoUser)
       
     } catch (err) {
       console.error(err);

@@ -45,7 +45,7 @@ function App() {
     //state rehydration process, syncing with localStorage, etc.
     const profile = Auth.getProfile();
     //if there's no token, take them to login page
-    console.log("profile", profile);
+    // console.log("profile", profile);
     if(!profile) return nav('/');
     setUser(profile.data)
     //if token, but expired, take them login page

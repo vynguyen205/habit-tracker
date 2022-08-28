@@ -1,40 +1,39 @@
 import React, { useState } from "react";
-import { useMutation, useQuery } from "@apollo/client";
-import { QUERY_TODO } from "../../utils/Queries";
+import { useMutation } from "@apollo/client";
 import { UPDATE_TODO } from "../../utils/Mutations";
 import AuthService from "../../utils/Auth";
-import Auth from "../../utils/Auth";
+import { useAtom } from 'jotai';
+import { userAtom } from '../../state'
 
 
-const UpdateTodo = () => {
+const UpdateTodo = ({singleTodo}) => {
     const [isChecked, setIsChecked] = useState(false);
-        
-    const [updateTodo, { error }] = useMutation(UPDATE_TODO)
+    const [user, setUser] = useAtom(userAtom);
+    const [updateTodo, { error }] = useMutation(UPDATE_TODO);
 
     const handleCheck = async (event) => {
-        setIsChecked(event.target.checked);
-        console.log(AuthService.getProfile(), "USER TODO");
-        console.log(AuthService.getProfile()?.data.userTodo?.map((data) => 
-        data?._id))
-        
-
+        event.preventDefault();
+        // todoId is the id of the todo that is being checked off
+        const todoId = event.target.dataset.id;
+        // when checked, update the todo to completed
         try {
             const { data } = await updateTodo({
                 variables: {
-                    todoId: AuthService.getProfile()?.data.userTodo?.map((data) => 
-                    data?._id),
-                    todoCompleted: isChecked
+                    todoId: todoId,
+                    todoCompleted: true
                 }
+            })
+            setUser(data.updateTodo.todoUser)
 
-            });
         } catch (err) {
-            console.error(err);
+            console.error(err)
         }
     }
     return (
         <>
             <input
                 className=""
+                data-id={singleTodo._id}
                 type="checkbox" 
                 onChange={handleCheck} 
             />
