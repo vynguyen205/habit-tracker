@@ -63,10 +63,14 @@ export const ADD_TODO = gql`
       todoName
       todoDescription
       todoCompleted
+      todoUser {
+        _id
+        username
+      }
     }
 }`;
 
-// mutation to add a tag
+// mutation to update a habit
 export const ADD_TAG = gql`
 mutation AddTag($tagName: String!) {
   addTag(tagName: $tagName) {

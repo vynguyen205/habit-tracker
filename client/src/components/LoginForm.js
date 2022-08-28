@@ -31,11 +31,11 @@ const LoginForm = () => {
         variables: { ...userFormData }
       });
 
-      AuthService.login(data.login.token);
-      console.log('Login Data', data);
-      setUser(data.login.user);
-      navigate(`/Dashboard/${data.login.user.username}`);
-      
+      AuthService.login(data?.login.token);
+      console.log(data)
+      setUser(data?.login.user);
+      navigate(`/Dashboard/${data?.login.user.username}`);
+
     } catch (err) {
       console.error(`handleForm submit Error log`, err);
     }

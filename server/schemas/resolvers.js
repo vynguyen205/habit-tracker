@@ -143,9 +143,9 @@ const resolvers = {
         { new: true }
       );
 
-      // const todoData = await updatedTodo.populate('todoUser').execPopulate();
-      //   console.log(todoData)
-      return updatedTodo;
+      const todoData = await updatedTodo.populate('todoUser').execPopulate();
+        console.log(todoData)
+      return todoData;
     },
 
     updateTag: async (parent, { tagId, tagName }) => {
@@ -162,7 +162,11 @@ const resolvers = {
 
     /* Removing mutations starts here */
     removeUser: async (parent, { userId }) => {
-      return User.findOneAndDelete({ _id: userId });
+      // remove all the habits and todos associated with the user
+      const user = await User.findOneAndDelete({ _id: userId }).populate('userTodo').populate('userHabit');
+      await Habit.deleteMany({ habitUser: userId });
+      await Todo.deleteMany({ todoUser: userId });
+      return user;
     },
     removeHabit: async (parent, { userId, habitId }) => {
       const habit = await Habit.findOneAndDelete({ _id: habitId });
