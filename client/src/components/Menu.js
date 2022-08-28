@@ -5,15 +5,6 @@ import AuthService from "../utils/Auth";
 import { useAtom } from 'jotai';
 import { userAtom } from '../state';
 const Menu = () => {
-
-    // const { data: userData, loading } = useQuery(QUERY_USER, {
-    //     fetchPolicy: 'no-cache',
-    //     variables: {
-    //         userId: AuthService.getProfile().data._id,
-    //     }
-    // });
-    // // get username to display on the menu
-    // const username = userData?.user?.username;
     const [user, setUser] = useAtom(userAtom)
 
 
