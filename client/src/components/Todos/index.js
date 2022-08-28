@@ -3,7 +3,6 @@ import { useQuery } from "@apollo/client";
 import { QUERY_TODO } from "../../utils/Queries";
 
 import UpdateTodo from "./updateTodo";
-// import AuthService from '../../utils/Auth';
 import DeleteTodo from "./deleteTodo";
 import AuthService from '../../utils/Auth';
 import { useAtom } from 'jotai';

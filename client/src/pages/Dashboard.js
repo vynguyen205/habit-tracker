@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Menu from '../components/Menu';
 // import habit components 
-import HabitList from '../components/Habits/index';
+import HabitList from '../components/Habits';
 import AddHabit from '../components/Habits/addHabit';
 // import todo components
 import TodoList from '../components/Todos/index';

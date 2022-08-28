@@ -5,10 +5,10 @@ import { QUERY_HABITS } from '../../utils/Queries';
 import UpdateHabit from './updateHabit';
 import DeleteHabit from './deleteHabit';
 import AuthService from '../../utils/Auth';
-import { useAtom } from 'jotai'
+import { useAtom } from 'jotai';
 import { userAtom } from '../../state';
 
-const HabitList = () => {
+export default function HabitList() {
   const [user, setUser] = useAtom(userAtom)
   const [showDescription, setShowDescription] = useState(false)
   // console.log(user?.userHabit);
@@ -36,7 +36,7 @@ const HabitList = () => {
                 <div className="flex">
                   <p className="ml-4">{data?.habitName}</p>
                 </div>
-                <DeleteHabit singleHabit={data} />
+                {/* <DeleteHabit singleHabit={data} /> */}
               </div>
             </li>
             ))}
@@ -46,30 +46,4 @@ const HabitList = () => {
       }
     </>
   );
-  
-    //     <>
-    //       {user === null ? (
-    //         <div>Loading...</div>
-    //       ) : (
-    //         <div className='flex'>
-    //           <ul>
-    //             {user?.userHabit?.map((data) => {
-    //               return (<li key={data?._id}>
-    //                 <div className='flex'>
-    //                   <p>{data?.habitName}</p>
-    //                   <p>{data?.habitDescription}</p>
-    //                   <p>{data?.habitCompleted}</p>
-    //                 </div>
-    //               </li>
-    //               )})}
-    //           </ul>
-    //         </div>
-    //       )}
-    //     </>
-    //   );
-    // }
-}
-
-
-
-export default HabitList;
+};
