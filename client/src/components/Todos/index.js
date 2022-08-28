@@ -2,55 +2,44 @@ import React, { useState } from "react";
 import { useQuery } from "@apollo/client";
 import { QUERY_TODO } from "../../utils/Queries";
 
-import "../../App.css";
-
-// const data = [
-//     {
-//         _id: "1",
-//         name: "School",
-//         description: "Go to school",
-//         userId: "1",
-//     },
-//     {
-//         _id: "2",
-//         name: "Shopping",
-//         description: "Buy groceries",
-//         userId: "1",
-//     },
-//     {
-//         _id: "3",
-//         name: "Study",
-//         description: "Study for 1 hour",
-//         userId: "1",
-//     }
-// ]
+import UpdateTodo from "./updateTodo";
+import AuthService from '../../utils/Auth';
 
 // Show habits for a logged in user
 const TodoList = () => {
-    const [todoText, setTodoText] = useState('');
+
+    const [showDescription, setShowDescription] = useState(false);
+
+    // toggle description
+    const toggleDescription = () => {
+        // show description for only one todo at a time
+        setShowDescription(!showDescription);
+    }
+
     const { data: userTodos, loading } = useQuery(QUERY_TODO, {
         fetchPolicy: 'no-cache',
         variables: {
-            userId: "62fe9cbb970457d5b9eb5e31"
+            userId: AuthService.getProfile().data._id,
         }
-    });
 
-    console.log(userTodos);
+    });
+    console.log("user todo data", userTodos);
+
 
     return (
         <>
             {loading ? (
                 <div>Loading...</div>
             ) : (
-                <div>
-                    <h1>Todo List</h1>
+                <div className="flex">
                     <ul>
                         {userTodos?.user?.userTodo?.map((data) =>
-                        (<li key={data?._id}>
-                            <div>
-                                <h3>{data?.todoName}</h3>
-                                <p>{data?.todoDescription}</p>
-                                <p>{data?.todoCompleted}</p>
+                        (<li key={data?._id}>  
+                            <div className="flex">
+                                <UpdateTodo />
+                                <div className="flex">
+                                    <p className="ml-4">{data?.todoName}</p>
+                                </div>
                             </div>
                         </li>
                         ))}

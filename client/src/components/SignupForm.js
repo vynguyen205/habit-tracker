@@ -1,51 +1,54 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import { useMutation } from "@apollo/client";
+import { useAtom } from 'jotai';
+import { userAtom } from '../state'
 // import “../App.css”;
-// import AuthService from "../utils/Auth";
+import AuthService from "../utils/Auth";
 import { ADD_USER } from "../utils/Mutations";
+
 const SignupForm = () => {
-  const [ add_user ] = useMutation(ADD_USER);
+  const [user, setUser] = useAtom(userAtom);
   // set initial form state
   const [userFormData, setUserFormData] = useState ({
-    username: "",
-    email: "",
-    password: "",
-    confirmPassword: ""
-   });
-  // set state for form validation
-  const [validated] = useState(false);
-  // set state for alert
-  const [showAlert, setShowAlert] = useState(false);
+      username: '',
+      email: '',
+      password: '',
+      // confirmPassword: ''
+    });
+    let navigate = useNavigate();
+    const [ add_user, { error } ] = useMutation(ADD_USER);
+
+  //update the state based on what the user types in the form
   const handleInputChange = (event) => {
-    console.log("handleInputChange");
     const { name, value } = event.target;
     setUserFormData({ ...userFormData, [name]: value });
   };
+
+  //submit form
   const handleFormSubmit = async (event) => {
-    console.log("handleFormSubmit");
     event.preventDefault();
-    const newUser = add_user (userFormData.username, userFormData.email, userFormData.password);
-    if (newUser) {
-    }
-    }
-    // try {
-    //   const response = createUser(userFormData);
-    //   if (!response.ok) {
-    //     throw new Error("something went wrong!");
-    //   }
-    //   const { token, user } = response.json();
-    //   console.log(user);
-    //   AuthService.login(token);
-    // } catch (err) {
-    //   console.error(err);
+     try {
+      const { data } = await add_user({
+        variables: { ...userFormData }
+        });
+
+      AuthService.login(data.addUser.token);
+      setUser(data.addUser.user)
+      navigate(`/Dashboard/${data.addUser.user.username}`);
+
+    } catch (err) {
+      console.error(err);
     //   setShowAlert(true);
-    // }
-    // setUserFormData({
-    //   username: "",
-    //   email: "",
-    //   password: "",
-    //   confirmPassword: ""
-    // });
+    }
+
+    setUserFormData({
+        username: '',
+        email: '',
+        password: '',
+        // confirmPassword: ''
+    });
+};
   return (
     <div>
           <div>
@@ -56,7 +59,7 @@ const SignupForm = () => {
                 <div>
                       <input
                           type="type"
-                          id="username"
+                          name="username"
                           placeholder="Username"
                           value={userFormData.username}
                           onChange={handleInputChange}
@@ -65,7 +68,7 @@ const SignupForm = () => {
                   <div>
                       <input
                           type="email"
-                          id="email"
+                          name="email"
                           placeholder="Email"
                           value={userFormData.email}
                           onChange={handleInputChange}
@@ -74,21 +77,21 @@ const SignupForm = () => {
                   <div>
                       <input
                           type="password"
-                          id="password"
+                          name="password"
                           placeholder="Password"
                           value={userFormData.password}
                           onChange={handleInputChange}
                       />
                   </div>
-                  <div>
+                  {/* <div>
                       <input
                           type="password"
-                          id="password"
+                          name="password"
                           placeholder="Confirm Password"
                           value={userFormData.password}
                           onChange={handleInputChange}
                       />
-                  </div>
+                  </div> */}
                   <div>
                       <button>
                           Submit
