@@ -10,8 +10,10 @@ const resolvers = {
     },
     // get one user
     user: async (parent, { userId }) => {
-      // populte the use with todos and habits
-      return User.findOne({ _id: userId }).populate('userTodo').populate('userHabit');
+      // find yser by id and populate the habits and habit tags
+      const userData = User.findOne({ _id: userId }).populate('userTodo').populate('userHabit').populate('habitTags');
+      // const habitData = Habit.findOne({ habitUser: userId }).populate('habitTag');
+      return userData;
     },
     // get Users Todos
     userTodos: async (parent, { userId }) => {
