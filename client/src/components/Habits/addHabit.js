@@ -42,6 +42,9 @@ const AddHabit = () => {
       });
 
       setUser(data?.addHabit?.habitUser)
+
+      window.location.reload();
+
     } catch (err) {
       console.error(err);
     }
@@ -78,70 +81,64 @@ const AddHabit = () => {
         <>
           <div className="flex justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
             <div className="relative w-auto my-6 mx-auto max-w-3xl">
-              <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
-                <div className="flex items-start justify-between p-5 bg-lightBlue border-b border-solid border-white rounded-t ">
-                  <h3 className="text-3xl font=semibold">Create Habit</h3>
+              <div className="border-0 rounded-2xl shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                <div className="flex items-start justify-between p-5 bg-lightBlue border-b border-solid border-white rounded-t-2xl ">
+                  <h3 className="text-2xl tracking-wider font=semibold">Create Habit</h3>
                   <button
                     className="bg-transparent border-0 text-black float-right"
+                    type="button"
                     onClick={() => setShowModal(false)}
-                  >
+                    >
                     <span className="text-white opacity-7 h-8 w-8 text-lg block bg-black py-0 rounded-full">
-                      X
+                      x
                     </span>
                   </button>
                 </div>
                 <div className="relative p-6 flex-auto">
-                  <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 w-full" onSubmit={handleFormSubmit}>
-                    <label className="block text-black text-sm font-bold mb-1">
-                      Title
-                    </label>
-                    <input className="shadow appearance-none border rounded w-full py-2 px-1 text-black"
+                  <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 w-full" 
+                          onSubmit={handleFormSubmit}>
+                      <label className="block text-black text-sm font-bold mb-1">
+                        Title
+                      </label>
+                      <input 
+                        className="shadow appearance-none border rounded w-full py-2 px-1 text-black"
+                        type="text"
+                        name="habitName" 
+                        placeholder="Add habit..."
+                        value={habitFormData.habitName}
+                        onChange={handleInputChange}
+                        />
+                      <label className="block text-black text-sm font-bold mb-1">
+                        Description
+                      </label>
+                      <input 
+                      className="shadow appearance-none border rounded w-full py-2 px-1 text-black" 
                       type="text"
-                      name="habitName"
-                      placeholder="Add habit..."
-                      value={habitFormData.habitName}
-                      onChange={handleInputChange} />
-                    <label className="block text-black text-sm font-bold mb-1">
-                      Description
-                    </label>
-                    <input className="shadow appearance-none border rounded w-full py-2 px-1 text-black"
-                    type="text"
-                    name="habitDescription" 
-                    placeholder="Keep it short and sweet..." 
-                    value={habitFormData.habitDescription}
-                    onChange={handleInputChange} 
-                    />
-                    <label className="block text-black text-sm font-bold mb-1">
-                      Tags
-                    </label>
-                    <input className="shadow appearance-none border rounded w-full py-2 px-1 text-black" 
-                    type="text"
-                    name="allTags"
-                    placeholder="Choose your tags..."
-                    value={habitFormData.allTags}
-                    onChange={handleInputChange}
-                    />
-                    <label className="block text-black text-sm font-bold mb-1">
-                      Repeat
-                    </label>
-                    <input className="shadow appearance-none border rounded w-full py-2 px-1 text-black" 
-                    type="text"
-                    name="repeat"
-                    placeholder="Repeat..."
-                    value={habitFormData.repeat}
-                    onChange={handleInputChange}
-                    />
-                    placeholder="Daily" />
+                      name="habitDescription"
+                      placeholder="Keep it short and sweet..." 
+                      value={habitFormData.habitDescription}
+                      onChange={handleInputChange}
+                      />
+                      <label className="block text-black text-sm font-bold mb-1">
+                        Repeat
+                      </label>
+                      <input className="shadow appearance-none border rounded w-full py-2 px-1 text-black"
+                      type="text"
+                      name="habitRepeat"
+                      placeholder="Repeat every..."
+                      value={habitFormData.habitRepeat}
+                      onChange={handleInputChange}
+                      />
+                    <div className="flex items-center justify-center p-6 rounded-b">
+                      <button
+                        className="text-black bg-lightOrange active:bg-darkOrange font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
+                        type="submit"
+                      >
+                        Save
+                      </button>
+                    </div>
+                      {error && <div className="my-3 p-3 text-red">{error.message}</div>}
                   </form>
-                </div>
-                <div className="flex items-center justify-center p-6 rounded-b">
-                  <button
-                    className="text-black bg-lightOrange active:bg-darkOrange font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
-                    type="button"
-                    onClick={() => setShowModal(false)}
-                  >
-                    Save
-                  </button>
                 </div>
               </div>
             </div>
@@ -151,5 +148,7 @@ const AddHabit = () => {
     </>
   );
 };
+
+    
 
 export default AddHabit;

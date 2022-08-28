@@ -1,7 +1,6 @@
 import { useAtom } from 'jotai'
 import { userAtom } from '../../state'
 
-<<<<<<< HEAD
 const TagList = () => {
     const [user, setUser] = useAtom(userAtom)
 
@@ -29,7 +28,6 @@ const TagList = () => {
         </>
     )
 }
-=======
 // const TagList = () => {
 
 
@@ -43,6 +41,5 @@ const TagList = () => {
 //         </>
 //     )
 // }
->>>>>>> main
 
 // export default TagList;
