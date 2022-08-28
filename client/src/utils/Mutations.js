@@ -158,7 +158,7 @@ mutation RemoveHabit($userId: ID!, $habitId: ID!) {
 
 // mutation to remove todo
 export const REMOVE_TODO = gql`
-mutation RemoveHabit($todoId: ID!) {
+mutation RemoveTodo($todoId: ID!) {
   removeTodo(todoId: $todoId) {
     _id
     todoName
