@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import "../App.css";
 import Navbar from '../components/Navbar';
 import Menu from '../components/Menu';
-import AddTag from '../components/Tags/addTag';
-import TagList from '../components/Tags';
+// import AddTag from '../components/Tags/addTag';
+// import TagList from '../components/Tags';
 // Display all habits for a logged in user
 function Tags() {
 
@@ -17,9 +17,9 @@ function Tags() {
                             <Menu />
                         </div>
                     </div>
-                    <div className='flex flex-col justify-between mt-10'>
+                    {/* <div className='flex flex-col justify-between mt-10'>
                         <TagList />
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </>
