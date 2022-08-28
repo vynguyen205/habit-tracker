@@ -36,6 +36,8 @@ const AddTodo = () => {
       });
       
       setUser(data?.addTodo?.todoUser)
+
+      window.location.reload();
       
     } catch (err) {
       console.error(err);
