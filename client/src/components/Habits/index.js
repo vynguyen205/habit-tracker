@@ -36,7 +36,7 @@ export default function HabitList() {
                 <div className="flex">
                   <p className="ml-4">{data?.habitName}</p>
                 </div>
-                {/* <DeleteHabit singleHabit={data} /> */}
+                <DeleteHabit singleHabit={data} />
               </div>
             </li>
             ))}
