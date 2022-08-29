@@ -6,6 +6,8 @@ import Menu from '../components/Menu';
 // import habit components 
 import HabitList from '../components/Habits';
 import AddHabit from '../components/Habits/addHabit';
+import UpdateHabit from '../components/Habits/updateHabit';
+import DeleteHabit from '../components/Habits/deleteHabit';
 // import todo components
 import TodoList from '../components/Todos/index';
 import AddTodo from '../components/Todos/addTodo';

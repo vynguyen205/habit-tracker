@@ -28,7 +28,7 @@ export default function DeleteTodo({singleTodo}) {
     }
     return (
         <>
-            <button className="ml-5" data-id={singleTodo._id} onClick={handleDelete}>༝</button>
+            <button className="ml-5" data-id={singleTodo._id} onClick={handleDelete}>x</button>
         </>
     )
 }

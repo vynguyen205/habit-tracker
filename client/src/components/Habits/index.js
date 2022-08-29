@@ -8,7 +8,7 @@ import AuthService from '../../utils/Auth';
 import { useAtom } from 'jotai';
 import { userAtom } from '../../state';
 
-export default function HabitList() {
+const HabitList = () => {
   const [user, setUser] = useAtom(userAtom)
   const [showDescription, setShowDescription] = useState(false)
   // console.log(user?.userHabit);
@@ -47,3 +47,5 @@ export default function HabitList() {
     </>
   );
 };
+
+export default HabitList;

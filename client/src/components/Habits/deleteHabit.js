@@ -28,7 +28,7 @@ export default function DeleteHabit({singleHabit}) {
     }
     return (
         <>
-            <button className="ml-5" data-id={singleHabit._id} onClick={handleDelete}>༝</button>
+            <button className="ml-5" data-id={singleHabit._id} onClick={handleDelete}>x</button>
         </>
     )
 }
