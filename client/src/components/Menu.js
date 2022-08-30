@@ -4,6 +4,11 @@ import { QUERY_USER } from "../utils/Queries";
 import AuthService from "../utils/Auth";
 import { useAtom } from 'jotai';
 import { userAtom } from '../state';
+
+
+
+
+
 const Menu = () => {
     const [user, setUser] = useAtom(userAtom)
 
@@ -23,13 +28,13 @@ const Menu = () => {
                     </li>
 
                     <li>
-                        <Link to="/Todos" className='flex items-center px-4 py-2 mt-5 text-gray-600 rounded-md hover:bg-gray-200'>
+                        <Link to='/Todos' className='flex items-center px-4 py-2 mt-5 text-gray-600 rounded-md hover:bg-gray-200'>
                             <span className='px-20 font-semibold text-2xl'>Todos</span>
                         </Link>
                     </li>
 
                     <li>
-                        <Link to="/Tags" className='flex items-center px-4 py-2 mt-5 text-gray-600 rounded-md hover:bg-gray-200'>
+                        <Link to='/Tags' className='flex items-center px-4 py-2 mt-5 text-gray-600 rounded-md hover:bg-gray-200'>
                             <span className='px-20 font-semibold text-2xl'>Tags</span>
                         </Link>
                     </li>

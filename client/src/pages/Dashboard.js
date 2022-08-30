@@ -1,12 +1,17 @@
 // Import file dependencies
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Menu from '../components/Menu';
-
+// import habit components 
 import HabitList from '../components/Habits';
 import AddHabit from '../components/Habits/addHabit';
-// import { Container } from '@material-ui/core';
+import UpdateHabit from '../components/Habits/updateHabit';
+import DeleteHabit from '../components/Habits/deleteHabit';
+// import todo components
+import TodoList from '../components/Todos/index';
+import AddTodo from '../components/Todos/addTodo';
+import UpdateTodo from '../components/Todos/updateTodo';
 
 // Display landing page
 function Dashboard() {
@@ -16,17 +21,19 @@ function Dashboard() {
 
     return (
         <>
-            <div className='flex-column bg-lightOrange h-screen w-screen'>
+            <div className='flex-column bg-lightOrange h-fit-content w-fit-content'>
                 <Navbar />
                 <div className="flex ">
                     <div className='flex flex-col w-max h-[75vh] px-8 py-8 overflow-y-auto rounded-2xl bg-darkOrange m-20'>
-                        <div className='flex flex-col justify-between mt-10'>
-                            <Menu />
-                        </div>
+                        <Menu />
                     </div>
-                    <div>
-                        <HabitList />
-                        <AddHabit />
+                    <div className='flex flex-col'>
+                        <div className='flex content-end mt-10'>
+                            <AddHabit />
+                        </div>
+                        <div className='align-center mt-12'>
+                            <HabitList />
+                        </div>
                     </div>
                 </div>
             </div>
