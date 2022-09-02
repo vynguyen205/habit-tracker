@@ -15,7 +15,7 @@ function Dashboard() {
         <>
             <div className='flex-column bg-lightOrange h-fit-content w-fit-content'>
                 <Navbar />
-                <div className="flex ">
+                <div className="flex w-full">
                     <div className='flex flex-col w-max h-[75vh] px-8 py-8 overflow-y-auto rounded-2xl bg-darkOrange m-20'>
                         <Menu />
                     </div>

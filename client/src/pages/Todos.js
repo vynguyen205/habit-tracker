@@ -17,14 +17,14 @@ function Todos() {
           <div className="flex-column bg-lightOrange h-[100vh] w-[100vw]">
             <Navbar />
             <div className="flex">
-              <div className='flex w-max h-[75vh] px-8 py-8 overflow-y-auto rounded-2xl bg-darkOrange m-20'>
+              <aside className='flex flex-col min-w-[260px] h-[75vh] p-4 overflow-y-auto rounded-3xl bg-darkOrange m-20'>
                   <Menu />
-              </div>
+              </aside>
               <div className="flex flex-col w-[75vw] pr-10">
-                <div className='flex flex-row justify-between mt-10 border-b pb-10'>
+                <div className='flex flex-row justify-between mt-10 border-b border-gray pb-10'>
                   <div className= "flex flex-col mt-10">
-                    <div className='text-lg text-black font-light tracking-wide'>{day}</div>
-                    <div className="text-xl font-light tracking-wide">{currentDate}</div>
+                    <div className='text-md text-black font-light tracking-wide'>{day}</div>
+                    <div className="text-xl font-normaltracking-wide">{currentDate}</div>
                   </div>
                   <div className='flex items-center mt-10'>
                     <AddTodo />
