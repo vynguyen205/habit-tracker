@@ -3,18 +3,18 @@
 
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
-import { useAtom } from "jotai";
-import { userAtom } from "../../state"
+// import { useAtom } from "jotai";
+// import { userAtom } from "../../state"
 import { ADD_HABIT } from "../../utils/Mutations";
-import "../../App.css";
 
 import AuthService from "../../utils/Auth";
+import { QUERY_HABITS } from "../../utils/Queries";
 
 
 // Add new habits for a logged in user
 const AddHabit = () => {
   const [showModal, setShowModal] = useState(false);
-  const [user, setUser] = useAtom(userAtom)
+  // const [user, setUser] = useAtom(userAtom)
   // get habit name and description from form
   const [habitFormData, setHabitFormData] = useState({
     habitName: "",
@@ -38,12 +38,22 @@ const AddHabit = () => {
       // add habit to database
       const { data } = await addHabit({
         // variables to pass to mutation
-        variables: { userId: AuthService.getProfile().data._id, ...habitFormData },
+        variables: { 
+          userId: AuthService.getProfile().data._id, 
+          ...habitFormData 
+        },
+        refetchQueries: [
+          {
+            query: QUERY_HABITS,
+            variables: {
+              userId: AuthService.getProfile().data._id
+            }
+          }
+        ]
       });
 
-      setUser(data?.addHabit?.habitUser)
-
-      window.location.reload();
+      // setUser(data?.addHabit?.habitUser)
+      // window.location.reload();
 
     } catch (err) {
       console.error(err);

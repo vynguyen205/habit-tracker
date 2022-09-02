@@ -24,7 +24,6 @@ const UpdateHabit = ({singleHabit}) => {
                     habitCompleted: true
                 }
             })
-            console.log(data, "testing")
             setUser(data.updateHabit.habitUser)
 
         } catch (err) {

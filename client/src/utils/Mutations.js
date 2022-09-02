@@ -161,12 +161,22 @@ export const REMOVE_TODO = gql`
 mutation RemoveTodo($todoId: ID!) {
   removeTodo(todoId: $todoId) {
     _id
-    todoName
-    todoDescription
-    todoCompleted
-    todoUser {
+    username
+    userHabit {
       _id
-      username
+      habitName
+      habitDescription
+      habitCompleted
+      habitCreated
+      habitUpdated
+    }
+    userTodo {
+      _id
+      todoName
+      todoDescription
+      todoCompleted
+      todoCreated
+      todoUpdated
     }
   }
 }`;

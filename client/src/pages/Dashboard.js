@@ -6,18 +6,10 @@ import Menu from '../components/Menu';
 // import habit components 
 import HabitList from '../components/Habits';
 import AddHabit from '../components/Habits/addHabit';
-import UpdateHabit from '../components/Habits/updateHabit';
-import DeleteHabit from '../components/Habits/deleteHabit';
-// import todo components
-import TodoList from '../components/Todos/index';
-import AddTodo from '../components/Todos/addTodo';
-import UpdateTodo from '../components/Todos/updateTodo';
 
 // Display landing page
 function Dashboard() {
-    // this is grabbing the id from the url
-    // const {userId} = useParams();
-    // console.log("params", userId);
+
 
     return (
         <>
@@ -31,7 +23,7 @@ function Dashboard() {
                         <div className='flex content-end mt-10'>
                             <AddHabit />
                         </div>
-                        <div className='align-center mt-12'>
+                        <div className='align-center mt-12 w-full h-full'>
                             <HabitList />
                         </div>
                     </div>

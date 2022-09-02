@@ -5,21 +5,22 @@ import { QUERY_HABITS } from '../../utils/Queries';
 import UpdateHabit from './updateHabit';
 import DeleteHabit from './deleteHabit';
 import AuthService from '../../utils/Auth';
-import { useAtom } from 'jotai';
-import { userAtom } from '../../state';
+// import { useAtom } from 'jotai';
+// import { userAtom } from '../../state';
 
 const HabitList = () => {
-  const [user, setUser] = useAtom(userAtom)
+  // const [user, setUser] = useAtom(userAtom)
   const [showDescription, setShowDescription] = useState(false)
   // console.log(user?.userHabit);
 
   const { data: userHabits, loading } = useQuery(QUERY_HABITS, {
-    fetchPolicy: 'no-cache',
     variables: {
       userId: AuthService.getProfile().data._id,
     }
   });
   console.log("user habit data", userHabits);
+
+  const habits = userHabits?.user?.userHabit || []
 
   // show habits for a logged in user
   return (
@@ -29,7 +30,7 @@ const HabitList = () => {
       ) : (
         <div className="flex">
           <ul>
-            {userHabits?.user?.userHabit?.map((data) =>
+            {habits?.map((data) =>
             (<li key={data?._id}>
               <div className="flex">
                 <UpdateHabit singleHabit={data} />

@@ -33,14 +33,14 @@ const UpdateTodo = ({singleTodo}) => {
     }
 
         return (
-            <>
+            <div className="">
                 <input
-                    className=""
                     data-id={singleTodo._id}
                     type="checkbox" 
                     onChange={handleCheck} 
+                    className="p-10"
                 />
-            </>
+            </div>
         )
     }
 

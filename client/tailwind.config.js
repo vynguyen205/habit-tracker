@@ -1,3 +1,5 @@
+const { brown } = require('@material-ui/core/colors')
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
@@ -11,6 +13,7 @@ module.exports = {
       lightOrange: '#FEE3CB',
       darkOrange: '#FFA17B',
       red: '#FF5252',
+      offBrown: '#473939',
     },
     fontFamily: {
       mono: ['Menlo'],
