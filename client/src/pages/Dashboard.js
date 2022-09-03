@@ -1,9 +1,7 @@
-// Import file dependencies
 import React, { useState } from 'react';
 import "../App.css";
 import Navbar from '../components/Navbar';
 import Menu from '../components/Menu';
-// import habit components 
 import HabitList from '../components/Habits';
 import AddHabit from '../components/Habits/addHabit';
 
@@ -32,9 +30,9 @@ function Dashboard() {
                             <div className='flex items-center mt-10'>
                                 <AddHabit />
                             </div>
-                            <div className='flex items-center flex-wrap mt-12'>
-                                <HabitList />
-                            </div>
+                        </div>
+                        <div className='flex items-center flex-wrap mt-12'>
+                            <HabitList />
                         </div>
                     </div>
                 </div>
