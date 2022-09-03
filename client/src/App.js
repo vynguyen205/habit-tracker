@@ -3,15 +3,14 @@ import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import { ApolloClient, ApolloProvider, createHttpLink, InMemoryCache } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-import { Provider , useAtom, useSetAtom} from 'jotai';
+import { useSetAtom} from 'jotai';
 import LandingPage from './pages/LandingPage';
 import Dashboard from './pages/Dashboard';
-// import Habits from './pages/Habits';
+
 import Todos from './pages/Todos';
-import Tags from './pages/Tags';
-import './App.css';
 import Auth from './utils/Auth';
 import { userAtom } from './state';
+// import './App.css';
 
 const httpLink = createHttpLink({
   uri: '/graphql'
@@ -60,7 +59,6 @@ function App() {
               <Route path="/" element={<LandingPage />} />
               <Route path="/Dashboard/:username" element={<Dashboard />} />
               <Route path="/Todos" element={<Todos />} />
-              <Route path="/Tags" element={<Tags />} />
             </Routes>
           </div> 
     </ApolloProvider>

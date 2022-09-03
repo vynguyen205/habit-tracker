@@ -5,6 +5,7 @@ import { BsCalendarCheckFill } from 'react-icons/bs';
 
 import { useAtom } from 'jotai';
 import { userAtom } from '../state';
+import { Avatar } from "@material-ui/core";
 
 
 const Menu = () => {
@@ -12,6 +13,11 @@ const Menu = () => {
     const location = useLocation();
     let todoPathStyle = "flex items-center px-6 py-2 mt-5 text-gray-600 rounded-md hover:bg-opacity-25 hover:bg-gray";
     let habitPathStyle = "flex items-center px-6 py-2 mt-5 text-gray-600 rounded-md hover:bg-opacity-25 hover:bg-gray"
+
+    // get random avatar
+    // const avatars = ['🐶', '🐱', '🐭', '🐹', '🐰', '🦊', '🐻', '🐼', '🐻‍❄️', '🐨', '🐯', '🦁', '🐮', '🐷']
+
+    // const randomAvatar = avatars[Math.floor(Math.random() * avatars.length)];
 
     if(location.pathname === '/Todos') {
         todoPathStyle = 'flex items-center px-6 py-2 mt-5 text-gray-600 rounded-lg text-white hover:bg-opacity-25 hover:bg-gray'
@@ -22,7 +28,7 @@ const Menu = () => {
     return (
         <>
             <div className="flex flex-col items-center mt-10">
-                <div className="flex justify-center h-28 w-28 rounded-full border-4 border-lightOrange bg-white text-7xl text-center p-4 mb-4">👤</div>
+                <div className="flex justify-center h-28 w-28 rounded-full border-4 border-lightOrange bg-white text-[75px] text-center mb-4">🦊</div>
                 <div className=""> 
                     <p className="text-xl tracking-wide font-light text-center capitalize">{user?.username}</p>
                 </div>

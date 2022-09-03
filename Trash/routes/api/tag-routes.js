@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Tag, Habit } = require('../../models');
+const { Tag, Habit } = require('../../../server/models');
 
 
 // Get all tags

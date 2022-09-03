@@ -33,7 +33,6 @@ export default function DeleteHabit({ singleHabit }) {
         ]
       });
 
-      //   window.location.reload();
     } catch (err) {
       console.error(err);
     }

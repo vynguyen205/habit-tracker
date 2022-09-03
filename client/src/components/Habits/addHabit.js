@@ -103,26 +103,26 @@ const AddHabit = () => {
                     type="button"
                     onClick={() => setShowModal(false)}
                     >
-                    <span className="text-white opacity-7 h-8 w-8 text-lg block bg-black py-0 rounded-full">
+                    <span className="text-white opacity-7 h-8 w-8 text-lg block bg-black py-0 rounded-full hover:bg-darkBlue">
                       x
                     </span>
                   </button>
                 </div>
                 <div className="relative p-6 flex-auto">
-                  <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 w-full" 
+                  <form className="bg-white rounded px-8 pt-6 w-full" 
                           onSubmit={handleFormSubmit}>
                       <label className="block text-black text-sm font-bold mb-1">
                         Title
                       </label>
                       <input 
-                        className="shadow appearance-none border rounded w-full py-2 px-1 text-black"
+                        className="shadow appearance-none border rounded w-full py-2 px-4 text-black"
                         type="text"
                         name="habitName" 
                         placeholder="Add habit..."
                         value={habitFormData.habitName}
                         onChange={handleInputChange}
                         />
-                      <label className="block text-black text-sm font-bold mb-1">
+                      <label className="block text-black text-sm font-bold  mt-4 mb-1">
                         Description
                       </label>
                       <input 
@@ -133,7 +133,7 @@ const AddHabit = () => {
                       value={habitFormData.habitDescription}
                       onChange={handleInputChange}
                       />
-                      <label className="block text-black text-sm font-bold mb-1">
+                      {/* <label className="block text-black text-sm font-bold mb-1">
                         Repeat
                       </label>
                       <input className="shadow appearance-none border rounded w-full py-2 px-1 text-black"
@@ -142,8 +142,8 @@ const AddHabit = () => {
                       placeholder="Repeat every..."
                       value={habitFormData.habitRepeat}
                       onChange={handleInputChange}
-                      />
-                    <div className="flex items-center justify-center p-6 rounded-b">
+                      /> */}
+                    <div className="flex items-center justify-center pt-10 rounded-b">
                       <button
                         className="text-black bg-lightOrange active:bg-darkOrange font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
                         type="submit"

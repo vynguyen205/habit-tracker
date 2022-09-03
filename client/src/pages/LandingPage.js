@@ -9,7 +9,6 @@ import SignupForm from '../components/SignupForm';
 
 
 const LandingPage = () => {
-    const [showForm, setShowForm] = useState(false);
     return (
         <>
             <div className='h-screen w-screen bg-gradient-to-tr from-darkOrange to-white via-lightOrange'>

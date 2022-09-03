@@ -17,7 +17,6 @@ export default function DeleteTodo({singleTodo}) {
         // todoId is the id of the todo that is being checked off
         const todoId = event.target.dataset.id;
         // when checked, update the todo to completed
-        console.log(event.target, "something")
         try {
             const { data } = await removeTodo({
                 variables: {

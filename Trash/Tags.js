@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import "../App.css";
-import Navbar from '../components/Navbar';
-import Menu from '../components/Menu';
+import Navbar from '../client/src/components/Navbar';
+import Menu from '../client/src/components/Menu';
 // import AddTag from '../components/Tags/addTag';
 // import TagList from '../components/Tags';
 // Display all habits for a logged in user

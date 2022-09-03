@@ -1,8 +1,5 @@
 const { Schema, Types ,model } = require('mongoose');
 
-
-// have frontend require the habitname since we are removing that requirment from the backend
-
 const habitSchema = new Schema({
   habitName: {
     type: String,

@@ -7,7 +7,7 @@ class AuthService {
   getProfile() {
     try {
       const decoded = decode(this.getToken());
-      console.log(`DECODED`,decoded);
+      // console.log(`DECODED`,decoded);
       return decoded
     }catch(err){
       console.log(err, "error while decoding...");

@@ -38,6 +38,8 @@ const SignupForm = () => {
       AuthService.login(data.addUser.token);
       setUser(data.addUser.user)
       navigate(`/Dashboard/${data.addUser.user.username}`);
+      // alert("You have successfully signed up! Please log in to continue.");
+      // setShowForm(false);
 
     } catch (err) {
       console.error(err);

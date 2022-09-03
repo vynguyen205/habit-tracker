@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useQuery } from "@apollo/client";
 import { QUERY_TODO } from "../../utils/Queries";
 
-import UpdateTodo from "./updateTodo";
+import UpdateTodo from "../../pages/updateTodo";
 import DeleteTodo from "./deleteTodo";
 import AuthService from '../../utils/Auth';
 // import { useAtom } from 'jotai';
@@ -11,7 +11,7 @@ import AuthService from '../../utils/Auth';
 // Show habits for a logged in user
 const TodoList = () => {
     // const [user, setUser] = useAtom(userAtom);
-    const [showDescription, setShowDescription] = useState(false);
+    // const [showDescription, setShowDescription] = useState(false);
     // toggle description
     // const toggleDescription = () => {
     //     // show description for only one todo at a time
@@ -25,31 +25,25 @@ const TodoList = () => {
 
     });
     
-    const todos = userTodos?.user?.userTodo || []
+    const todos = userTodos?.user?.userTodo || [];
   
     return (
         <>
-            {loading ? (
-                <div>Loading...</div>
-            ) : (
-                <div className="flex justify-start text-lg">
-                    <ul>
-                        {todos?.map((data) =>
-                        
-                        (<li key={data?._id}>  
-                            <div className="flex items-center py-1">
-                                <UpdateTodo singleTodo={data}/> 
-                                <div className="flex">
-                                    <p className="ml-4 text-4xl">{data?.todoName}</p>
-                                </div>
-                                <DeleteTodo singleTodo={data}/>
-                            </div>
-                        </li>
-                        ))}
-                    </ul>
-                </div>
-            )
-            }
+            <div className="flex text-lg">
+                <ul>
+                    {todos?.map((data) =>
+                    
+                    (<li key={data?._id}>  
+                        <div className="flex items-center">
+                            <UpdateTodo singleTodo={data}/> 
+                            
+                            <p className="ml-4 text-2xl">{data?.todoName}</p>
+                            <DeleteTodo singleTodo={data}/>
+                        </div>
+                    </li>
+                    ))}
+                </ul>
+            </div>
         </>
     );
 }
