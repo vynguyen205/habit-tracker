@@ -1257,21 +1257,8 @@ video {
   background-color: rgb(245 245 245 / var(--tw-bg-opacity));
 }
 
-.hover\:bg-lightBlue:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(66 168 181 / var(--tw-bg-opacity));
-}
-
 .hover\:bg-opacity-25:hover {
   --tw-bg-opacity: 0.25;
-}
-
-.hover\:bg-opacity-50:hover {
-  --tw-bg-opacity: 0.5;
-}
-
-.hover\:bg-opacity-40:hover {
-  --tw-bg-opacity: 0.4;
 }
 
 .hover\:text-lightOrange:hover {

@@ -29,11 +29,11 @@ const HabitList = () => {
       {loading ? (
         <div>Loading...</div>
       ) : (
-        <div className="flex text-lg">
+        <div className="flex justify-start text-lg">
           <ul>
             {habits?.map((data) =>
             (<li key={data?._id}>
-              <div className="flex">
+              <div className="flex items-center py-1">
                 <UpdateHabit singleHabit={data} />
                 <div className="flex">
                   <p className="ml-4 text-4xl">{data?.habitName}</p>
