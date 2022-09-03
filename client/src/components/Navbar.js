@@ -7,8 +7,10 @@ import { FiHome } from 'react-icons/fi';
 function Navbar() {
   return (
     <nav className='flex items-center justify-between flex-wrap bg-lightBlue p-4'>
-      <Link to="/Dashboard/:userId" className='flex items-center flex-shrink-0 mr-6'>
-        <FiHome className="text-white text-3xl ml-2" />
+      <Link to="/Dashboard/:userId" 
+      // className='flex items-center flex-shrink-0 mr-6'
+      >
+        <FiHome className="text-white text-3xl ml-2 rounded hover:border-transparent hover:text-darkBlue" />
       </Link>
       <div className='flex flex-row justify-center'>
         <h1 className='flex text-4xl py-5 text-white shadow-darkBlue font-bold font-mono'>
