@@ -27,11 +27,11 @@ function Dashboard() {
                                 <div className='text-xl text-black font-light tracking-wide'>{day}</div>
                                 <div className="text-2xl font-normaltracking-wide">{currentDate}</div>
                             </div>
-                            <div className='flex items-center mt-10'>
+                            <div className='flex justify-start mt-10'>
                                 <AddHabit />
                             </div>
                         </div>
-                        <div className='flex flex-col flex-wrap mt-12'>
+                        <div className='flex flex-col flex-wrap items-start mt-12'>
                             <HabitList />
                         </div>
                     </div>

@@ -11,41 +11,36 @@ import AuthService from '../../utils/Auth';
 
 const HabitList = () => {
   // const [user, setUser] = useAtom(userAtom)
-  const [showDescription, setShowDescription] = useState(false)
-  // console.log(user?.userHabit);
+  // const [showDescription, setShowDescription] = useState(false)
+
 
   const { data: userHabits, loading } = useQuery(QUERY_HABITS, {
     variables: {
       userId: AuthService.getProfile().data._id,
     }
   });
-  console.log("user habit data", userHabits);
+  // console.log("user habit data", userHabits);
 
   const habits = userHabits?.user?.userHabit || []
 
   // show habits for a logged in user
   return (
     <>
-      {loading ? (
-        <div>Loading...</div>
-      ) : (
-        <div className="flex justify-start text-lg">
+        <div className="flex">
           <ul>
             {habits?.map((data) =>
-            (<li key={data?._id}>
-              <div className="flex items-center py-1">
-                <UpdateHabit singleHabit={data} />
+            (<li key={data?._id} className="flex flex-col items-start">
+              <div className="flex justify-center items-center py-1 mb-3">
                 <div className="flex">
-                  <p className="ml-4 text-4xl">{data?.habitName}</p>
+                  <p className="ml-1 tracking-wide text-2xl">{data?.habitName}</p>
                 </div>
                 <DeleteHabit singleHabit={data} />
               </div>
+              <UpdateHabit singleHabit={data} />
             </li>
             ))}
           </ul>
         </div>
-      )
-      }
     </>
   );
 };

@@ -12,6 +12,8 @@ const UpdateTodo = ({singleTodo}) => {
     const [user, setUser] = useAtom(userAtom);
     const [updateTodo, { error }] = useMutation(UPDATE_TODO);
 
+    let buttonStyle = "h-6 w-6 bg-white shadow-md rounded-full font-light text-xs hover:bg-gray"
+
     const handleCheck = async (event) => {
         event.preventDefault();
         // todoId is the id of the todo that is being checked off
@@ -32,14 +34,18 @@ const UpdateTodo = ({singleTodo}) => {
     }
 
         return (
-            <div className="">
-                <input
-                    data-id={singleTodo._id}
-                    type="checkbox" 
-                    onChange={handleCheck} 
-                    className="p-10"
-                />
+            <div className="flex justify-center">
+                <button className={buttonStyle}></button>
             </div>
+
+            // <div className="">
+            //     <input
+            //         data-id={singleTodo._id}
+            //         type="checkbox" 
+            //         onChange={handleCheck} 
+            //         className="p-10"
+            //     />
+            // </div>
         )
     }
 

@@ -29,27 +29,21 @@ const TodoList = () => {
   
     return (
         <>
-            {loading ? (
-                <div>Loading...</div>
-            ) : (
-                <div className="flex justify-start text-lg">
-                    <ul>
-                        {todos?.map((data) =>
-                        
-                        (<li key={data?._id}>  
-                            <div className="flex items-center py-1">
-                                <UpdateTodo singleTodo={data}/> 
-                                <div className="flex">
-                                    <p className="ml-4 text-4xl">{data?.todoName}</p>
-                                </div>
-                                <DeleteTodo singleTodo={data}/>
-                            </div>
-                        </li>
-                        ))}
-                    </ul>
-                </div>
-            )
-            }
+            <div className="flex text-lg">
+                <ul>
+                    {todos?.map((data) =>
+                    
+                    (<li key={data?._id}>  
+                        <div className="flex items-center">
+                            <UpdateTodo singleTodo={data}/> 
+                            
+                            <p className="ml-4 text-2xl">{data?.todoName}</p>
+                            <DeleteTodo singleTodo={data}/>
+                        </div>
+                    </li>
+                    ))}
+                </ul>
+            </div>
         </>
     );
 }
