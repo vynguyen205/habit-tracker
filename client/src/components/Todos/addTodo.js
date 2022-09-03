@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_TODO } from "../../utils/Mutations";
 import { QUERY_TODO } from "../../utils/Queries";
-// import { useAtom } from 'jotai'
-// import { userAtom } from '../../state';
 
 import AuthService from "../../utils/Auth";
+// import { useAtom } from 'jotai'
+// import { userAtom } from '../../state';
 
 // Add new todo for a logged in user
 const AddTodo = () => {

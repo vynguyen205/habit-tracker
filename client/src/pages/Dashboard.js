@@ -1,5 +1,6 @@
 // Import file dependencies
 import React, { useState } from 'react';
+import "../App.css";
 import Navbar from '../components/Navbar';
 import Menu from '../components/Menu';
 // import habit components 
