@@ -1064,6 +1064,10 @@ video {
   padding-left: 3rem;
 }
 
+.pr-2 {
+  padding-right: 0.5rem;
+}
+
 .pr-10 {
   padding-right: 2.5rem;
 }
@@ -1078,10 +1082,6 @@ video {
 
 .pt-10 {
   padding-top: 2.5rem;
-}
-
-.pr-2 {
-  padding-right: 0.5rem;
 }
 
 .text-center {
