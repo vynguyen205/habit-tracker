@@ -33,7 +33,6 @@ const LoginForm = () => {
       });
 
       AuthService.login(data?.login.token);
-      console.log(data)
       setUser(data?.login.user);
       navigate(`/Dashboard/${data?.login.user.username}`);
 

@@ -21,7 +21,7 @@ function Navbar() {
       <button
         onClickCapture={logoutUser}
         className='flex text-xl px-5 py-3 leading-none rounded text-white border-white hover:border-transparent hover:text-lightBlue hover:bg-white mt-4 md:mt-0'>
-        <BiLogOut className='text-xl' />
+        <BiLogOut className='pr-2 text-xl' />
         Logout
       </button>
     </nav>

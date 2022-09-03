@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useQuery } from "@apollo/client";
 import { QUERY_TODO } from "../../utils/Queries";
 
-import UpdateTodo from "./updateTodo";
+import UpdateTodo from "../../pages/updateTodo";
 import DeleteTodo from "./deleteTodo";
 import AuthService from '../../utils/Auth';
 // import { useAtom } from 'jotai';
@@ -11,7 +11,7 @@ import AuthService from '../../utils/Auth';
 // Show habits for a logged in user
 const TodoList = () => {
     // const [user, setUser] = useAtom(userAtom);
-    const [showDescription, setShowDescription] = useState(false);
+    // const [showDescription, setShowDescription] = useState(false);
     // toggle description
     // const toggleDescription = () => {
     //     // show description for only one todo at a time
@@ -25,7 +25,7 @@ const TodoList = () => {
 
     });
     
-    const todos = userTodos?.user?.userTodo || []
+    const todos = userTodos?.user?.userTodo || [];
   
     return (
         <>
