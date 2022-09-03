@@ -1,14 +1,11 @@
-// TODO: save new habit to database
-// TODO: add new habit to list of habits that are displayed
-
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
-// import { useAtom } from "jotai";
-// import { userAtom } from "../../state"
 import { ADD_HABIT } from "../../utils/Mutations";
+import { QUERY_HABITS } from "../../utils/Queries";
 
 import AuthService from "../../utils/Auth";
-import { QUERY_HABITS } from "../../utils/Queries";
+// import { useAtom } from "jotai";
+// import { userAtom } from "../../state"
 
 
 // Add new habits for a logged in user
@@ -83,10 +80,17 @@ const AddHabit = () => {
   return (
     <>
       <button
-        className="bg-lightBlue text-white fixed bottom-14 right-14 text-3xl active:bg-darkBlue font-bold px-5 py-3 rounded-shadow hover:bg-darkBlue hover:shadow-lg outline-none focus:outline-none rounded-full mr-1 mb-1"
+        data-tooltip-target="add-habit"
+        className="bg-lightBlue text-white text-3xl active:bg-darkBlue font-bold px-5 py-3 rounded-shadow hover:bg-darkBlue hover:shadow-lg outline-none focus:outline-none rounded-full mr-1 mb-1"
         type="button" onClick={() => setShowModal(true)}>
         +
       </button>
+      <div id="add-habit" 
+          role="tooltip" 
+          className="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-offBrown rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-offBrown">
+            Add a new habit
+            <div className='tooltip-arrow' data-popper-arrow></div>
+      </div>
       {showModal ? (
         <>
           <div className="flex justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
@@ -160,5 +164,4 @@ const AddHabit = () => {
 };
 
     
-
 export default AddHabit;

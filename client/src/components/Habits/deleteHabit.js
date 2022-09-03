@@ -4,6 +4,7 @@ import { REMOVE_HABIT } from '../../utils/Mutations';
 import { QUERY_HABITS } from '../../utils/Queries';
 
 import AuthService from '../../utils/Auth';
+import { RiDeleteBin7Line } from 'react-icons/ri';  
 
 // import { useAtom } from 'jotai';
 // import { userAtom } from '../../state'
@@ -39,8 +40,8 @@ export default function DeleteHabit({ singleHabit }) {
   };
   return (
     <>
-      <button className="ml-5" data-id={singleHabit._id} onClick={handleDelete}>
-        x
+      <button className="ml-5 hover:text-red" >
+        <RiDeleteBin7Line data-id={singleHabit._id} onClick={handleDelete}/>
       </button>
     </>
   );

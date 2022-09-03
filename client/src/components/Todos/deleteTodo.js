@@ -3,6 +3,7 @@ import { useMutation } from "@apollo/client";
 import { REMOVE_TODO } from "../../utils/Mutations";
 import { QUERY_TODO } from "../../utils/Queries";
 import AuthService from "../../utils/Auth";
+import { RiDeleteBin7Line } from "react-icons/ri";
 
 // import { useAtom } from 'jotai';
 // import { userAtom } from '../../state'
@@ -16,9 +17,11 @@ export default function DeleteTodo({singleTodo}) {
         // todoId is the id of the todo that is being checked off
         const todoId = event.target.dataset.id;
         // when checked, update the todo to completed
+        console.log(event.target, "something")
         try {
             const { data } = await removeTodo({
                 variables: {
+            
                     todoId: todoId,
                 },
                 refetchQueries: [
@@ -39,7 +42,9 @@ export default function DeleteTodo({singleTodo}) {
     }
     return (
         <>
-            <button className="ml-5" data-id={singleTodo._id} onClick={handleDelete}>x</button>
+            <button className="ml-5 hover:text-red">
+                <RiDeleteBin7Line  data-id={singleTodo._id} onClick={handleDelete} />
+            </button>
         </>
     )
 }

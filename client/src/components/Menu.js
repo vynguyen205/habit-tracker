@@ -22,7 +22,7 @@ const Menu = () => {
     return (
         <>
             <div className="flex flex-col items-center mt-10">
-                <div className="flex justify-center h-28 w-28 rounded-full border-4 border-lightOrange bg-white text-7xl text-center p-4 mb-4">🐲</div>
+                <div className="flex justify-center h-28 w-28 rounded-full border-4 border-lightOrange bg-white text-7xl text-center p-4 mb-4">👤</div>
                 <div className=""> 
                     <p className="text-xl tracking-wide font-light text-center capitalize">{user?.username}</p>
                 </div>

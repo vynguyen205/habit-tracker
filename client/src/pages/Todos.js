@@ -14,23 +14,23 @@ function Todos() {
 
     return (
         <>
-          <div className="flex-column bg-lightOrange h-[100vh] w-[100vw]">
+            <div className='flex-column bg-lightOrange h-fit-content w-fit-content'>
             <Navbar />
             <div className="flex">
               <aside className='flex flex-col min-w-[260px] h-[75vh] p-4 overflow-y-auto rounded-3xl bg-darkOrange m-20'>
                   <Menu />
               </aside>
               <div className="flex flex-col w-[75vw] pr-10">
-                <div className='flex flex-row justify-between mt-10 border-b border-gray pb-10'>
+                <div className='flex flex-row justify-between mt-10 border-b border-gray pb-6'>
                   <div className= "flex flex-col mt-10">
-                    <div className='text-md text-black font-light tracking-wide'>{day}</div>
-                    <div className="text-xl font-normaltracking-wide">{currentDate}</div>
+                    <div className='text-xl text-black font-light tracking-wide'>{day}</div>
+                    <div className="text-2xl font-normaltracking-wide">{currentDate}</div>
                   </div>
                   <div className='flex items-center mt-10'>
                     <AddTodo />
                   </div>
                 </div>
-                <div className='flex items-center flex-wrap mt-12'>
+                <div className='flex flex-wrap mt-12'>
                   <TodoList />
                 </div>
               </div>
