@@ -588,10 +588,6 @@ video {
   margin: 5rem;
 }
 
-.m-3 {
-  margin: 0.75rem;
-}
-
 .my-7 {
   margin-top: 1.75rem;
   margin-bottom: 1.75rem;
@@ -683,10 +679,6 @@ video {
 
 .flex {
   display: flex;
-}
-
-.hidden {
-  display: none;
 }
 
 .h-28 {
@@ -787,10 +779,6 @@ video {
   flex-wrap: wrap;
 }
 
-.content-start {
-  align-content: flex-start;
-}
-
 .items-start {
   align-items: flex-start;
 }
@@ -809,18 +797,6 @@ video {
 
 .justify-between {
   justify-content: space-between;
-}
-
-.space-y-5 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-y-reverse: 0;
-  margin-top: calc(1.25rem * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(1.25rem * var(--tw-space-y-reverse));
-}
-
-.space-y-10 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-y-reverse: 0;
-  margin-top: calc(2.5rem * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(2.5rem * var(--tw-space-y-reverse));
 }
 
 .overflow-y-auto {
@@ -1068,8 +1044,8 @@ video {
   padding-right: 2.5rem;
 }
 
-.pb-10 {
-  padding-bottom: 2.5rem;
+.pb-6 {
+  padding-bottom: 1.5rem;
 }
 
 .pt-6 {
@@ -1078,14 +1054,6 @@ video {
 
 .pb-8 {
   padding-bottom: 2rem;
-}
-
-.pb-6 {
-  padding-bottom: 1.5rem;
-}
-
-.text-left {
-  text-align: left;
 }
 
 .text-center {
@@ -1131,6 +1099,11 @@ video {
   line-height: 2.5rem;
 }
 
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
 .text-8xl {
   font-size: 6rem;
   line-height: 1;
@@ -1139,11 +1112,6 @@ video {
 .text-9xl {
   font-size: 8rem;
   line-height: 1;
-}
-
-.text-2xl {
-  font-size: 1.5rem;
-  line-height: 2rem;
 }
 
 .font-normal {
@@ -1210,15 +1178,6 @@ video {
   color: rgb(255 82 82 / var(--tw-text-opacity));
 }
 
-.line-through {
-  -webkit-text-decoration-line: line-through;
-          text-decoration-line: line-through;
-}
-
-.accent-darkOrange {
-  accent-color: #FFA17B;
-}
-
 .opacity-0 {
   opacity: 0;
 }
@@ -1279,10 +1238,6 @@ video {
   transition-duration: 300ms;
 }
 
-.checked\:border-transparent:checked {
-  border-color: transparent;
-}
-
 .hover\:border-transparent:hover {
   border-color: transparent;
 }
@@ -1302,8 +1257,21 @@ video {
   background-color: rgb(245 245 245 / var(--tw-bg-opacity));
 }
 
+.hover\:bg-lightBlue:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(66 168 181 / var(--tw-bg-opacity));
+}
+
 .hover\:bg-opacity-25:hover {
   --tw-bg-opacity: 0.25;
+}
+
+.hover\:bg-opacity-50:hover {
+  --tw-bg-opacity: 0.5;
+}
+
+.hover\:bg-opacity-40:hover {
+  --tw-bg-opacity: 0.4;
 }
 
 .hover\:text-lightOrange:hover {
@@ -1321,9 +1289,9 @@ video {
   color: rgb(66 168 181 / var(--tw-text-opacity));
 }
 
-.hover\:text-black:hover {
+.hover\:text-red:hover {
   --tw-text-opacity: 1;
-  color: rgb(0 0 0 / var(--tw-text-opacity));
+  color: rgb(255 82 82 / var(--tw-text-opacity));
 }
 
 .hover\:shadow-lg:hover {

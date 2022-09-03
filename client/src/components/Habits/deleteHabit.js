@@ -40,8 +40,8 @@ export default function DeleteHabit({ singleHabit }) {
   };
   return (
     <>
-      <button className="ml-5" data-id={singleHabit._id} onClick={handleDelete}>
-        <RiDeleteBin7Line />
+      <button className="ml-5 hover:text-red" >
+        <RiDeleteBin7Line data-id={singleHabit._id} onClick={handleDelete}/>
       </button>
     </>
   );

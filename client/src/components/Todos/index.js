@@ -35,6 +35,7 @@ const TodoList = () => {
                 <div className="flex justify-start text-lg">
                     <ul>
                         {todos?.map((data) =>
+                        
                         (<li key={data?._id}>  
                             <div className="flex items-center py-1">
                                 <UpdateTodo singleTodo={data}/> 
