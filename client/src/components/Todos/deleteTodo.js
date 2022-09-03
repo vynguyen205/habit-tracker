@@ -3,6 +3,7 @@ import { useMutation } from "@apollo/client";
 import { REMOVE_TODO } from "../../utils/Mutations";
 import { QUERY_TODO } from "../../utils/Queries";
 import AuthService from "../../utils/Auth";
+import { RiDeleteBin7Line } from "react-icons/ri";
 
 // import { useAtom } from 'jotai';
 // import { userAtom } from '../../state'
@@ -39,7 +40,9 @@ export default function DeleteTodo({singleTodo}) {
     }
     return (
         <>
-            <button className="ml-5" data-id={singleTodo._id} onClick={handleDelete}>x</button>
+            <button className="ml-5" data-id={singleTodo._id} onClick={handleDelete}>
+                <RiDeleteBin7Line />
+            </button>
         </>
     )
 }

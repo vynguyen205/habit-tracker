@@ -588,6 +588,10 @@ video {
   margin: 5rem;
 }
 
+.m-3 {
+  margin: 0.75rem;
+}
+
 .my-7 {
   margin-top: 1.75rem;
   margin-bottom: 1.75rem;
@@ -679,6 +683,10 @@ video {
 
 .flex {
   display: flex;
+}
+
+.hidden {
+  display: none;
 }
 
 .h-28 {
@@ -779,6 +787,10 @@ video {
   flex-wrap: wrap;
 }
 
+.content-start {
+  align-content: flex-start;
+}
+
 .items-start {
   align-items: flex-start;
 }
@@ -797,6 +809,18 @@ video {
 
 .justify-between {
   justify-content: space-between;
+}
+
+.space-y-5 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(1.25rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(1.25rem * var(--tw-space-y-reverse));
+}
+
+.space-y-10 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(2.5rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(2.5rem * var(--tw-space-y-reverse));
 }
 
 .overflow-y-auto {
@@ -1056,6 +1080,14 @@ video {
   padding-bottom: 2rem;
 }
 
+.pb-6 {
+  padding-bottom: 1.5rem;
+}
+
+.text-left {
+  text-align: left;
+}
+
 .text-center {
   text-align: center;
 }
@@ -1178,6 +1210,15 @@ video {
   color: rgb(255 82 82 / var(--tw-text-opacity));
 }
 
+.line-through {
+  -webkit-text-decoration-line: line-through;
+          text-decoration-line: line-through;
+}
+
+.accent-darkOrange {
+  accent-color: #FFA17B;
+}
+
 .opacity-0 {
   opacity: 0;
 }
@@ -1238,6 +1279,10 @@ video {
   transition-duration: 300ms;
 }
 
+.checked\:border-transparent:checked {
+  border-color: transparent;
+}
+
 .hover\:border-transparent:hover {
   border-color: transparent;
 }
@@ -1266,14 +1311,19 @@ video {
   color: rgb(254 227 203 / var(--tw-text-opacity));
 }
 
+.hover\:text-darkBlue:hover {
+  --tw-text-opacity: 1;
+  color: rgb(50 64 91 / var(--tw-text-opacity));
+}
+
 .hover\:text-lightBlue:hover {
   --tw-text-opacity: 1;
   color: rgb(66 168 181 / var(--tw-text-opacity));
 }
 
-.hover\:text-darkBlue:hover {
+.hover\:text-black:hover {
   --tw-text-opacity: 1;
-  color: rgb(50 64 91 / var(--tw-text-opacity));
+  color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 
 .hover\:shadow-lg:hover {

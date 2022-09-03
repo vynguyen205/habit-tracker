@@ -5,6 +5,7 @@ import { QUERY_HABITS } from '../../utils/Queries';
 import UpdateHabit from './updateHabit';
 import DeleteHabit from './deleteHabit';
 import AuthService from '../../utils/Auth';
+
 // import { useAtom } from 'jotai';
 // import { userAtom } from '../../state';
 
@@ -28,14 +29,14 @@ const HabitList = () => {
       {loading ? (
         <div>Loading...</div>
       ) : (
-        <div className="flex">
+        <div className="flex text-lg">
           <ul>
             {habits?.map((data) =>
             (<li key={data?._id}>
               <div className="flex">
                 <UpdateHabit singleHabit={data} />
                 <div className="flex">
-                  <p className="ml-4">{data?.habitName}</p>
+                  <p className="ml-4 text-4xl">{data?.habitName}</p>
                 </div>
                 <DeleteHabit singleHabit={data} />
               </div>
