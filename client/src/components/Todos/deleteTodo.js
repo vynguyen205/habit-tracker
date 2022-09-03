@@ -1,11 +1,14 @@
 // import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { REMOVE_TODO } from "../../utils/Mutations";
+import { QUERY_TODO } from "../../utils/Queries";
+import AuthService from "../../utils/Auth";
 
 // import { useAtom } from 'jotai';
 // import { userAtom } from '../../state'
 
 export default function DeleteTodo({singleTodo}) {
+    // const [user, setUser] = useAtom(userAtom)
     const [removeTodo, { error }] = useMutation(REMOVE_TODO);
     // const [user, setUser] = useAtom(userAtom);
     const handleDelete = async (event) => {
@@ -17,10 +20,18 @@ export default function DeleteTodo({singleTodo}) {
             const { data } = await removeTodo({
                 variables: {
                     todoId: todoId,
-                }
+                },
+                refetchQueries: [
+                    {
+                      query: QUERY_TODO,
+                      variables: {
+                        userId: AuthService.getProfile().data._id
+                      }
+                    }
+                  ]
             })
-            
-            window.location.reload();
+
+            // setUser(data?.removeTodo?.todoUser)
 
         } catch (err) {
             console.error(err)
@@ -28,7 +39,7 @@ export default function DeleteTodo({singleTodo}) {
     }
     return (
         <>
-            <button className="ml-5" data-id={singleTodo._id} onClick={handleDelete}>༝</button>
+            <button className="ml-5" data-id={singleTodo._id} onClick={handleDelete}>x</button>
         </>
     )
 }

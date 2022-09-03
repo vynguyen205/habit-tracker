@@ -65,7 +65,7 @@ const typeDefs = gql`
     updateTag(tagId: ID!, tagName: String!): Tag
     removeUser(userId: ID!): User
     removeHabit(userId: ID!, habitId: ID!): Habit
-    removeTodo(todoId: ID!): Todo
+    removeTodo(todoId: ID!): User
     removeTag(tagId: ID!): Tag
   }
 `;

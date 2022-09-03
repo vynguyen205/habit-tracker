@@ -9,20 +9,23 @@ import SignupForm from '../components/SignupForm';
 
 
 const LandingPage = () => {
-    const [showForm, setShowForm] = useState("");
+    const [showForm, setShowForm] = useState(false);
     return (
         <>
             <div className='h-screen w-screen bg-gradient-to-tr from-darkOrange to-white via-lightOrange'>
-                <aside className='overflow-hidden flex flex-row items-center justify-center h-full'>
-                        <div className='max-w-xl mx-auto text-center'>
-                            <h1 className='font-sans text-darkBlue text-8xl'> Find your </h1>
-                            <h1 className='font-sans text-darkBlue text-9xl font-extrabold'>GROOVE </h1>
-                                <button className="btn btn-lg btn-danger" onClick={()=>setShowForm("Login")}>Login</button>
-                          
-                                <button className="btn btn-lg btn-danger" onClick={()=>setShowForm("Signup")}>Sign Up</button>
-                            <img src={Bus} alt='bus' className='w-full h-70 object-cover' />
-                           {showForm === "Signup" && <SignupForm />}
-                           {showForm === "Login" && <LoginForm />  }
+                <aside className='flex flex-row items-center justify-start h-full'>
+                        <div className='flex items-center justify-start mx-auto text-center'>
+                            <div className='flex flex-col items-center'>
+                                <div className='flex flex-col items-start'>
+                                    <h1 className='font-sans text-darkBlue text-8xl'> Find your </h1>
+                                    <h1 className='font-sans text-darkBlue text-9xl font-extrabold'>GROOVE </h1>
+                                </div>
+                                <div className='flex flex-col'>
+                                    <LoginForm />
+                                    <SignupForm />
+                                </div>
+                            </div>
+                            <img src={Bus} alt='bus' className='w-full h-90 object-cover' />
                         </div>
                 </aside>
             </div>

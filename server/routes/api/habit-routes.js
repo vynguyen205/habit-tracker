@@ -1,6 +1,5 @@
 const router = require('express').Router();
 const { Habit, User, Tag } = require('../../models');
-const chalk = require('chalk');
 
 // Get all habits
 router.get('/', async (req, res) => {
@@ -13,7 +12,7 @@ router.get('/', async (req, res) => {
         }
 
     } catch (err) {
-        console.log(chalk.red(err));
+        console.log(err);
         res.status(500).json({ message: err.message });
     }
 })
@@ -28,7 +27,7 @@ router.get('/habitId', async (req, res) => {
         }
 
     } catch (err) {
-        console.log(chalk.red(err));
+        console.log(err);
         res.status(500).json({ message: err.message });
     }
 })
@@ -61,7 +60,7 @@ router.post('/', async (req, res) => {
         }
         
     } catch (err) {
-        console.log(chalk.red(err));
+        console.log(err);
         res.status(500).json({ message: err.message });
     }
 })
@@ -95,7 +94,7 @@ router.put('/:habitId', async (req, res) => {
         }
 
     } catch (err) {
-        console.log(chalk.red(err));
+        console.log(err);
         res.status(500).json({ message: err.message });
     }
 })
@@ -127,7 +126,7 @@ router.delete('/:habitId', async (req, res) => {
         }
 
     } catch (err) {
-        console.log(chalk.red(err));
+        console.log(err);
         res.status(500).json({ message: err.message });
     }
 })

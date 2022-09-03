@@ -4,22 +4,33 @@ import Navbar from '../components/Navbar';
 import Menu from '../components/Menu';
 import AddTodo from '../components/Todos/addTodo';
 import TodoList from '../components/Todos';
+
+import moment from 'moment';
 // Display all habits for a logged in user
 function Todos() {
+
+  const day = moment().format('dddd');
+  const currentDate = moment().format('MMMM Do, YYYY');
 
     return (
         <>
           <div className="flex-column bg-lightOrange h-[100vh] w-[100vw]">
             <Navbar />
             <div className="flex">
-              <div className='flex w-max h-[75vh] px-8 py-8 overflow-y-auto rounded-2xl bg-darkOrange m-20'>
+              <aside className='flex flex-col min-w-[260px] h-[75vh] p-4 overflow-y-auto rounded-3xl bg-darkOrange m-20'>
                   <Menu />
-              </div>
-              <div className="flex flex-col">
-                <div className='flex content-end mt-10'>
-                  <AddTodo />
+              </aside>
+              <div className="flex flex-col w-[75vw] pr-10">
+                <div className='flex flex-row justify-between mt-10 border-b border-gray pb-10'>
+                  <div className= "flex flex-col mt-10">
+                    <div className='text-md text-black font-light tracking-wide'>{day}</div>
+                    <div className="text-xl font-normaltracking-wide">{currentDate}</div>
+                  </div>
+                  <div className='flex items-center mt-10'>
+                    <AddTodo />
+                  </div>
                 </div>
-                <div className='align-center mt-12'>
+                <div className='flex items-center flex-wrap mt-12'>
                   <TodoList />
                 </div>
               </div>

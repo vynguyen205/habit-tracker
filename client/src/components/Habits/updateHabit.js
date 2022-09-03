@@ -1,31 +1,30 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
-import { UPDATE_TODO, REMOVE_TODO } from "../../utils/Mutations";
+import { UPDATE_HABIT } from "../../utils/Mutations";
 
 import AuthService from "../../utils/Auth";
 import { useAtom } from 'jotai';
 import { userAtom } from '../../state'
 
 
-const UpdateTodo = ({singleTodo}) => {
+const UpdateHabit = ({singleHabit}) => {
     const [isChecked, setIsChecked] = useState(false);
     const [user, setUser] = useAtom(userAtom);
-    const [updateTodo, { error }] = useMutation(UPDATE_TODO);
+    const [updateHabit, { error }] = useMutation(UPDATE_HABIT);
 
     const handleCheck = async (event) => {
         event.preventDefault();
-        // todoId is the id of the todo that is being checked off
-        const todoId = event.target.dataset.id;
+        // habitId is the id of the todo that is being checked off
+        const habitId = event.target.dataset.id;
         // when checked, update the todo to completed
         try {
-            const { data } = await updateTodo({
+            const { data } = await updateHabit({
                 variables: {
-                    todoId: todoId,
-                    todoCompleted: true
+                    habitId: habitId,
+                    habitCompleted: true
                 }
             })
-            console.log(data, "testing")
-            setUser(data.updateTodo.todoUser)
+            setUser(data.updateHabit.habitUser)
 
         } catch (err) {
             console.error(err)
@@ -33,15 +32,15 @@ const UpdateTodo = ({singleTodo}) => {
     }
 
         return (
-            <div className="">
+            <>
                 <input
-                    data-id={singleTodo._id}
+                    className=""
+                    data-id={singleHabit._id}
                     type="checkbox" 
                     onChange={handleCheck} 
-                    className="p-10"
                 />
-            </div>
+            </>
         )
     }
 
-export default UpdateTodo;
+export default UpdateHabit;

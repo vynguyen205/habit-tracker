@@ -1,7 +1,6 @@
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
-const path = require('path');
-const chalk = require('chalk');
+const path = require('path');;
 const authMiddleware = require('./utils/auth');
 
 const { typeDefs, resolvers } = require('./schemas');
@@ -31,8 +30,8 @@ const startApolloServer = async (typeDefs, resolvers) => {
   
   db.once('open', () => {
     app.listen(PORT, () => {
-      console.log(chalk.green.bold.italic(`🌎 API server running http://localhost:${PORT} 🌎`));
-      console.log(chalk.green.bold.italic(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`));
+      console.log(`🌎 API server running http://localhost:${PORT} 🌎`);
+      console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
     })
   })
   };

@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_TODO } from "../../utils/Mutations";
-import { useAtom } from 'jotai'
-import { userAtom } from '../../state';
+import { QUERY_TODO } from "../../utils/Queries";
+// import { useAtom } from 'jotai'
+// import { userAtom } from '../../state';
 
 import AuthService from "../../utils/Auth";
 
 // Add new todo for a logged in user
 const AddTodo = () => {
   const [showModal, setShowModal] = useState(false);
-  const [user, setUser] = useAtom(userAtom)
+  // const [user, setUser] = useAtom(userAtom)
   // get todo name and description from form
   const [todoFormData, setTodoFormData] = useState({
     todoName: "",
@@ -31,13 +32,23 @@ const AddTodo = () => {
       // add todo to database
       const { data } = await addTodo({
         // variables to pass to mutation
-        variables: {userId: AuthService.getProfile().data._id, ...todoFormData},
+        variables: {
+          userId: AuthService.getProfile().data._id,
+          ...todoFormData
+        },
+        refetchQueries: [
+          {
+            query: QUERY_TODO,
+            variables: {
+              userId: AuthService.getProfile().data._id
+            }
+          }
+        ]
         
       });
       
-      setUser(data?.addTodo?.todoUser)
-
-      window.location.reload();
+      // setUser(data?.addTodo?.todoUser)
+      // window.location.reload();
       
     } catch (err) {
       console.error(err);
@@ -52,13 +63,23 @@ const AddTodo = () => {
 
   }
 
+  
+
   return (
     <>
       <button
+
+        data-tooltip-target="add-todo" 
         className="bg-lightBlue text-white text-3xl active:bg-darkBlue font-bold px-5 py-3 rounded-shadow hover:bg-darkBlue hover:shadow-lg outline-none focus:outline-none rounded-full mr-1 mb-1"
         type="button" onClick={() => setShowModal(true)}>
         +
       </button>
+      <div id="add-todo" 
+          role="tooltip" 
+          className="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-offBrown rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-offBrown">
+            Add new todo
+            <div className="tooltip-arrow" data-popper-arrow></div>
+      </div>
       {showModal ? (
         <>
           <div className="flex justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">

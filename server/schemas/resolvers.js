@@ -186,8 +186,8 @@ const resolvers = {
         { new: true }
       );
 
-      const todoData = await todo.populate('todoUser').execPopulate();
-      return todoData;
+      // const todoData = await todo.populate('todoUser').execPopulate();
+      return user;
     },
     removeTag: async (parent, { tagId }) => {
       return Tag.findOneAndDelete({ _id: tagId });

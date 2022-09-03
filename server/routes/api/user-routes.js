@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const User = require('../../models/User');
-const chalk = require('chalk');
+
 
 // Get all users
 router.get('/', async (req, res) => {
@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
         const userData = await User.find({});
         res.status(200).json(userData);
     } catch (err) {
-        console.log(chalk.red(err));
+        console.log(err);
         res.status(404).json({ message: err.message });
     }
 })
@@ -19,7 +19,7 @@ router.get('/:userId', async (req, res) => {
         const userData = await User.findOne({ _id: req.params.userId });
         res.status(200).json(userData);
     } catch (err) {
-        console.log(chalk.red(err));
+        console.log(err);
         res.status(500).json({ message: err.message });
     }
 })
@@ -31,7 +31,7 @@ router.post('/', async (req, res) => {
         const userData = await User.create(newUser);
         res.status(200).json(userData);
     } catch (err) {
-        console.log(chalk.red(err));
+        console.log(err);
         res.status(500).json({ message: err.message });
     }
 })
@@ -46,7 +46,7 @@ router.put('/:userId', async (req, res) => {
         );
         res.status(200).json(userData);
     } catch (err) {
-        console.log(chalk.red(err));
+        console.log(err);
         res.status(500).json({ message: err.message });
     }
 })
@@ -56,7 +56,7 @@ router.delete('/:userId', async (req, res) => {
         const userData = await User.findOneAndDelete({ _id: req.params.userId });
         res.status(200).json(userData);
     } catch (err) {
-        console.log(chalk.red(err));
+        console.log(err);
         res.status(500).json({ message: err.message });
     }
 })
