@@ -14,7 +14,7 @@ function Todos() {
 
     return (
         <>
-          <div className="flex-column bg-lightOrange h-[100vh] w-[100vw]">
+            <div className='flex-column bg-lightOrange h-fit-content w-fit-content'>
             <Navbar />
             <div className="flex">
               <aside className='flex flex-col min-w-[260px] h-[75vh] p-4 overflow-y-auto rounded-3xl bg-darkOrange m-20'>
