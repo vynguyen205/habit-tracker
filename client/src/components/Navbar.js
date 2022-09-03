@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import logoutUser from '../components/LogoutUser';
-import "../App.css";
+import { BiLogOut } from 'react-icons/bi';
 
 function Navbar () {
     return (
@@ -10,7 +10,12 @@ function Navbar () {
           <img src={require('../assets/bus.jpeg')} alt='logo' className='w-32 h-22 ' />
         </Link>
         <h1 className='flex text-3xl text-white shadow-darkBlue font-bold font-mono'>🌼 Let's Groove 🌸</h1>
-        <button onClickCapture={logoutUser} className='inline-block text-lg px-5 py-3 leading-none border rounded text-white border-white hover:border-transparent hover:text-lightBlue hover:bg-white mt-4 md:mt-0'>Logout</button>
+        <button 
+          onClickCapture={logoutUser} 
+          className='flex text-lg px-5 py-3 leading-none rounded text-white border-white hover:border-transparent hover:text-lightBlue hover:bg-white mt-4 md:mt-0'>
+          <BiLogOut className='text-xl' /> 
+           Logout
+          </button>
       </nav>
     );
 }

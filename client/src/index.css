@@ -1241,6 +1241,21 @@ video {
   transition-duration: 300ms;
 }
 
+.first-line\:text-lg::first-line {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.marker\:text-lg *::marker {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.marker\:text-lg::marker {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
 .hover\:border-transparent:hover {
   border-color: transparent;
 }
