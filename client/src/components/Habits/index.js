@@ -1,82 +1,53 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { useMutation, useQuery } from '@apollo/client';
-
-import { ADD_HABIT } from '../../utils/Mutations';
+import React, { useState } from 'react';
+import { useQuery } from '@apollo/client';
 import { QUERY_HABITS } from '../../utils/Queries';
 
-import Auth from '../../utils/Auth';
-// const data = [
-//     {
-//         _id: "1",
-//         name: "Eat",
-//         description: "Eat healthy",
-//         tag: "Health & Wellness",
-//         userId: "1",
-//     },
-//     {
-//         _id: "2",
-//         name: "Sleep",
-//         description: "Sleep well",
-//         tag: "Health & Wellness",
-//         userId: "1",
-//     },
-//     {
-//         _id: "3",
-//         name: "Exercise",
-//         description: "Exercise regularly",
-//         tag: "Health & Wellness",
-//         userId: "1",
-//     }
-// ]
+import UpdateHabit from './updateHabit';
+import DeleteHabit from './deleteHabit';
+import AuthService from '../../utils/Auth';
 
+// import { useAtom } from 'jotai';
+// import { userAtom } from '../../state';
 
 const HabitList = () => {
-  const [habitText, setHabitText] = useState('');
-  // const [habits, setHabits] = useState([]);
-  // query to get all the habits
+  // const [user, setUser] = useAtom(userAtom)
+  const [showDescription, setShowDescription] = useState(false)
+  // console.log(user?.userHabit);
+
   const { data: userHabits, loading } = useQuery(QUERY_HABITS, {
-    fetchPolicy: 'no-cache',
     variables: {
-      userId: "62fe9cbb970457d5b9eb5e31"
+      userId: AuthService.getProfile().data._id,
     }
   });
+  console.log("user habit data", userHabits);
 
-  // const habitList = data?.habits || [];
+  const habits = userHabits?.user?.userHabit || []
 
-  console.log(userHabits);
-
-
-// show habits for a logged in user
+  // show habits for a logged in user
   return (
     <>
       {loading ? (
         <div>Loading...</div>
       ) : (
-        <div>
-          <h1>My Habits</h1>
+        <div className="flex justify-start text-lg">
           <ul>
-            {userHabits?.user?.userHabit?.map((data) =>
-              (<li key={data?._id}>
-                <div>
-                  <h3>{data?._id}</h3>
-                  <p>{data?.habitName}</p>
-                  <p>{data?.habitDescription}</p>
-                  <p>{data?.habitCompleted}</p>
+            {habits?.map((data) =>
+            (<li key={data?._id}>
+              <div className="flex items-center py-1">
+                <UpdateHabit singleHabit={data} />
+                <div className="flex">
+                  <p className="ml-4 text-4xl">{data?.habitName}</p>
                 </div>
-              </li>)
-            )}
+                <DeleteHabit singleHabit={data} />
+              </div>
+            </li>
+            ))}
           </ul>
         </div>
-      )}
+      )
+      }
     </>
   );
-}
-
-
-// use this to test the habit list
-/* <pre>{JSON.stringify(habits, null, 2)}</pre> */
-    
-
+};
 
 export default HabitList;

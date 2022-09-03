@@ -1,68 +1,39 @@
-// Import file dependencies
-import React from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useState } from 'react';
+import "../App.css";
 import Navbar from '../components/Navbar';
 import Menu from '../components/Menu';
-
 import HabitList from '../components/Habits';
 import AddHabit from '../components/Habits/addHabit';
-// import { Container } from '@material-ui/core';
+
+import moment from 'moment';
 
 // Display landing page
 function Dashboard() {
-    const { userId } = useParams();
-    console.log("params", userId);
-    //do lookup now using userId param
-    // const [showModal, setShowModal] = useState(false);
-    // const [showAddHabit, setShowAddHabit] = useState(false);
-    // const [habits, setHabits] = useState([]);
-    // const [showAddTodo, setShowAddTodo] = useState(false);
-    // const [todos, setTodos] = useState([]);
 
-
-    // useEffect(() => {
-    //     const GetTodos = async () => {
-    //         const { data } = await allTodos;
-    //         setTodos(data.allTodos);
-    //     }
-
-    //     GetTodos()
-    // }, [])
-
-    // 
-
-
-
-    // // Fetch habits from server
-    // const fetchHabits = async () => {
-    //     const habitRes = await fetch('/api/habits');
-    //     const habitData = await habitRes.json();
-
-    //     return habitData;
-    // }
-
-    // // Fetch Tasks
-    // const fetchTodos = async () => {
-    //     const taskRes = await fetch('/api/tasks');
-    //     const taskData = await taskRes.json()
-
-    //     return taskData;
-    // }
-
+    const day = moment().format('dddd');
+    const currentDate = moment().format('MMMM Do, YYYY');
 
     return (
         <>
-            <div className='flex-column bg-lightOrange h-[100vh] w-[100vw]'>
+            <div className='flex-column bg-lightOrange h-fit-content w-fit-content'>
                 <Navbar />
                 <div className="flex">
-                    <div className='flex flex-col w-[25vw] h-[80vh] px-8 py-8 overflow-y-auto rounded-2xl bg-darkOrange m-20'>
-                        <div className='flex flex-col justify-between mt-10'>
-                            <Menu />
+                    <aside className='flex flex-col min-w-[260px] h-[75vh] p-4 overflow-y-auto rounded-3xl bg-darkOrange m-20'>
+                        <Menu />
+                    </aside>
+                    <div className="flex flex-col w-[75vw] pr-10">
+                        <div className='flex flex-row justify-between mt-10 border-b border-gray pb-6'>
+                            <div className="flex flex-col mt-10">
+                                <div className='text-xl text-black font-light tracking-wide'>{day}</div>
+                                <div className="text-2xl font-normaltracking-wide">{currentDate}</div>
+                            </div>
+                            <div className='flex items-center mt-10'>
+                                <AddHabit />
+                            </div>
                         </div>
-                    </div>
-                    <div>
-                        <HabitList />
-                        <AddHabit />
+                        <div className='flex flex-col flex-wrap mt-12'>
+                            <HabitList />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -71,24 +42,3 @@ function Dashboard() {
 }
 
 export default Dashboard;
-
-
-// Display header with home icon and logout button
-
-// Display side menu
-
-// Display current date
-
-// Display logged in users name
-
-// Todos: button to view all todos
-
-// Habits: button to view all habits
-
-// Tags: button to view all tags
-
-// Display Middle body withing landing page
-
-// Button to add new habit
-
-// Button to add new todo

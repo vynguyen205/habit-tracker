@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const Todo = require('../../models/Todo');
-const chalk = require('chalk');
+const Todo = require('../../../server/models/Todo');
+
 
 // Get all todos
 router.get('/', async (req, res) => {
@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
         const todos = await Todo.find();
         res.status(200).json(todos);
     } catch (err) {
-        console.log(chalk.red(err));
+        console.log(err);
         res.status(500).json({ message: err.message });
     }
 })
@@ -19,7 +19,7 @@ router.get('/:todoId', async (req, res) => {
         const todo = await Todo.findOne({ _id: req.params.todoId });
         res.status(200).json(todo);
     } catch (err) {
-        console.log(chalk.red(err));
+        console.log(err);
         res.status(500).json({ message: err.message });
     }
 })
@@ -41,7 +41,7 @@ router.post('/', async (req, res) => {
         res.status(200).json(todo, userData);
 
     } catch (err) {
-        console.log(chalk.red(err));
+        console.log(err);
         res.status(500).json({ message: err.message });
     }
 })
@@ -55,7 +55,7 @@ router.put('/:todoId', async (req, res) => {
         );
         res.status(200).json(todo);
     } catch (err) {
-        console.log(chalk.red(err));
+        console.log(err);
         res.status(500).json({ message: err.message });
     }
 })
@@ -66,7 +66,7 @@ router.delete('/:todoId', async (req, res) => {
         const todo = await Todo.findOneAndDelete({ _id: req.params.todoId });
         res.status(200).json(todo);
     } catch (err) {
-        console.log(chalk.red(err));
+        console.log(err);
         res.status(500).json({ message: err.message });
     }
 })

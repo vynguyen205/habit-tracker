@@ -1,38 +1,37 @@
-import React, { useState } from 'react';
-import "../App.css";
+import React, { useState } from 'react';;
 import Navbar from '../components/Navbar';
 import Menu from '../components/Menu';
 import AddTodo from '../components/Todos/addTodo';
-import TodoList from '../components/Todos/index.js';
+import TodoList from '../components/Todos';
 
+import moment from 'moment';
 // Display all habits for a logged in user
 function Todos() {
-    // const [todos, setTodos] = useState([]);
-    // const getTodos = async () => {
-    //     const response = await fetch('../../utils/api');
-    //     const data = await response.json();
-    //     setTodos(data);
-    // }
 
-    // React.useEffect(() => {
-    //     getTodos();
-    // } , []);
+  const day = moment().format('dddd');
+  const currentDate = moment().format('MMMM Do, YYYY');
 
     return (
         <>
-          <div className="flex-column bg-lightOrange h-[100vh] w-[100vw]">
+            <div className='flex-column bg-lightOrange h-fit-content w-fit-content'>
             <Navbar />
             <div className="flex">
-              <div className='flex flex-col w-[25vw] h-[80vh] px-8 py-8 overflow-y-auto rounded-2xl bg-darkOrange m-20'>
-                <div className='flex flex-col justify-between mt-10'>
+              <aside className='flex flex-col min-w-[260px] h-[75vh] p-4 overflow-y-auto rounded-3xl bg-darkOrange m-20'>
                   <Menu />
+              </aside>
+              <div className="flex flex-col w-[75vw] pr-10">
+                <div className='flex flex-row justify-between mt-10 border-b border-gray pb-6'>
+                  <div className= "flex flex-col mt-10">
+                    <div className='text-xl text-black font-light tracking-wide'>{day}</div>
+                    <div className="text-2xl font-normaltracking-wide">{currentDate}</div>
+                  </div>
+                  <div className='flex items-center mt-10'>
+                    <AddTodo />
+                  </div>
                 </div>
-                <div className='align-center mt-12'>
+                <div className='flex flex-wrap mt-12'>
                   <TodoList />
                 </div>
-              </div>
-              <div className='flex flex-col justify-between mt-10'>
-                <AddTodo />
               </div>
             </div>
           </div>

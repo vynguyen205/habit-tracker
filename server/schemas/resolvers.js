@@ -10,8 +10,10 @@ const resolvers = {
     },
     // get one user
     user: async (parent, { userId }) => {
-      // populte the use with todos and habits
-      return User.findOne({ _id: userId }).populate('userTodo').populate('userHabit');
+      // find yser by id and populate the habits and habit tags
+      const userData = User.findOne({ _id: userId }).populate('userTodo').populate('userHabit').populate('habitTags');
+      // const habitData = Habit.findOne({ habitUser: userId }).populate('habitTag');
+      return userData;
     },
     // get Users Todos
     userTodos: async (parent, { userId }) => {
@@ -52,7 +54,7 @@ const resolvers = {
     },
 
     login: async (parent, { email, password }) => {
-      const user = await User.findOne({ email });
+      const user = await User.findOne({ email }).populate("userTodo").populate("userHabit"); //populate with addtional stuff later, BUT CAREFUL make TypeDefs Match TOO
       if (!user) {
         throw new Error('User not found');
       }
@@ -61,6 +63,7 @@ const resolvers = {
         throw new Error('Invalid password');
       }
       const token = signToken(user);
+      console.log(token, user)
       return { token, user };
     },
 
@@ -161,7 +164,11 @@ const resolvers = {
 
     /* Removing mutations starts here */
     removeUser: async (parent, { userId }) => {
-      return User.findOneAndDelete({ _id: userId });
+      // remove all the habits and todos associated with the user
+      const user = await User.findOneAndDelete({ _id: userId }).populate('userTodo').populate('userHabit');
+      await Habit.deleteMany({ habitUser: userId });
+      await Todo.deleteMany({ todoUser: userId });
+      return user;
     },
     removeHabit: async (parent, { userId, habitId }) => {
       const habit = await Habit.findOneAndDelete({ _id: habitId });
@@ -179,8 +186,8 @@ const resolvers = {
         { new: true }
       );
 
-      const todoData = await todo.populate('todoUser').execPopulate();
-      return todoData;
+      // const todoData = await todo.populate('todoUser').execPopulate();
+      return user;
     },
     removeTag: async (parent, { tagId }) => {
       return Tag.findOneAndDelete({ _id: tagId });

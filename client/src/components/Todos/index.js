@@ -2,55 +2,47 @@ import React, { useState } from "react";
 import { useQuery } from "@apollo/client";
 import { QUERY_TODO } from "../../utils/Queries";
 
-import "../../App.css";
-
-// const data = [
-//     {
-//         _id: "1",
-//         name: "School",
-//         description: "Go to school",
-//         userId: "1",
-//     },
-//     {
-//         _id: "2",
-//         name: "Shopping",
-//         description: "Buy groceries",
-//         userId: "1",
-//     },
-//     {
-//         _id: "3",
-//         name: "Study",
-//         description: "Study for 1 hour",
-//         userId: "1",
-//     }
-// ]
+import UpdateTodo from "./updateTodo";
+import DeleteTodo from "./deleteTodo";
+import AuthService from '../../utils/Auth';
+// import { useAtom } from 'jotai';
+// import { userAtom } from '../../state'
 
 // Show habits for a logged in user
 const TodoList = () => {
-    const [todoText, setTodoText] = useState('');
-    const { data: userTodos, loading } = useQuery(QUERY_TODO, {
-        fetchPolicy: 'no-cache',
+    // const [user, setUser] = useAtom(userAtom);
+    const [showDescription, setShowDescription] = useState(false);
+    // toggle description
+    // const toggleDescription = () => {
+    //     // show description for only one todo at a time
+    //     setShowDescription(!showDescription);
+    // }
+
+     const { data: userTodos, loading } = useQuery(QUERY_TODO, {
         variables: {
-            userId: "62fe9cbb970457d5b9eb5e31"
+            userId: AuthService.getProfile().data._id,
         }
+
     });
-
-    console.log(userTodos);
-
+    
+    const todos = userTodos?.user?.userTodo || []
+  
     return (
         <>
             {loading ? (
                 <div>Loading...</div>
             ) : (
-                <div>
-                    <h1>Todo List</h1>
+                <div className="flex justify-start text-lg">
                     <ul>
-                        {userTodos?.user?.userTodo?.map((data) =>
-                        (<li key={data?._id}>
-                            <div>
-                                <h3>{data?.todoName}</h3>
-                                <p>{data?.todoDescription}</p>
-                                <p>{data?.todoCompleted}</p>
+                        {todos?.map((data) =>
+                        
+                        (<li key={data?._id}>  
+                            <div className="flex items-center py-1">
+                                <UpdateTodo singleTodo={data}/> 
+                                <div className="flex">
+                                    <p className="ml-4 text-4xl">{data?.todoName}</p>
+                                </div>
+                                <DeleteTodo singleTodo={data}/>
                             </div>
                         </li>
                         ))}

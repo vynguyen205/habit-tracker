@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const { Tag, Habit } = require('../../models');
-const chalk = require('chalk');
+const { Tag, Habit } = require('../../../server/models');
+
 
 // Get all tags
 router.get('/', async (req, res) => {
@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
         const tags = await Tag.find();
         res.json(tags);
     } catch (err) {
-        console.log(chalk.red(err));
+        console.log(err);
         res.status(500).json({ message: err.message });
     }
 })
@@ -20,7 +20,7 @@ router.get('/:tagId', async (req, res) => {
         const tag = await Tag.findOne({ _id: req.params.tagId });
         res.json(tag);
     } catch (err) {
-        console.log(chalk.red(err));
+        console.log(err);
         res.status(500).json({ message: err.message });
     }
 })
@@ -32,7 +32,7 @@ router.post('/', async (req, res) => {
         const tag = await Tag.create(newTag);
         res.status(201).json(tag);
     } catch (err) {
-        console.log(chalk.red(err));
+        console.log(err);
         res.status(500).json({ message: err.message });
     }
 })
@@ -51,7 +51,7 @@ router.put('/:tagId', async (req, res) => {
         res.status(200).json(tag);
         }
     } catch (err) {
-        console.log(chalk.red(err));
+        console.log(err);
         res.status(500).json({ message: err.message });
     }
 })
@@ -64,7 +64,7 @@ router.get('/:tagId/habits', async (req, res) => {
         const habits = await tag.tagHabits;
         res.status(200).json(habits);
     } catch (err) {
-        console.log(chalk.red(err));
+        console.log(err);
         res.status(500).json({ message: err.message });
     }
 })
@@ -82,7 +82,7 @@ router.delete('/:tagId', async (req, res) => {
 
         res.status(200).json(tag, habits);
     } catch (err) {
-        console.log(chalk.red(err));
+        console.log(err);
         res.status(500).json({ message: err.message });
     }
 })

@@ -9,6 +9,14 @@ export const LOGIN_USER = gql`
       user {
         _id
         username
+        userHabit {
+          _id
+          habitName
+        }
+        userTodo {
+          _id
+          todoName
+        }
       }
     }
   }
@@ -55,10 +63,14 @@ export const ADD_TODO = gql`
       todoName
       todoDescription
       todoCompleted
+      todoUser {
+        _id
+        username
+      }
     }
 }`;
 
-// mutation to add a tag
+// mutation to update a habit
 export const ADD_TAG = gql`
 mutation AddTag($tagName: String!) {
   addTag(tagName: $tagName) {
@@ -146,15 +158,25 @@ mutation RemoveHabit($userId: ID!, $habitId: ID!) {
 
 // mutation to remove todo
 export const REMOVE_TODO = gql`
-mutation RemoveHabit($todoId: ID!) {
+mutation RemoveTodo($todoId: ID!) {
   removeTodo(todoId: $todoId) {
     _id
-    todoName
-    todoDescription
-    todoCompleted
-    todoUser {
+    username
+    userHabit {
       _id
-      username
+      habitName
+      habitDescription
+      habitCompleted
+      habitCreated
+      habitUpdated
+    }
+    userTodo {
+      _id
+      todoName
+      todoDescription
+      todoCompleted
+      todoCreated
+      todoUpdated
     }
   }
 }`;
