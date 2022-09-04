@@ -9,7 +9,7 @@
 - [Description](#description)
 - [Project Preview](##project%20preview)
 - [Installation](#installation)
-- [Usage](#usage)
+- [Technologies](#technologies)
 - [Link](#link)
 - [Credits](#credits)
 - [License](#license)
@@ -18,31 +18,41 @@
 
 ## Description 📋
 
-
+Groove is a simple productivity app specifically designed this to keep you from only focusing on the tasks that you are doing and nothing else. This is not just to keep track of your todos, you can also use this to track your habits. Get into the Groove by using our app.
 
 ---
 
 ## Project Preview 📸
 
-![Visual]()
+![Visual](/assets/GIF/preview-1.gif)
+
+![Visual](/assets/GIF/preview-2.gif)
 
 ---
 
 ## Installation 📀
 
+Clone repo, run npm init, install dependencies, run node
+
+  To clone the repo:
+
+    git clone 
+    
+    git@github.com:vynguyen205/habit-tracker.git
 
 ---
 
-## Usage 🖥
+## Technologies 👩🏻‍🔧
 
+- JavaScript (React.js and Node.js), GraphQl, Apollo, JWT, Jotai, MongoDb, Mongoose, Tailwindcss
 
 ---
 
 ## Links 🔗 
 
-**[GitHub Link]()**
+**[GitHub Link 🐱](https://github.com/vynguyen205/habit-tracker)**
 
-**[Deployed Link]()**
+**[Deployed Link 👀](https://groovey.herokuapp.com/)**
 
 ---
 
